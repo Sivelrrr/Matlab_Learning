@@ -1,7 +1,0 @@
-site_name: 'Visual High Throughput Pipeline (VHTP)'
-theme:
-  name: null
-  custom_dir: 'cinder'
-nav:
-  - Overview: overview.md
-  - Table of Contents: index.md
