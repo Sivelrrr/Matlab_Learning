@@ -16,8 +16,10 @@ function EEG = epoched_to_continuous(EEG)
 - `data`: A 3D matrix of EEG data with dimensions (channels x points x trials).
     
 - `srate`: The sampling rate of the EEG data.
+
 ## Outputs
 `EEG`: The modified EEG structure with continuous data. The relevant fields are updated to reflect the new data format.
+
 ## Detailed Steps
 Input Validation: The function starts by validating the input using MATLAB's `inputParser` to ensure the input EEG is a structure.
 
