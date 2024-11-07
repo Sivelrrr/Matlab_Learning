@@ -59,5 +59,5 @@ Example: Displaying the size of the continuous data
 disp(size(EEG.data));  % Should display the new size of the continuous data
 ```
 
-##Final Notes
+## Final Notes
 Ensure that the `eeg_checkset` function is available in your MATLAB path. This function is typically part of the **EEGLAB** toolbox. The function assumes that the input EEG data is correctly formatted and that the `data` field contains a 3D matrix if epoched. If the data is already continuous then a warning will we displayed and no changes will occur.
