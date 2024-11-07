@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>eeg_htpEegResampleDataEeglab Function - Visual High Throughput Pipeline (VHTP)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "eeg_htpEegResampleDataEeglab Function";
+        var mkdocs_page_input_path = "eeg_htpEegResampleDataEeglab\\eeg_htpEegResampleDataEeglab.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Visual High Throughput Pipeline (VHTP)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Table of Contents</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Visual High Throughput Pipeline (VHTP)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">eeg_htpEegResampleDataEeglab Function</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eeg_htpeegresampledataeeglab-function">eeg_htpEegResampleDataEeglab Function</h1>
+<p>The eeg_htpEegResampleDataEeglab function resamples EEG data to a newly specified sampling rate using the EEGLAB toolbox. This guide will walk you through how to use this function effectively.</p>
+<h2 id="function-description">Function Description</h2>
+<p>The eeg_htpEegResampleDataEeglab function takes an <strong>EEGLAB</strong> EEG structure and resamples its data to a new specified sampling rate. It optionally saves the output and logs relevant information.</p>
+<h3 id="syntax">Syntax</h3>
+<pre><code>[EEG, results] = eeg_htpEegResampleDataEeglab(EEG, 'srate', 500, 'saveoutput', false, 'outputdir', '')
+</code></pre>
+<h2 id="inputs">Inputs</h2>
+<h3 id="required-parameter">Required Parameter</h3>
+<p><code>EEG</code>: An EEGLAB structure containing the EEG data.</p>
+<h3 id="optional-parameters">Optional Parameters</h3>
+<p><code>srate</code>: A numeric value specifying the new sampling rate (default: 500).</p>
+<p><code>saveoutput</code>: A boolean indicating if the output should be saved (default: false).</p>
+<p><code>outputdir</code>: A string specifying the directory to save the output (default: '').</p>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code>: The updated <strong>EEGLAB</strong> structure with the resampled data.</p>
+<p><code>results</code>: A structure containing function-specific results, including a quality information (QI) table and input parameters used.</p>
+<h2 id="example-method">Example Method</h2>
+<h3 id="1-load-your-eeg-data">1. Load Your EEG Data</h3>
+<p>Before using the function, load your EEG data into an <strong>EEGLAB</strong> structure.</p>
+<pre><code>EEG = pop_loadset('filename', 'your_eeg_data.set', 'filepath', 'path_to_your_data/');
+</code></pre>
+<h3 id="2-resample-your-eeg-data">2. Resample Your EEG Data</h3>
+<p>Use the <code>eeg_htpEegResampleDataEeglab</code> function to resample your EEG data. You can specify the new sampling rate, whether to save the output, and the output directory.</p>
+<p>Example: Resampling to 500 Hz and saving the output to a specified directory</p>
+<pre><code>[EEG, results] = eeg_htpEegResampleDataEeglab(EEG, 'srate', 500, 'saveoutput', true, 'outputdir', 'example_directory/');
+</code></pre>
+<h3 id="3-check-the-results">3. Check the Results</h3>
+<p>After resampling, you can check the updated EEG structure and results.</p>
+<p>Example: Displaying the new sampling rate</p>
+<pre><code>disp(EEG.srate);  % Should display the new sampling rate
+</code></pre>
+<p>Example: Viewing the QI table</p>
+<pre><code>disp(results.qi_table);
+</code></pre>
+<h2 id="final-notes">Final Notes</h2>
+<p>Ensure that the <strong>EEGLAB</strong> toolbox is installed and added to your MATLAB path.
+The function logs the original and new sampling rates and updates the EEGLAB structure accordingly.
+If the original sampling rate is above 2000 Hz, it first downsamples to 1000 Hz before resampling to the specified rate.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
