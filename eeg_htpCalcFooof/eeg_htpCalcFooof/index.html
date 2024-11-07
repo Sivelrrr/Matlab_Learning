@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>eeg_htpCalcFooof Function - Visual High Throughput Pipeline (VHTP)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "eeg_htpCalcFooof Function";
+        var mkdocs_page_input_path = "eeg_htpCalcFooof\\eeg_htpCalcFooof.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Visual High Throughput Pipeline (VHTP)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Table of Contents</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Visual High Throughput Pipeline (VHTP)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">eeg_htpCalcFooof Function</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eeg_htpcalcfooof-function">eeg_htpCalcFooof Function</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>eeg_htpCalcFooof</code> function performs power spectral analysis using the FOOOF (Fitting Oscillations &amp; One-Over-F) approach. It decomposes EEG power spectra into periodic (oscillatory) and aperiodic (background) components, providing insights into underlying neural oscillations. This can be especially useful for analyzing the spectral content of EEG data in terms of background noise versus specific oscillatory peaks.</p>
+<h2 id="function-syntax">Function Syntax</h2>
+<pre><code>[EEG, results] = eeg_htpCalcFooof(EEG, varargin)
+</code></pre>
+<h2 id="inputs">Inputs</h2>
+<h3 id="required-paramters">Required Paramters</h3>
+<p><code>EEG</code> : An EEGLAB structure containing EEG data. This structure should include EEG recordings, channel information, and sampling rate.</p>
+<h3 id="optional-parameters-function-specific">Optional Parameters (Function-Specific)</h3>
+<p>Specify additional parameters through name-value pairs in varargin. Some key parameters include:</p>
+<p><code>f_range</code>: Frequency range of interest, typically defined as [<code>minFreq</code> <code>maxFreq</code>]. Defaults to [1 50].
+<code>aperiodic_mode</code>: Method for estimating the aperiodic component (<code>fixed</code> or <code>knee</code>). Defaults to 'fixed'.
+<code>peak_width_limits</code>: Limits on the width of detected peaks, as [<code>minWidth</code> <code>maxWidth</code>]. Defaults to [1 12].
+<code>max_n_peaks</code>: Maximum number of peaks to model in the spectrum. Defaults to 6.
+<code>plot_results</code>: Whether to plot FOOOF results (<code>true</code> or <code>false</code>). Defaults to <code>false</code>.</p>
+<h2 id="method-guide">Method Guide</h2>
+<h3 id="load-and-prepare-eeg-data">Load and Prepare EEG Data</h3>
+<p>Load your EEG data into an EEGLAB structure format. Ensure your data includes sampling rate and channel information required for spectral analysis.</p>
+<pre><code>EEG = pop_loadset('your_data.set'); % Load EEG data set
+</code></pre>
+<h2 id="define-optional-parameters">Define Optional Parameters</h2>
+<p>Specify any optional parameters as name-value pairs. For instance, to set a frequency range from 1 to 40 Hz and plot results, you can set:</p>
+<pre><code>f_range = [1 40];
+plot_results = true;
+</code></pre>
+<h2 id="run-eeg_htpcalcfooof">Run eeg_htpCalcFooof</h2>
+<p>Execute the function with your EEG structure and any desired parameters:</p>
+<pre><code>[EEG, results] = eeg_htpCalcFooof(EEG, 'f_range', f_range, 'plot_results', plot_results);
+</code></pre>
+<p>This function will automatically analyze the EEG data across the specified frequency range and plot the results if plot_results is set to true.</p>
+<p>Example Usage
+This example demonstrates using eeg_htpCalcFooof with a specific frequency range, peak width limits, and plotting option:</p>
+<pre><code>% Define parameters
+f_range = [1 40];
+peak_width_limits = [2 10];
+plot_results = true;
+
+% Run FOOOF analysis
+[EEG, results] = eeg_htpCalcFooof(EEG, 'f_range', f_range, ...
+    'peak_width_limits', peak_width_limits, 'plot_results', plot_results);
+</code></pre>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code> : Modified EEGLAB structure with <code>.etc.fooof</code> field containing FOOOF results.</p>
+<p><code>results</code> : Structure containing FOOOF analysis results, including aperiodic parameters, peak parameters, and goodness-of-fit metrics.</p>
+<p>The results structure provides the following key outputs:</p>
+<p><code>aperiodic_params</code>: Parameters describing the aperiodic component.
+<code>peak_param</code>s: Frequency, power, and width of detected oscillatory peaks.
+<code>r_squared</code>: Goodness-of-fit measure for the FOOOF model.
+<code>error</code>: Mean squared error of the model.</p>
+<p>Additionally, if plot_results is set to <code>true</code>, the function displays a visual of the decomposed spectrum with aperiodic and periodic components.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>FOOOF Dependency: This function requires the <code>FOOOF</code> package, so ensure FOOOF is installed and accessible in MATLAB.
+Spectral Range Limitations: The selected <code>f_range</code> should align with the sampling rate of your data to avoid aliasing issues.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

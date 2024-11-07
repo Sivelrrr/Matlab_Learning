@@ -1,5 +1,0 @@
-site_name: 'Visual High Throughput Pipeline (VHTP)'
-theme: jekyll-theme-cayman
-nav:
-  - Overview: overview.md
-  - Table of Contents: index.md

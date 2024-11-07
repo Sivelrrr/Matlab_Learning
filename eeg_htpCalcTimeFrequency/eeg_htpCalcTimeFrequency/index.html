@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>eeg htpCalcTimeFrequency - Visual High Throughput Pipeline (VHTP)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "eeg htpCalcTimeFrequency";
+        var mkdocs_page_input_path = "eeg_htpCalcTimeFrequency\\eeg_htpCalcTimeFrequency.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Visual High Throughput Pipeline (VHTP)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Table of Contents</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Visual High Throughput Pipeline (VHTP)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">eeg htpCalcTimeFrequency</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="overview">Overview</h2>
+<p>The <code>eeg_htpCalcTimeFrequency</code> function calculates time-frequency analyses, particularly inter-trial coherence (ITC) and event-related spectral perturbation (ERSP), to assess frequency-specific power and phase-locking in EEG data. It's built for auditory stimuli experiments but can be adapted to other paradigms.</p>
+<p>Syntax</p>
+<pre><code>[EEG, results] = eeg_htpCalcTimeFrequency(EEG, 'parameterName', parameterValue, ...)
+</code></pre>
+<h2 id="required-input">Required Input</h2>
+<p><code>EEG</code>: Main input of the function and a structure with fields such as <code>.data</code> (EEG signal), <code>.srate</code> (sampling rate), <code>.chanlocs</code> (channel info), and <code>.pnts</code> (number of points).</p>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<h3 id="general-parameters">General Parameters</h3>
+<p><code>tlimits</code> (default: [-500 2750]): Defines the time range for the analysis in milliseconds. Adjust this range to capture the complete ERP response.</p>
+<p><code>flimits</code> (default: [2 110]): Specifies the frequency range in Hz for the analysis. The default captures both low and high frequencies.</p>
+<p><code>cycles</code> (default: [1 30]): Wavelet cycles, represented as a two-element vector, where higher values improve frequency resolution but increase computation time.</p>
+<p><code>timesout</code> (default: 250): The number of time points for the output. Increasing this parameter provides finer temporal resolution.</p>
+<p><code>winsize</code> (default: 100): Size of the moving window in milliseconds for calculating the time-frequency response.</p>
+<p><code>nfreqs</code> (default: 109): The number of frequencies for time-frequency decomposition.</p>
+<p><code>outputdir</code> (default: <code>tempdir</code>): Directory for saving result files. Adjust this to store outputs in a specific project folder.</p>
+<h3 id="artifact-rejection">Artifact Rejection</h3>
+<p><code>ampThreshold</code> (default: 120): Threshold for artifact rejection. Trials exceeding this amplitude are excluded from analysis.</p>
+<p><code>emptyEEG</code> (default: <code>true</code>): Removes EEG data from the output structure to save memory, retaining only summary metrics.</p>
+<h3 id="data-specific-options">Data Specific Options</h3>
+<p><code>sourceOn</code> (default: <code>false</code>): When <code>true</code>, the function selects electrodes specifically for source analysis targeting auditory cortex regions.</p>
+<p><code>byChannel</code> (default: <code>false</code>): When set to <code>true</code>, the function computes time-frequency data for each individual channel. When <code>false</code>, it averages signals from selected sensors.</p>
+<p><code>baselinew</code> (default: [-500 0]): A time range in milliseconds for ERSP baseline correction. This baseline is applied to normalize ERSP data relative to a pre-stimulus period.</p>
+<h2 id="example-usage">Example Usage</h2>
+<p>Here is a practical example for running this function with baseline correction and source-based electrode selection:</p>
+<pre><code>[EEG, results] = eeg_htpCalcTimeFrequency(EEG, ...
+                                          'sourceOn', true, ...
+                                          'byChannel', true, ...
+                                          'baselinew', [-500 0]);
+</code></pre>
+<p>In this setup:</p>
+<p><code>sourceOn</code> = if <code>true</code> uses specific electrodes within the auditory cortex.</p>
+<p><code>byChannel</code> = if <code>true</code> processes each selected channel individually.</p>
+<p><code>baselinew</code> = [-500 0] applies baseline correction for ERSP based on the -500 to 0 ms pre-stimulus window.</p>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code>: Modified EEGLAB EEG structure with additional fields for time-frequency data in <code>EEG.vhtp</code>.</p>
+<p><code>results</code>: A structure containing:</p>
+<ul>
+<li>
+<p>ITC and ERSP data across channels</p>
+</li>
+<li>
+<p>Summary table of results, including metrics like mean power and phase coherence over defined ROIs.</p>
+</li>
+<li>
+<p>Rejection statistics for artifact-prone epochs.</p>
+</li>
+</ul>
+<p>Example Workflow</p>
+<p>Load EEG data and ensure it is epoched for the stimulus of interest.
+Define analysis parameters:</p>
+<ul>
+<li>
+<p>Set <code>tlimits</code> and <code>flimits</code> for the specific time and frequency ranges relevant to your study.</p>
+</li>
+<li>
+<p>Define cycles and timesout based on desired frequency and temporal resolution.</p>
+</li>
+</ul>
+<p>Run artifact rejection using <code>ampThreshold</code> to exclude noisy epochs.</p>
+<p>Run the function with necessary parameters, as shown in the example above.</p>
+<p>Analyze and save results:</p>
+<ul>
+<li>Examine the <code>results</code> structure for summary tables and ITC/ERSP data.</li>
+</ul>
+<p>Save output tables to the specified directory for report generation.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>Artifact rejection is performed by checking if any trial exceeds the amplitude threshold defined by <code>ampThreshold</code>.</p>
+<p>ROI specification allows targeted frequency and time ranges for specific ERP components, particularly useful for auditory or visual stimuli.</p>
+<p>Further customization is possible by modifying <code>cycles</code>, <code>nfreqs</code>, and baseline parameters based on experiment design.</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>Low trial count error: Ensure that EEG data contains at least 10 trials for stable results.</p>
+<p>High computation time: Increase <code>winsize</code> and reduce <code>nfreqs</code> if computation is slow, especially for high-density data.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

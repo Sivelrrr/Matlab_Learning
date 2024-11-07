@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>eeg_htpCalcPower Function - Visual High Throughput Pipeline (VHTP)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "eeg_htpCalcPower Function";
+        var mkdocs_page_input_path = "eeg_htpCalcPower\\eeg_htpCalcPower.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Visual High Throughput Pipeline (VHTP)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Table of Contents</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Visual High Throughput Pipeline (VHTP)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">eeg_htpCalcPower Function</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eeg_htpcalcpower-function">eeg_htpCalcPower Function</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <code>eeg_htpCalcRestPower</code> function calculates the spectral power of resting-state EEG data using the Welch method, which is a common approach for spectral analysis. Below is documentation on how to use this function effectively.</p>
+<h2 id="preparing-the-data">Preparing The Data</h2>
+<p>Before using the function make sure <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> is running otherwise the function will error</p>
+<p>It is also necessary to first load in the EEG file and then extract the EEG strcuture as that is the required input for the funciton.
+(<strong>note</strong> - make sure the EEG structure includes both a subject id and filename).</p>
+<h2 id="function-inputs">Function Inputs</h2>
+<pre><code>[EEG, results] = eeg_htpCalcRestPower(EEG, varargin)
+</code></pre>
+<p>The function shown above has multiple inputs: <code>EEG</code> and <code>Varargin</code>. </p>
+<p><code>EEG</code>: Main input of the function and a structure with fields such as <code>.data</code> (EEG signal), <code>.srate</code> (sampling rate), <code>.chanlocs</code> (channel info), and <code>.pnts</code> (number of points).</p>
+<p>Several optional parameters using the <code>varargin</code> to modify the analysis. You can pass  Below are some of the important parameters.</p>
+<p><code>gpuon</code> (logical): Use GPU acceleration to speed up computation. Default is false. Set to true if you have the MATLAB <a href="https://www.mathworks.com/products/parallel-computing.html">Parallel-Processing</a> toolbox installed.</p>
+<p><code>duration</code> (integer): Duration in seconds to calculate power. Default is 80 seconds. If the duration exceeds the data length, it uses the maximum available data.</p>
+<p><code>offset</code> (integer): Time in seconds to start the calculation. Default is 0.</p>
+<p><code>bandDefs</code> (cell array): Frequency band definitions. You can specify bands like delta, theta, alpha, beta, gamma, etc. Example:</p>
+<pre><code>{'delta', 2, 3.5; 'theta', 3.5, 7.5; 'alpha1', 8, 10; 'beta', 13, 30}
+</code></pre>
+<p><code>outputdir</code> (string): Directory to save the results. By default, it saves in the same directory as the EEG data.</p>
+<p><code>useParquet</code>(logical): Save the output in <a href="https://parquet.apache.org/docs/">Parquet</a> format. Default is set to <code>false</code> and will save as CSV if <code>false</code>.</p>
+<h2 id="running-the-function-with-default-parameters">Running the Function with Default Parameters</h2>
+<p>Here's a simple example using default settings:</p>
+<pre><code>[EEG, results] = eeg_htpCalcRestPower(EEG);
+</code></pre>
+<p>In this example:</p>
+<p>The function will calculate spectral power for the default 80 seconds of EEG data.
+It will save the results in CSV format in the default output directory, add a <code>.vhtp</code> structure to the <code>EEG</code> structure containing the same tables, and will create a structure stored in <code>results</code> with the same results for easier access.</p>
+<h2 id="customizing-analysis">Customizing Analysis</h2>
+<p>In this case you want to utilize GPU acceleration and change the duration to 30 seconds. You can pass the parameters like this:</p>
+<pre><code>[EEG, results] = eeg_htpCalcRestPower(EEG, 'gpuon', true, 'duration', 30);
+</code></pre>
+<p>In this example:
+GPU is enabled (key-value pair: <code>gpuon</code>, <code>true</code>).
+The analysis is performed on 30 seconds of data (key-value pair: <code>duration</code> , 30).</p>
+<h2 id="outputs">Outputs</h2>
+<p>Once the function runs, it will output two variables shown below:</p>
+<pre><code>[EEG, results] = eeg_htpCalcRestPower(EEG);
+</code></pre>
+<p><code>EEG</code>: The input EEG structure with the added <code>.vhtp</code> field.</p>
+<p><code>results</code>: A structure with the spectral analysis results.</p>
+<p>It will also save the following data into separate files (based on your settings):</p>
+<ul>
+<li>
+<p>Spectral power results for each channel and frequency band.</p>
+</li>
+<li>
+<p>Spectrogram data as a CSV (or Parquet if enabled) showing the power spectral density across channels.</p>
+</li>
+<li>
+<p>The Quality Index (QI) file summarizes information about the EEG dataset and analysis.</p>
+</li>
+</ul>
+<p>These files will be saved in the output directory specified by <code>outputdir</code>.</p>
+<h2 id="inspecting-the-results">Inspecting the Results</h2>
+<p>The results structure contains the following fields:</p>
+<ul>
+<li><code>summary_table</code>: A table of power values (absolute, relative, and dB) for each frequency band.</li>
+<li><code>spectro</code>: The computed spectrogram for each channel. It also includes relative, absolute, and decibel measurements.</li>
+<li><code>qi_table</code>: Metadata about the analysis (e.g., sampling rate, number of channels).</li>
+</ul>
+<p>Example of how to view the summary table:</p>
+<pre><code>disp(results.summary_table);
+</code></pre>
+<p>Will display a table similar to the following example (<strong>Note</strong> - this table is a shortened version of the full table):</p>
+<pre><code>  eegid           filename           chan      abs_delta    abs_theta    abs_alpha1    
+    __________    _________________    ________    _________    _________    __________    
+    &quot;EGI file&quot;    &quot;0228_BBLong.raw&quot;    {'E1'  }       28.541       17.488       23.088        
+    &quot;EGI file&quot;    &quot;0228_BBLong.raw&quot;    {'E2'  }       17.461        13.49       21.089        
+
+</code></pre>
+<h2 id="summary">Summary</h2>
+<p>Use <strong>eeg_htpCalcRestPower</strong> to calculate spectral power from EEG data.
+Customize the analysis by adjusting parameters like <code>gpuon</code>, <code>duration</code>, and <code>bandDefs</code>.
+Save results in either CSV or Parquet format.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
