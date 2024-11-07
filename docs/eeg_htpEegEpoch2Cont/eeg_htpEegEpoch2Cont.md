@@ -1,9 +1,9 @@
 # eeg_htpEegEpoch2Cont Function
 
-##Overview
+## Overview
 This page provides documentation on how to use `eeg_htpEegEpoch2Cont` function designed to convert epoched EEG data into continuous data. This function is categorized under "Preprocessing" and helps streamline the transition from segmented to continuous data formats, which is essential for various EEG analyses.
 
-##Function Description
+## Function Description
 The function takes epoched EEG data (data segmented into trials) and converts it into a continuous data format. This process involves reshaping the data matrix and updating relevant metadata fields such as the number of data points and the time vector.
 
 ## Function
