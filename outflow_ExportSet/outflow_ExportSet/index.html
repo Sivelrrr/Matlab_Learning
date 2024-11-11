@@ -9,20 +9,18 @@
       
       
       
-        <link rel="prev" href="overview/">
       
       
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>Visual High Throughput Pipeline (VHTP)</title>
+        <title>outflow_ExportSet Class - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
       
       
 
@@ -41,7 +39,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -60,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#table-of-contents" class="md-skip">
+        <a href="#outflow_exportset-class" class="md-skip">
           Skip to content
         </a>
       
@@ -76,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Visual High Throughput Pipeline (VHTP)" class="md-header__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
+    <a href="../.." title="Visual High Throughput Pipeline (VHTP)" class="md-header__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -96,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Table of Contents
+              outflow_ExportSet Class
             
           </span>
         </div>
@@ -171,7 +169,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Visual High Throughput Pipeline (VHTP)" class="md-nav__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
+    <a href="../.." title="Visual High Throughput Pipeline (VHTP)" class="md-nav__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -189,7 +187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -206,30 +204,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Table of Contents
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -238,80 +216,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#input" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#preprocess" class="md-nav__link">
-    <span class="md-ellipsis">
-      Preprocess
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cleaned-data-qi-metrics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleaned Data QI Metrics
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Analysis
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reporting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reporting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-tables-figures" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Tables Figures
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -343,54 +247,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#input" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Input
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preprocess" class="md-nav__link">
+  <a href="#constructor" class="md-nav__link">
     <span class="md-ellipsis">
-      Preprocess
+      Constructor
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleaned-data-qi-metrics" class="md-nav__link">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
-      Cleaned Data QI Metrics
+      Purpose
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#analysis" class="md-nav__link">
+  <a href="#inputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Analysis
+      Inputs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reporting" class="md-nav__link">
+  <a href="#run-method" class="md-nav__link">
     <span class="md-ellipsis">
-      Reporting
+      Run Method
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-tables-figures" class="md-nav__link">
+  <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Data Tables Figures
+      Outputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Notes
     </span>
   </a>
   
@@ -411,22 +339,58 @@
                   
 
 
-<h1 id="table-of-contents">Table of Contents</h1>
-<h3 id="input">Input</h3>
-<p><a href="inflow_ImportMeaXDAT/inflow_ImportMeaXDAT/">inflow_ImportMeaXDAT</a></p>
-<h3 id="preprocess">Preprocess</h3>
-<p><a href="eeg_htpCalcRestPower/eeg_htpCalcRestPower/">eeg_htpCalcRestPower</a></p>
-<p><a href="eeg_htpEegEpoch2Cont/eeg_htpEegEpoch2Cont/">eeg_htpEegEpoch2Cont</a></p>
-<p><a href="util_htpRemapXdatMea/util_htpRemapXdatMea/">util_htpRemapXdatMea</a></p>
-<h3 id="cleaned-data-qi-metrics">Cleaned Data QI Metrics</h3>
-<p><a href="eeg_htpCalcFooof/eeg_htpCalcFooof/">eeg_htpCalcFooof</a></p>
-<h3 id="analysis">Analysis</h3>
-<p><a href="eeg_htpEegAssessPipelineHAPPE/eeg_htpEegAssessPipelineHAPPE/">eeg_htpEegAssessPipelineHAPPE</a></p>
-<p><a href="eeg_htpEegResampleDataEeglab/eeg_htpEegResampleDataEeglab/">eeg_htpEegResampleDataEeglab</a></p>
-<p><a href="eeg_htpCalcTimeFrequency/eeg_htpCalcTimeFrequency/">eeg_htpCalcTimeFrequency</a></p>
-<h3 id="reporting">Reporting</h3>
-<p><a href="outflow_ExportSet/outflow_ExportSet/">outflow_ExportSet</a></p>
-<h3 id="data-tables-figures">Data Tables Figures</h3>
+<h1 id="outflow_exportset-class"><a href="https://github.com/cincibrainlab/SignalFlowEEG/blob/main/Modules/outflow_ExportSet.m">outflow_ExportSet</a> Class</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>outflow_ExportSet</code> class is part of the SignalFlowEEG pipeline developed by Cincinnati Children’s Brain Lab. This class allows users to export processed EEG data into a .set file format compatible with EEGLAB, enabling easy storage and sharing of EEG datasets.</p>
+<p>Class Definition</p>
+<pre><code>classdef outflow_ExportSet &lt; SignalFlowSuperClass
+</code></pre>
+<p>The <code>outflow_ExportSet</code> class inherits from the <code>SignalFlowSuperClass</code>, which provides a foundation for managing and processing EEG data through a standardized framework.</p>
+<h2 id="constructor">Constructor</h2>
+<p>Syntax</p>
+<pre><code>obj = outflow_ExportSet(varargin)
+</code></pre>
+<h2 id="purpose">Purpose</h2>
+<p>The constructor initializes an outflow_ExportSet object and sets up custom flow function parameters, including labels and mode.</p>
+<h2 id="inputs">Inputs</h2>
+<p><code>obj</code>: An instance of the outflow_ExportSet class.
+<code>varargin</code>: Additional optional arguments that configure the file path and step name for exporting.</p>
+<p>Example</p>
+<pre><code>exportFlow = outflow_ExportSet('char_filepath', 'path/to/save/directory');
+</code></pre>
+<h2 id="run-method">Run Method</h2>
+<p>Syntax</p>
+<pre><code>sfOutput = run(obj, varargin)
+</code></pre>
+<p>The run method exports EEG data to a .set file in the specified directory, retaining a consistent naming convention and storing history metadata in the EEG structure.</p>
+<h2 id="outputs">Outputs</h2>
+<p><code>sfOutput</code>: The output EEG structure with history and other metadata embedded.</p>
+<p>Key Steps in the run Method
+~
+Initialize EEG:
+    Retrieves the EEG data from the superclass using <code>obj.beginEEG</code>.</p>
+<p>Perform Pre-Export QA:
+    Calls <code>util_GetQAData(EEG)</code> to store pre-export quality assurance data.</p>
+<p>Set Export File Path and Naming:
+    Defines the file path for saving the EEG data using <code>args.char_filepath</code>, defaulting to the current directory if unspecified.
+    The filename is derived from the current EEG filename, with an option to append a custom suffix to the filename (<code>args.char_filename</code>).</p>
+<p>Store Export History:
+    Logs history information in the <code>EEG.etc.SignalFlow.History</code> field, which tracks changes and metadata over time.</p>
+<p>Export to <code>.set</code> File:
+    Executes pop_saveset to save the EEG data to a <code>.set</code> file, storing it at the specified <code>args.char_filepath</code> with the formatted filename.</p>
+<p>Return the Updated EEG Structure:
+    Outputs the <code>EEG</code> structure, now updated with export history and any additional metadata.</p>
+<h3 id="example-usage">Example Usage</h3>
+<pre><code>% Initialize Export Flow with optional file path
+exportFlow = outflow_ExportSet('char_filepath', 'output/directory');
+
+% Execute the export
+sfOutput = exportFlow.run();
+</code></pre>
+<p>This code will save the EEG data to the specified directory as a .set file. If no directory is provided, it defaults to the current working directory.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>History Logging: All export actions and parameters are stored in <code>EEG.etc.SignalFlow.History</code> for traceability, which can be useful for data audits or reproducing processing steps.</p>
+<p>File Naming Convention: A customizable <code>args.char_filename</code> suffix can be added to the filename to distinguish this dataset or indicate specific processing steps.</p>
 
 
 
@@ -473,10 +437,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
