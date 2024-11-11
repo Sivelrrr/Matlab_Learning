@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>inflow_ImportMeaXDAT Class - Visual High Throughput Pipeline (VHTP)</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "inflow_ImportMeaXDAT Class";
+        var mkdocs_page_input_path = "eeg_htpEegAssessPipelineHAPPE\\inflow_ImportMeaXDAT\\inflow_importMeaXDAT.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Visual High Throughput Pipeline (VHTP)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../overview/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Table of Contents</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Visual High Throughput Pipeline (VHTP)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">inflow_ImportMeaXDAT Class</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="inflow_importmeaxdat-class"><a href="https://github.com/cincibrainlab/SignalFlowEEG/blob/main/Modules/inflow_ImportMeaXDAT.m">inflow_ImportMeaXDAT</a> Class</h1>
+<h2 id="overview">Overview</h2>
+<p>The inflow_ImportMeaXDAT class is part of the SignalFlowEEG pipeline designed for the Cincinnati Children’s Brain Lab. This class reads and processes .xdat files from MEA systems, importing EEG data, applying signal processing, and configuring EEG channel properties for analysis. If the input file is of a different format, such as .edf, it can also handle this format with adjusted processing.</p>
+<h2 id="class-definition">Class Definition</h2>
+<pre><code>classdef inflow_ImportMeaXDAT &lt; SignalFlowSuperClass
+</code></pre>
+<p>This class comes from the <code>SignalFlowSuperClass</code>, allowing it to utilize shared methods and properties for signal processing flows in the SignalFlowEEG pipeline.</p>
+<h2 id="constructor">Constructor</h2>
+<p>Syntax</p>
+<pre><code>obj = inflow_ImportMeaXDAT(varargin)
+</code></pre>
+<p>Details</p>
+<pre><code>Purpose: The constructor initializes an `inflow_ImportMeaXDAT` object, setting up the custom function label and flow mode.
+
+Input arguments: Accepts a variable number of input arguments to pass to the superclass.
+</code></pre>
+<p>Example</p>
+<pre><code>importFlow = inflow_ImportMeaXDAT('filepath', 'myfile.xdat');
+</code></pre>
+<h2 id="run-method">run Method</h2>
+<p>Syntax</p>
+<pre><code>EEG = run(obj, varargin)
+</code></pre>
+<h2 id="purpose">Purpose</h2>
+<p>The run method processes EEG data from a specified .xdat file, extracting signals and metadata, reformatting channels, and applying channel location mappings. It also supports .edf files if provided.
+Inputs</p>
+<pre><code>`obj` : An instance of the inflow_ImportMeaXDAT class.
+varargin: Additional arguments, with args.char_filepath specifying the path of the EEG file.
+</code></pre>
+<h2 id="outputs">Outputs</h2>
+<pre><code>`EEG`: The processed EEGLAB EEG structure containing the signal data, channel locations, and other metadata.
+</code></pre>
+<h2 id="processing-steps">Processing Steps</h2>
+<pre><code>Filepath and Network Type:
+    Extracts the file path and sets `args.char_netType` to `MEAXDAT`.
+
+File Type Check:
+    The run method checks the file extension. If the file is `.xdat`, it continues with MEA-specific processing; otherwise, it prepares for `.edf` files.
+
+XDAT File Processing:
+    XDAT Import Code:
+        Uses `allegoXDatFileReaderR2019b` to read time range and signal structures for `PriSigs`, `AuxSigs`, `DinSigs`, and `DoutSigs`.
+    Signal Assignment:
+        The primary signal (`signalStruct.PriSigs.signals)` is assigned to `EEG.data`, setting the EEG data structure with 32 channels by default.
+    Channel Configuration:
+        Loads mappings from a .mat file (`mea3d.mat`) for correct 3D locations. If the file is missing, an error is produced.
+    Channel Renaming:
+        Applies mapping to rename channels according to stage2_map, with the new labels assigned to `EEG.chanlocs`.
+
+EDF File Processing:
+    If not `.xdat`, the method treats the file as `.edf`, adjusting channel selection and loading chanlocs for correct ordering.
+
+Channel Mapping Verification:
+    Verifies and checks the channel locations using `eeg_checkset`, ensuring that the channels match the expected configuration.
+
+QA and Visualization:
+    Calls `util_GetQAData(EEG)` for quality assurance on EEG data.
+    Plots EEG data using pop_eegplot.
+</code></pre>
+<h2 id="example-usage">Example Usage</h2>
+<p>Importing and Running</p>
+<pre><code>% Create an instance with the file path to an XDAT file
+importFlow = inflow_ImportMeaXDAT('filepath', 'sample_data.xdat');
+
+% Run the import process
+EEG = importFlow.run();
+</code></pre>
+<p>This code will load the <code>.xdat</code> file, extract the relevant EEG data, assign channel locations, and visualize the data with pop_eegplot.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<pre><code>Channel Mapping Files: Ensure MouseEEGv2H32_Import_Stage1.csv, MouseEEGv2H32_Import_Stage2.csv, and mea3d.mat files are available as they contain essential mapping and location data.
+Error Handling: The class includes error handling for missing channel mapping files and unsupported file formats.
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
