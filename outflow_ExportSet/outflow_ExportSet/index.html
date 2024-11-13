@@ -16,7 +16,7 @@
     
     
       
-        <title>outflow_ExportSet Class - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Exporting EEG data into a set file - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#outflow_exportset-class" class="md-skip">
+        <a href="#exporting-eeg-data-into-a-set-file" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              outflow_ExportSet Class
+              Exporting EEG data into a set file
             
           </span>
         </div>
@@ -300,20 +300,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Outputs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-usage" class="md-nav__link">
     <span class="md-ellipsis">
       Example Usage
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -341,9 +335,9 @@
                   
 
 
-<h1 id="outflow_exportset-class"><a href="https://github.com/cincibrainlab/SignalFlowEEG/blob/main/Modules/outflow_ExportSet.m">outflow_ExportSet</a> Class</h1>
+<h1 id="exporting-eeg-data-into-a-set-file">Exporting EEG data into a set file</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>outflow_ExportSet</code> class is part of the SignalFlowEEG pipeline developed by Cincinnati Children’s Brain Lab. This class allows users to export processed EEG data into a .set file format compatible with EEGLAB, enabling easy storage and sharing of EEG datasets.</p>
+<p>The <a href="https://github.com/cincibrainlab/SignalFlowEEG/blob/main/Modules/outflow_ExportSet.m"><code>outflow_ExportSet</code></a> class is part of the <strong>SignalFlowEEG</strong> pipeline developed by Cincinnati Children’s Brain Lab. This class allows users to export processed EEG data into a <code>.set</code> file format compatible with <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a>, enabling easy storage and sharing of EEG datasets.</p>
 <p>Class Definition</p>
 <pre><code>classdef outflow_ExportSet &lt; SignalFlowSuperClass
 </code></pre>
@@ -353,10 +347,10 @@
 <pre><code>obj = outflow_ExportSet(varargin)
 </code></pre>
 <h2 id="purpose">Purpose</h2>
-<p>The constructor initializes an outflow_ExportSet object and sets up custom flow function parameters, including labels and mode.</p>
+<p>The constructor initializes an <code>outflow_ExportSet</code> object and sets up custom flow function parameters, including labels and mode.</p>
 <h2 id="inputs">Inputs</h2>
-<p><code>obj</code>: An instance of the outflow_ExportSet class.
-<code>varargin</code>: Additional optional arguments that configure the file path and step name for exporting.</p>
+<p><code>obj</code>: An instance of the outflow_ExportSet class.</p>
+<p><code>varargin</code>: Additional optional arguments that configure the file path and step name for exporting.</p>
 <p>Example</p>
 <pre><code>exportFlow = outflow_ExportSet('char_filepath', 'path/to/save/directory');
 </code></pre>
@@ -364,32 +358,33 @@
 <p>Syntax</p>
 <pre><code>sfOutput = run(obj, varargin)
 </code></pre>
-<p>The run method exports EEG data to a .set file in the specified directory, retaining a consistent naming convention and storing history metadata in the EEG structure.</p>
+<p>The run method exports EEG data to a <code>.set</code> file in the specified directory, retaining a consistent naming convention and storing history metadata in the EEG structure.</p>
 <h2 id="outputs">Outputs</h2>
 <p><code>sfOutput</code>: The output EEG structure with history and other metadata embedded.</p>
-<p>Key Steps in the run Method
-~
-Initialize EEG:
+<p>Key Steps in the run Method</p>
+<p>Initialize EEG:
     Retrieves the EEG data from the superclass using <code>obj.beginEEG</code>.</p>
 <p>Perform Pre-Export QA:
     Calls <code>util_GetQAData(EEG)</code> to store pre-export quality assurance data.</p>
-<p>Set Export File Path and Naming:
-    Defines the file path for saving the EEG data using <code>args.char_filepath</code>, defaulting to the current directory if unspecified.
-    The filename is derived from the current EEG filename, with an option to append a custom suffix to the filename (<code>args.char_filename</code>).</p>
+<p>Set Export File Path and Naming:</p>
+<pre><code>Defines the file path for saving the EEG data using `args.char_filepath`, defaulting to the current directory if unspecified.
+
+The filename is derived from the current EEG filename, with an option to append a custom suffix to the filename (`args.char_filename`).
+</code></pre>
 <p>Store Export History:
     Logs history information in the <code>EEG.etc.SignalFlow.History</code> field, which tracks changes and metadata over time.</p>
 <p>Export to <code>.set</code> File:
     Executes pop_saveset to save the EEG data to a <code>.set</code> file, storing it at the specified <code>args.char_filepath</code> with the formatted filename.</p>
 <p>Return the Updated EEG Structure:
     Outputs the <code>EEG</code> structure, now updated with export history and any additional metadata.</p>
-<h3 id="example-usage">Example Usage</h3>
+<h2 id="example-usage">Example Usage</h2>
 <pre><code>% Initialize Export Flow with optional file path
 exportFlow = outflow_ExportSet('char_filepath', 'output/directory');
 
 % Execute the export
 sfOutput = exportFlow.run();
 </code></pre>
-<p>This code will save the EEG data to the specified directory as a .set file. If no directory is provided, it defaults to the current working directory.</p>
+<p>This code will save the EEG data to the specified directory as a <code>.set</code> file. If no directory is provided, it defaults to the current working directory.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>History Logging: All export actions and parameters are stored in <code>EEG.etc.SignalFlow.History</code> for traceability, which can be useful for data audits or reproducing processing steps.</p>
 <p>File Naming Convention: A customizable <code>args.char_filename</code> suffix can be added to the filename to distinguish this dataset or indicate specific processing steps.</p>

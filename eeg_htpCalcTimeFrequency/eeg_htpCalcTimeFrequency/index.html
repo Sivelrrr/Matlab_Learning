@@ -16,7 +16,7 @@
     
     
       
-        <title>eeg_htpCalcTimeFrequency Function - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Calculating Time Frequency Data From EEG Files - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#eeg_htpcalctimefrequency-function" class="md-skip">
+        <a href="#calculating-time-frequency-data-from-eeg-files" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              eeg_htpCalcTimeFrequency Function
+              Calculating Time Frequency Data From EEG Files
             
           </span>
         </div>
@@ -333,21 +333,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Additional Notes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -365,9 +350,9 @@
                   
 
 
-<h1 id="eeg_htpcalctimefrequency-function"><a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcTimeFrequency.m">eeg_htpCalcTimeFrequency</a> Function</h1>
+<h1 id="calculating-time-frequency-data-from-eeg-files">Calculating Time Frequency Data From EEG Files</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>eeg_htpCalcTimeFrequency</code> function calculates time-frequency analyses, particularly inter-trial coherence (ITC) and event-related spectral perturbation (ERSP), to assess frequency-specific power and phase-locking in EEG data. It's built for auditory stimuli experiments but can be adapted to other paradigms.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcTimeFrequency.m"><code>eeg_htpCalcTimeFrequency</code></a> function calculates time-frequency analyses, particularly inter-trial coherence (ITC) and event-related spectral perturbation (ERSP), to assess frequency-specific power and phase-locking in EEG data. It's built for auditory stimuli experiments but can be adapted to other paradigms.</p>
 <p>Syntax</p>
 <pre><code>[EEG, results] = eeg_htpCalcTimeFrequency(EEG, 'parameterName', parameterValue, ...)
 </code></pre>
@@ -401,7 +386,7 @@
 <p><code>byChannel</code> = if <code>true</code> processes each selected channel individually.</p>
 <p><code>baselinew</code> = [-500 0] applies baseline correction for ERSP based on the -500 to 0 ms pre-stimulus window.</p>
 <h2 id="outputs">Outputs</h2>
-<p><code>EEG</code>: Modified EEGLAB EEG structure with additional fields for time-frequency data in <code>EEG.vhtp</code>.</p>
+<p><code>EEG</code>: Modified <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure with additional fields for time-frequency data in <code>EEG.vhtp</code>.</p>
 <p><code>results</code>: A structure containing:</p>
 <ul>
 <li>
@@ -415,28 +400,39 @@
 </li>
 </ul>
 <p>Example Workflow</p>
-<p>Load EEG data and ensure it is epoched for the stimulus of interest.
-Define analysis parameters:</p>
-<ul>
+<ol>
+<li>
+<p>Load EEG data and ensure it is epoched for the stimulus of interest.</p>
+</li>
+<li>
+<p>Define analysis parameters:</p>
+</li>
 <li>
 <p>Set <code>tlimits</code> and <code>flimits</code> for the specific time and frequency ranges relevant to your study.</p>
 </li>
 <li>
 <p>Define cycles and timesout based on desired frequency and temporal resolution.</p>
 </li>
-</ul>
+<li>
 <p>Run artifact rejection using <code>ampThreshold</code> to exclude noisy epochs.</p>
+</li>
+<li>
 <p>Run the function with necessary parameters, as shown in the example above.</p>
-<p>Analyze and save results:</p>
+</li>
+</ol>
+<p>5.Analyze and save results:</p>
 <ul>
-<li>Examine the <code>results</code> structure for summary tables and ITC/ERSP data.</li>
-</ul>
+<li>
+<p>Examine the <code>results</code> structure for summary tables and ITC/ERSP data.</p>
+</li>
+<li>
 <p>Save output tables to the specified directory for report generation.</p>
+</li>
+</ul>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Artifact rejection is performed by checking if any trial exceeds the amplitude threshold defined by <code>ampThreshold</code>.</p>
 <p>ROI specification allows targeted frequency and time ranges for specific ERP components, particularly useful for auditory or visual stimuli.</p>
 <p>Further customization is possible by modifying <code>cycles</code>, <code>nfreqs</code>, and baseline parameters based on experiment design.</p>
-<h3 id="troubleshooting">Troubleshooting</h3>
 <p>Low trial count error: Ensure that EEG data contains at least 10 trials for stable results.</p>
 <p>High computation time: Increase <code>winsize</code> and reduce <code>nfreqs</code> if computation is slow, especially for high-density data.</p>
 

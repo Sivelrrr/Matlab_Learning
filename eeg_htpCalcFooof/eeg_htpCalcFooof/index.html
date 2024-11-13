@@ -16,7 +16,7 @@
     
     
       
-        <title>eeg_htpCalcFooof Function - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Preforming FOOOF Calulcations - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#eeg_htpcalcfooof-function" class="md-skip">
+        <a href="#preforming-fooof-calulcations" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              eeg_htpCalcFooof Function
+              Preforming FOOOF Calulcations
             
           </span>
         </div>
@@ -374,25 +374,25 @@
                   
 
 
-<h1 id="eeg_htpcalcfooof-function"><a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcFooof.m">eeg_htpCalcFooof</a> Function</h1>
+<h1 id="preforming-fooof-calulcations">Preforming FOOOF Calulcations</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>eeg_htpCalcFooof</code> function performs power spectral analysis using the FOOOF (Fitting Oscillations &amp; One-Over-F) approach. It decomposes EEG power spectra into periodic (oscillatory) and aperiodic (background) components, providing insights into underlying neural oscillations. This can be especially useful for analyzing the spectral content of EEG data in terms of background noise versus specific oscillatory peaks.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcFooof.m"><code>eeg_htpCalcFooof</code></a> function performs power spectral analysis using the FOOOF (Fitting Oscillations &amp; One-Over-F) approach. It decomposes EEG power spectra into periodic (oscillatory) and aperiodic (background) components, providing insights into underlying neural oscillations. This can be especially useful for analyzing the spectral content of EEG data in terms of background noise versus specific oscillatory peaks.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, results] = eeg_htpCalcFooof(EEG, varargin)
 </code></pre>
 <h2 id="inputs">Inputs</h2>
 <h3 id="required-paramters">Required Paramters</h3>
-<p><code>EEG</code> : An EEGLAB structure containing EEG data. This structure should include EEG recordings, channel information, and sampling rate.</p>
+<p><code>EEG</code> : An  <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> structure containing EEG data. This structure should include EEG recordings, channel information, and sampling rate.</p>
 <h3 id="optional-parameters-function-specific">Optional Parameters (Function-Specific)</h3>
 <p>Specify additional parameters through name-value pairs in varargin. Some key parameters include:</p>
-<p><code>f_range</code>: Frequency range of interest, typically defined as [<code>minFreq</code> <code>maxFreq</code>]. Defaults to [1 50].
-<code>aperiodic_mode</code>: Method for estimating the aperiodic component (<code>fixed</code> or <code>knee</code>). Defaults to 'fixed'.
-<code>peak_width_limits</code>: Limits on the width of detected peaks, as [<code>minWidth</code> <code>maxWidth</code>]. Defaults to [1 12].
-<code>max_n_peaks</code>: Maximum number of peaks to model in the spectrum. Defaults to 6.
-<code>plot_results</code>: Whether to plot FOOOF results (<code>true</code> or <code>false</code>). Defaults to <code>false</code>.</p>
+<p><code>f_range</code>: Frequency range of interest, typically defined as [<code>minFreq</code> <code>maxFreq</code>]. Defaults to [1 50].</p>
+<p><code>aperiodic_mode</code>: Method for estimating the aperiodic component (<code>fixed</code> or <code>knee</code>). Defaults to 'fixed'.</p>
+<p><code>peak_width_limits</code>: Limits on the width of detected peaks, as [<code>minWidth</code> <code>maxWidth</code>]. Defaults to [1 12].</p>
+<p><code>max_n_peaks</code>: Maximum number of peaks to model in the spectrum. Defaults to 6.</p>
+<p><code>plot_results</code>: Whether to plot FOOOF results (<code>true</code> or <code>false</code>). Defaults to <code>false</code>.</p>
 <h2 id="method-guide">Method Guide</h2>
 <h3 id="load-and-prepare-eeg-data">Load and Prepare EEG Data</h3>
-<p>Load your EEG data into an EEGLAB structure format. Ensure your data includes sampling rate and channel information required for spectral analysis.</p>
+<p>Load your EEG data into an <strong>EEGLAB</strong> structure format. Ensure your data includes sampling rate and channel information required for spectral analysis.</p>
 <pre><code>EEG = pop_loadset('your_data.set'); % Load EEG data set
 </code></pre>
 <h2 id="define-optional-parameters">Define Optional Parameters</h2>
@@ -417,17 +417,17 @@ plot_results = true;
     'peak_width_limits', peak_width_limits, 'plot_results', plot_results);
 </code></pre>
 <h2 id="outputs">Outputs</h2>
-<p><code>EEG</code> : Modified EEGLAB structure with <code>.etc.fooof</code> field containing FOOOF results.</p>
+<p><code>EEG</code> : Modified <strong>EEGLAB</strong> structure with <code>.etc.fooof</code> field containing FOOOF results.</p>
 <p><code>results</code> : Structure containing FOOOF analysis results, including aperiodic parameters, peak parameters, and goodness-of-fit metrics.</p>
 <p>The results structure provides the following key outputs:</p>
-<p><code>aperiodic_params</code>: Parameters describing the aperiodic component.
-<code>peak_param</code>s: Frequency, power, and width of detected oscillatory peaks.
-<code>r_squared</code>: Goodness-of-fit measure for the FOOOF model.
-<code>error</code>: Mean squared error of the model.</p>
+<p><code>aperiodic_params</code>: Parameters describing the aperiodic component.</p>
+<p><code>peak_param</code>s: Frequency, power, and width of detected oscillatory peaks.</p>
+<p><code>r_squared</code>: Goodness-of-fit measure for the FOOOF model.</p>
+<p><code>error</code>: Mean squared error of the model.</p>
 <p>Additionally, if plot_results is set to <code>true</code>, the function displays a visual of the decomposed spectrum with aperiodic and periodic components.</p>
 <h2 id="additional-notes">Additional Notes</h2>
-<p>FOOOF Dependency: This function requires the <code>FOOOF</code> package, so ensure FOOOF is installed and accessible in MATLAB.
-Spectral Range Limitations: The selected <code>f_range</code> should align with the sampling rate of your data to avoid aliasing issues.</p>
+<p>FOOOF Dependency: This function requires the <code>FOOOF</code> package, so ensure FOOOF is installed and accessible in MATLAB.</p>
+<p>Spectral Range Limitations: The selected <code>f_range</code> should align with the sampling rate of your data to avoid aliasing issues.</p>
 
 
 

@@ -16,7 +16,7 @@
     
     
       
-        <title>eeg_htpEegAssessPipelineHAPPE Function - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Preforming EEG comparison of HAPPE pipeline - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#eeg_htpeegassesspipelinehappe-function" class="md-skip">
+        <a href="#preforming-eeg-comparison-of-happe-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              eeg_htpEegAssessPipelineHAPPE Function
+              Preforming EEG comparison of HAPPE pipeline
             
           </span>
         </div>
@@ -319,29 +319,62 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-input-validation-and-resampling" class="md-nav__link">
+  <a href="#input-validation-and-resampling" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Input Validation and Resampling
+      Input Validation and Resampling
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-signal-preparation" class="md-nav__link">
+  <a href="#signal-preparation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Signal Preparation
+      Signal Preparation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-quality-assurance-metrics" class="md-nav__link">
+  <a href="#quality-assurance-metrics" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Quality Assurance Metrics
+      Quality Assurance Metrics
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Quality Assurance Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-correlation-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Channel Correlation Coefficient:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequency-band-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency Band Correlation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-to-noise-ratios-snr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signal-to-Noise Ratios (SNR):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -398,99 +431,65 @@
                   
 
 
-<h1 id="eeg_htpeegassesspipelinehappe-function"><a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegAssessPipelineHAPPE.m">eeg_htpEegAssessPipelineHAPPE</a> Function</h1>
+<h1 id="preforming-eeg-comparison-of-happe-pipeline">Preforming EEG comparison of HAPPE pipeline</h1>
 <h2 id="overview">Overview</h2>
-<p>The eeg_htpEegAssessPipelineHAPPE function is an adaptation of the <a href="https://github.com/lcnhappe/happe/blob/master/HAPPE_v1.0_README.pdf">HAPPE</a> (Harvard Automated processing Pipline for EEG) framework. However, it should be stated that this is no tanother preprocessing function, but this function is specifically designed to perform a comparative quality analysis between the intial version of an EEG file and the post process version. (<code>EEG1</code> and <code>EEG2</code>).  It includes visual quality checks, as well as computation of various quality metrics and statistical outputs. The function returns a summary table of metrics and exports visuals and statistics if specified.</p>
-<p><strong>Please Note</strong> it is necessary to have <a href="https://eeglab.org/"><strong>EEGLAB</strong></a> running prior to utilizing the <code>eeg_htpEegAssessPipelineHAPPE</code> function.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegAssessPipelineHAPPE.m"><code>eeg_htpEegAssessPipelineHAPPE</code></a>  function is an adaptation of the <a href="https://github.com/lcnhappe/happe/blob/master/HAPPE_v1.0_README.pdf">HAPPE</a> (Harvard Automated processing Pipline for EEG) framework. However, it should be stated that this is no tanother preprocessing function, but this function is specifically designed to perform a comparative quality analysis between the intial version of an EEG file and the post process version. (<code>EEG1</code> and <code>EEG2</code>).  It includes visual quality checks, as well as computation of various quality metrics and statistical outputs. The function returns a summary table of metrics and exports visuals and statistics if specified.</p>
+<p>(<strong>Please Note</strong> it is necessary to have <a href="https://eeglab.org/"><strong>EEGLAB</strong></a> running prior to utilizing the <code>eeg_htpEegAssessPipelineHAPPE</code> function.)</p>
 <h2 id="key-features">Key Features</h2>
-<ul>
-<li>Compares EEG datasets <code>EEG1</code> and <code>EEG2</code> using correlation coefficients across channels and frequency bands.</li>
-<li>Includes signal quality checks, visualizations, and detailed output logs.</li>
-<li>Provides options to adjust resampling rates, define group labels, and export data in different formats.</li>
-</ul>
+<p>Compares EEG datasets <code>EEG1</code> and <code>EEG2</code> using correlation coefficients across channels and frequency bands.</p>
+<p>Includes signal quality checks, visualizations, and detailed output logs.</p>
+<p>Provides options to adjust resampling rates, define group labels, and export data in different formats.</p>
 <h2 id="requirements">Requirements</h2>
-<ul>
-<li>The function is designed to use an unprocessed and postprocessed version of the same EEG, not two different EEG samples</li>
-<li>They should also both have the same sampling rate for both files</li>
-</ul>
+<p>The function is designed to use an unprocessed and postprocessed version of the same EEG, not two different EEG samples</p>
+<p>They should also both have the same sampling rate for both files</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[summary_table] = eeg_htpEegAssessPipelineHAPPE(EEG1, EEG2, varargin)
 </code></pre>
 <h2 id="input-parametersrequirements">Input Parameters/Requirements</h2>
-<ul>
-<li><code>EEG1</code>: The first EEG dataset in EEG <code>.set</code> file format and is the initial version of the EEG.</li>
-<li><code>EEG2</code>: The second EEG dataset in EEG <code>.set</code> file format and is the post process version of the EEG.</li>
-<li><code>varargin</code>: Optional parameters passed as name-value pairs.</li>
-</ul>
+<p><code>EEG1</code>: The first EEG dataset in EEG <code>.set</code> file format and is the initial version of the EEG.</p>
+<p><code>EEG2</code>: The second EEG dataset in EEG <code>.set</code> file format and is the post process version of the EEG.</p>
+<p><code>varargin</code>: Optional parameters passed as name-value pairs.</p>
 <h3 id="optional-parameters-varargin">Optional Parameters (<code>varargin</code>)</h3>
-<ul>
-<li><code>outputdir</code> (default: <code>tempdir</code>): The directory where outputs are saved.</li>
-<li><code>resampleRate</code> (default: 500): Resampling rate for the datasets.</li>
-<li><code>groupLabels</code> (default: {<code>EEG1.setname</code>, <code>EEG2.setname</code>}): Labels for each group, used in output logs and plots.</li>
-<li><code>tableonly</code> (default: <code>false</code>): If <code>true</code>, only summary tables are generated without visualization.</li>
-<li><code>saveoutput</code> (default: <code>true</code>): If <code>true</code>, saves the output files (CSV and image files).</li>
-<li><code>outputfile</code> (default: <code>[]</code>): Specifies a custom filename for the CSV output file.</li>
-</ul>
+<p><code>outputdir</code> (default: <code>tempdir</code>): The directory where outputs are saved.</p>
+<p><code>resampleRate</code> (default: 500): Resampling rate for the datasets.</p>
+<p><code>groupLabels</code> (default: {<code>EEG1.setname</code>, <code>EEG2.setname</code>}): Labels for each group, used in output logs and plots.</p>
+<p><code>tableonly</code> (default: <code>false</code>): If <code>true</code>, only summary tables are generated without visualization.</p>
+<p><code>saveoutput</code> (default: <code>true</code>): If <code>true</code>, saves the output files (CSV and image files).</p>
+<p><code>outputfile</code> (default: <code>[]</code>): Specifies a custom filename for the CSV output file.</p>
 <h2 id="steps-and-details">Steps and Details</h2>
-<h3 id="1-input-validation-and-resampling">1. Input Validation and Resampling</h3>
-<ul>
-<li>The function validates the data type for inputs and confirms that the sampling rates of <code>EEG1</code> and <code>EEG2</code> are the same.</li>
-<li>If resampling is needed (defined by <code>resampleRate</code>), it uses the function <code>eeg_htpEegResampleDataEeglab</code> to resample both EEG datasets to the specified rate.</li>
-</ul>
-<h3 id="2-signal-preparation">2. Signal Preparation</h3>
-<ul>
-<li>Converts epoch data into continuous format if <code>EEG1</code> or <code>EEG2</code> are epoched.</li>
-<li>Converts EEG data to <code>double</code> precision to ensure accuracy during calculations.</li>
-</ul>
-<h3 id="3-quality-assurance-metrics">3. Quality Assurance Metrics</h3>
+<h3 id="input-validation-and-resampling">Input Validation and Resampling</h3>
+<p>The function validates the data type for inputs and confirms that the sampling rates of <code>EEG1</code> and <code>EEG2</code> are the same.</p>
+<p>If resampling is needed (defined by <code>resampleRate</code>), it uses the function <code>eeg_htpEegResampleDataEeglab</code> to resample both EEG datasets to the specified rate.</p>
+<h3 id="signal-preparation">Signal Preparation</h3>
+<p>Converts epoch data into continuous format if <code>EEG1</code> or <code>EEG2</code> are epoched.</p>
+<p>Converts EEG data to <code>double</code> precision to ensure accuracy during calculations.</p>
+<h3 id="quality-assurance-metrics">Quality Assurance Metrics</h3>
 <p>The function obtains several quality assurance metrics:</p>
-<ul>
-<li>Channel Correlation Coefficient: <ul>
-<li>Description: This measures the linear relationship between the corresponding channels of <code>EEG1</code> and <code>EEG2</code>.</li>
-<li>Calculation: The correlation coefficient is calculated for each channel across the two datasets using the <code>corr</code> function.</li>
-<li>Output: A vector of correlation coefficients, one for each channel. High values close to 1 indicate high similarity between the channels.</li>
-</ul>
-</li>
-<li>Frequency Band Correlation: <ul>
-<li>Description: This assesses the similarity of EEG signals in specific frequency bands across channels.</li>
-<li>Calculation: The magnitude-squared coherence (<code>mscohere</code>) function is used to compute the coherence between signals for each frequency band.</li>
-<li>Output: A matrix where each row corresponds to a channel and each column to a frequency bin. Higher coherence values indicate stronger similarity in the frequency domain.</li>
-</ul>
-</li>
-<li>Signal-to-Noise Ratios (SNR): <ul>
-<li>Description: This measures the ratio of signal power to noise power in the EEG data.</li>
-<li>Calculation: The SNR is calculated using a forumla that divides the square root of two variable <code>NUM</code> and <code>DEN</code>. Then converts its units into decibels using a lograithmic funcition. <code>NUM</code> is the sum of squares of the EEG signal, and <code>DEN</code> is the sum of squared differences between EEG1 and EEG2.</li>
-<li>Output: A single SNR value indicating the overall signal quality relative to noise.</li>
-</ul>
-</li>
-</ul>
+<h4 id="channel-correlation-coefficient">Channel Correlation Coefficient:</h4>
+<p>Description: This measures the linear relationship between the corresponding channels of <code>EEG1</code> and <code>EEG2</code>.</p>
+<p>Calculation: The correlation coefficient is calculated for each channel across the two datasets using the <code>corr</code> function.</p>
+<p>Output: A vector of correlation coefficients, one for each channel. High values close to 1 indicate high similarity between the channels.</p>
+<h4 id="frequency-band-correlation">Frequency Band Correlation:</h4>
+<p>Description: This assesses the similarity of EEG signals in specific frequency bands across channels.</p>
+<p>Calculation: The magnitude-squared coherence (<code>mscohere</code>) function is used to compute the coherence between signals for each frequency band.</p>
+<p>Output: A matrix where each row corresponds to a channel and each column to a frequency bin. Higher coherence values indicate stronger similarity in the frequency domain.</p>
+<h4 id="signal-to-noise-ratios-snr">Signal-to-Noise Ratios (SNR):</h4>
+<p>Description: This measures the ratio of signal power to noise power in the EEG data.</p>
+<p>Calculation: The SNR is calculated using a forumla that divides the square root of two variable <code>NUM</code> and <code>DEN</code>. Then converts its units into decibels using a lograithmic funcition. <code>NUM</code> is the sum of squares of the EEG signal, and <code>DEN</code> is the sum of squared differences between EEG1 and EEG2.</p>
+<p>Output: A single SNR value indicating the overall signal quality relative to noise.</p>
 <h2 id="outputs">Outputs</h2>
 <h3 id="primary-outputs">Primary Outputs</h3>
-<p>The function generates and exports:
-- <code>summary_table</code>: A table containing quality metrics, correlations, and information about channels with lower quality signals.</p>
-<ul>
-<li>
+<p>The function generates and exports:</p>
+<p><code>summary_table</code>: A table containing quality metrics, correlations, and information about channels with lower quality signals.</p>
 <p><code>qi_table</code> (optional): A quality index table for tracking assessment details across multiple EEG datasets.</p>
-</li>
-<li>
 <p>CSV File: If <code>saveoutput</code> is <code>true</code>, the function saves the <code>summary_table</code> in CSV format. A custom filename can be specified with <code>outputfile</code>.</p>
-</li>
-<li>
 <p>Image File: Saves visualizations as a PNG image if <code>tableonly</code> is <code>false</code>.</p>
-</li>
-</ul>
 <h3 id="optional-visualization">Optional Visualization</h3>
 <p>(<strong>Note</strong> - Only will occur if <code>tableonly</code> is <code>false</code>)</p>
-<ul>
-<li>Topographic Plots:  These plots show the correlation coefficients for different EEG channels. The units are dimensionless because correlation coefficients range from -1 to 1.</li>
-<li>Histogram: The x-axis represents the correlation coefficient values (dimensionless), and the y-axis represents the count or frequency of these values.</li>
-<li>
+<p>Topographic Plots:  These plots show the correlation coefficients for different EEG channels. The units are dimensionless because correlation coefficients range from -1 to 1.</p>
+<p>Histogram: The x-axis represents the correlation coefficient values (dimensionless), and the y-axis represents the count or frequency of these values.</p>
 <p>Spectrogram and Difference Line Plot: Compares the power spectral density (PSD) of <code>EEG1</code> and <code>EEG2</code> with a line plot highlighting percentage differences. The y-axis (left side) represents the Power Spectral Density (PSD) in logarithmic units, typically dB/Hz (decibels per Hertz). The y-axis (right side) represents the percentage difference in power between EEG2 and EEG1, expressed in percentage (%).</p>
-</li>
-<li>
 <p>Difference Histogram: Plots The x-axis represents the percentage difference between EEG2 and EEG1 power (%), and the y-axis represents the count or frequency of these percentage differences.</p>
-</li>
-</ul>
 <h1 id="_1"><img alt="Graphs" src="../Pipeline.png" /></h1>
 <p><img src="Pipeline.jpg" alt="Graphs" width="50"/></p>
 <h3 id="example-usage">Example Usage</h3>
@@ -507,10 +506,10 @@ summary_table = eeg_htpEegAssessPipelineHAPPE(EEG1, EEG2, ...
     'saveoutput', true, ...
     'outputfile', 'EEG_quality_comparison.csv');
 </code></pre>
-<h1 id="final-notes">Final Notes</h1>
-<p>Ensure EEG datasets <code>EEG1</code> and <code>EEG2</code> have similar structure (ie. same sampling rate and sample size) and channels before running.
-Use <code>resampleRate</code> to control the down-sampling for faster processing if EEG data has a high sampling rate.
-This function requires access to EEGLAB functions such as <code>pop_loadset</code> and <code>eeg_htpEegResampleDataEeglab</code>, so make sure they are in your working directory.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>Ensure EEG datasets <code>EEG1</code> and <code>EEG2</code> have similar structure (ie. same sampling rate and sample size) and channels before running.</p>
+<p>Use <code>resampleRate</code> to control the down-sampling for faster processing if EEG data has a high sampling rate.</p>
+<p>This function requires access to <strong>EEGLAB</strong> functions such as <code>pop_loadset</code> and <code>eeg_htpEegResampleDataEeglab</code>, so make sure they are in your working directory.</p>
 
 
 

@@ -16,7 +16,7 @@
     
     
       
-        <title>eeg_htpEegResampleDataEeglab Function - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Changing resample rate of eeg files - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#eeg_htpeegresampledataeeglab-function" class="md-skip">
+        <a href="#changing-resample-rate-of-eeg-files" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              eeg_htpEegResampleDataEeglab Function
+              Changing resample rate of eeg files
             
           </span>
         </div>
@@ -325,27 +325,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-load-your-eeg-data" class="md-nav__link">
+  <a href="#load-your-eeg-data" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Load Your EEG Data
+      Load Your EEG Data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-resample-your-eeg-data" class="md-nav__link">
+  <a href="#resample-your-eeg-data" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Resample Your EEG Data
+      Resample Your EEG Data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-check-the-results" class="md-nav__link">
+  <a href="#check-the-results" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Check the Results
+      Check the Results
     </span>
   </a>
   
@@ -380,16 +380,16 @@
                   
 
 
-<h1 id="eeg_htpeegresampledataeeglab-function"><a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegResampleDataEeglab.m">eeg_htpEegResampleDataEeglab</a> Function</h1>
-<p>The eeg_htpEegResampleDataEeglab function resamples EEG data to a newly specified sampling rate using the EEGLAB toolbox. This guide will walk you through how to use this function effectively.</p>
+<h1 id="changing-resample-rate-of-eeg-files">Changing resample rate of eeg files</h1>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegResampleDataEeglab.m"><code>eeg_htpEegResampleDataEeglab</code></a> function resamples EEG data to a newly specified sampling rate using the <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> toolbox. This guide will walk you through how to use this function effectively.</p>
 <h2 id="function-description">Function Description</h2>
-<p>The eeg_htpEegResampleDataEeglab function takes an <strong>EEGLAB</strong> EEG structure and resamples its data to a new specified sampling rate. It optionally saves the output and logs relevant information.</p>
+<p>The <code>eeg_htpEegResampleDataEeglab</code> function takes an <strong>EEGLAB</strong> EEG structure and resamples its data to a new specified sampling rate. It optionally saves the output and logs relevant information.</p>
 <h3 id="syntax">Syntax</h3>
 <pre><code>[EEG, results] = eeg_htpEegResampleDataEeglab(EEG, 'srate', 500, 'saveoutput', false, 'outputdir', '')
 </code></pre>
 <h2 id="inputs">Inputs</h2>
 <h3 id="required-parameter">Required Parameter</h3>
-<p><code>EEG</code>: An EEGLAB structure containing the EEG data.</p>
+<p><code>EEG</code>: An <strong>EEGLAB</strong> structure containing the EEG data.</p>
 <h3 id="optional-parameters">Optional Parameters</h3>
 <p><code>srate</code>: A numeric value specifying the new sampling rate (default: 500).</p>
 <p><code>saveoutput</code>: A boolean indicating if the output should be saved (default: false).</p>
@@ -398,16 +398,16 @@
 <p><code>EEG</code>: The updated <strong>EEGLAB</strong> structure with the resampled data.</p>
 <p><code>results</code>: A structure containing function-specific results, including a quality information (QI) table and input parameters used.</p>
 <h2 id="example-method">Example Method</h2>
-<h3 id="1-load-your-eeg-data">1. Load Your EEG Data</h3>
+<h3 id="load-your-eeg-data">Load Your EEG Data</h3>
 <p>Before using the function, load your EEG data into an <strong>EEGLAB</strong> structure.</p>
 <pre><code>EEG = pop_loadset('filename', 'your_eeg_data.set', 'filepath', 'path_to_your_data/');
 </code></pre>
-<h3 id="2-resample-your-eeg-data">2. Resample Your EEG Data</h3>
+<h3 id="resample-your-eeg-data">Resample Your EEG Data</h3>
 <p>Use the <code>eeg_htpEegResampleDataEeglab</code> function to resample your EEG data. You can specify the new sampling rate, whether to save the output, and the output directory.</p>
 <p>Example: Resampling to 500 Hz and saving the output to a specified directory</p>
 <pre><code>[EEG, results] = eeg_htpEegResampleDataEeglab(EEG, 'srate', 500, 'saveoutput', true, 'outputdir', 'example_directory/');
 </code></pre>
-<h3 id="3-check-the-results">3. Check the Results</h3>
+<h3 id="check-the-results">Check the Results</h3>
 <p>After resampling, you can check the updated EEG structure and results.</p>
 <p>Example: Displaying the new sampling rate</p>
 <pre><code>disp(EEG.srate);  % Should display the new sampling rate
@@ -417,8 +417,7 @@
 </code></pre>
 <h2 id="final-notes">Final Notes</h2>
 <p>Ensure that the <strong>EEGLAB</strong> toolbox is installed and added to your MATLAB path.
-The function logs the original and new sampling rates and updates the EEGLAB structure accordingly.
-If the original sampling rate is above 2000 Hz, it first downsamples to 1000 Hz before resampling to the specified rate.</p>
+The function logs the original and new sampling rates and updates the <strong>EEGLAB</strong> structure accordingly.If the original sampling rate is above 2000 Hz, it first downsamples to 1000 Hz before resampling to the specified rate.</p>
 
 
 

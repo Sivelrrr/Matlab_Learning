@@ -16,7 +16,7 @@
     
     
       
-        <title>inflow_ImportMeaXDAT Class - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Importing XDAT file into Signal FLow - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#inflow_importmeaxdat-class" class="md-skip">
+        <a href="#importing-xdat-file-into-signal-flow" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              inflow_ImportMeaXDAT Class
+              Importing XDAT file into Signal FLow
             
           </span>
         </div>
@@ -353,9 +353,9 @@
                   
 
 
-<h1 id="inflow_importmeaxdat-class"><a href="https://github.com/cincibrainlab/SignalFlowEEG/blob/main/Modules/inflow_ImportMeaXDAT.m">inflow_ImportMeaXDAT</a> Class</h1>
+<h1 id="importing-xdat-file-into-signal-flow">Importing XDAT file into Signal FLow</h1>
 <h2 id="overview">Overview</h2>
-<p>The inflow_ImportMeaXDAT class is part of the SignalFlowEEG pipeline designed for the Cincinnati Children’s Brain Lab. This class reads and processes .xdat files from MEA systems, importing EEG data, applying signal processing, and configuring EEG channel properties for analysis. If the input file is of a different format, such as .edf, it can also handle this format with adjusted processing.</p>
+<p>The <a href="https://github.com/cincibrainlab/SignalFlowEEG/blob/main/Modules/inflow_ImportMeaXDAT.m"><code>inflow_ImportMeaXDAT</code></a> class is part of the SignalFlowEEG pipeline designed for the Cincinnati Children’s Brain Lab. This class reads and processes .xdat files from MEA systems, importing EEG data, applying signal processing, and configuring EEG channel properties for analysis. If the input file is of a different format, such as .edf, it can also handle this format with adjusted processing.</p>
 <h2 id="class-definition">Class Definition</h2>
 <pre><code>classdef inflow_ImportMeaXDAT &lt; SignalFlowSuperClass
 </code></pre>
@@ -380,7 +380,7 @@ Inputs</p>
 <p><code>obj</code> : An instance of the inflow_ImportMeaXDAT class.
 varargin: Additional arguments, with args.char_filepath specifying the path of the EEG file.</p>
 <h2 id="outputs">Outputs</h2>
-<p><code>EEG</code>: The processed EEGLAB EEG structure containing the signal data, channel locations, and other metadata.</p>
+<p><code>EEG</code>: The processed <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure containing the signal data, channel locations, and other metadata.</p>
 <h2 id="processing-steps">Processing Steps</h2>
 <p>Filepath and Network Type:
     Extracts the file path and sets <code>args.char_netType</code> to <code>MEAXDAT</code>.</p>

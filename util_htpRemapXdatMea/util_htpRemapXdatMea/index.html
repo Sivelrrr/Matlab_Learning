@@ -16,7 +16,7 @@
     
     
       
-        <title>util_htpRemapXdatMea Function - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Remapping EEG data in XDAT files - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#util_htpremapxdatmea-function" class="md-skip">
+        <a href="#remapping-eeg-data-in-xdat-files" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              util_htpRemapXdatMea Function
+              Remapping EEG data in XDAT files
             
           </span>
         </div>
@@ -362,17 +362,17 @@
                   
 
 
-<h1 id="util_htpremapxdatmea-function"><a href="https://github.com/cincibrainlab/vhtp/blob/main/util_htpRemapXdatMea.m">util_htpRemapXdatMea</a> Function</h1>
+<h1 id="remapping-eeg-data-in-xdat-files">Remapping EEG data in XDAT files</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>util_htpRemapXdatMea</code> function is designed to reorder or remap EEG channel data within an EEGLAB EEG structure according to a specified mapping. This function is particularly useful if the recorded data channels do not correspond to the correct physical electrode locations and need to be reassigned based on a predefined mapping scheme.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/util_htpRemapXdatMea.m"><code>util_htpRemapXdatMea</code></a> function is designed to reorder or remap EEG channel data within an <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure according to a specified mapping. This function is particularly useful if the recorded data channels do not correspond to the correct physical electrode locations and need to be reassigned based on a predefined mapping scheme.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>EEG = util_htpRemapXdatMea(EEG)
 </code></pre>
 <h2 id="inputs">Inputs</h2>
-<p><code>EEG</code>: An EEGLAB structure containing the EEG data to be remapped. The EEG.data field should contain EEG signals in a 2D array format, where each row represents a channel, and each column represents a time point.</p>
+<p><code>EEG</code>: An <strong>EEGLAB</strong> structure containing the EEG data to be remapped. The EEG.data field should contain EEG signals in a 2D array format, where each row represents a channel, and each column represents a time point.</p>
 <h2 id="methods">Methods</h2>
 <h2 id="load-eeg-data">Load EEG Data</h2>
-<p>Load your EEG data as an EEGLAB structure with channels in the existing order.</p>
+<p>Load your EEG data as an <strong>EEGLAB</strong> structure with channels in the existing order.</p>
 <pre><code>EEG = pop_loadset('your_data.set');  % Load EEG data set
 </code></pre>
 <h2 id="running-util_htpremapxdatmea">Running <code>util_htpRemapXdatMea</code></h2>
@@ -401,7 +401,7 @@ EEG = util_htpRemapXdatMea(EEG);
 disp(EEG.data);  % Check the reordered data
 </code></pre>
 <h2 id="output">Output</h2>
-<p><code>EEG</code>: The input EEGLAB structure with its <code>.data</code> field remapped according to the specified <code>mappingDict</code> dictionary.</p>
+<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with its <code>.data</code> field remapped according to the specified <code>mappingDict</code> dictionary.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Mapping Dictionary: Adjustments to the mapping dictionary may be necessary if the channel configuration changes or if different data is used.</p>
 <p>Data Consistency: Be cautious when applying this remapping to ensure it corresponds accurately with the physical setup used during data collection.</p>
