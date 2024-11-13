@@ -312,6 +312,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#xdat-file-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      XDAT File Processing:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-usage" class="md-nav__link">
     <span class="md-ellipsis">
       Example Usage
@@ -357,7 +366,7 @@
 </code></pre>
 <p>Details</p>
 <p>Purpose: The constructor initializes an <code>inflow_ImportMeaXDAT</code> object, setting up the custom function label and flow mode.</p>
-<p>Input arguments: Accepts a variable number of input arguments to pass to the superclass.</p>
+<p>Input arguments: Accepts a different number of input arguments to pass to the superclass.</p>
 <p>Example</p>
 <pre><code>importFlow = inflow_ImportMeaXDAT('filepath', 'myfile.xdat');
 </code></pre>
@@ -377,22 +386,21 @@ varargin: Additional arguments, with args.char_filepath specifying the path of t
     Extracts the file path and sets <code>args.char_netType</code> to <code>MEAXDAT</code>.</p>
 <p>File Type Check:
     The run method checks the file extension. If the file is <code>.xdat</code>, it continues with MEA-specific processing; otherwise, it prepares for <code>.edf</code> files.</p>
-<p>XDAT File Processing:
-    XDAT Import Code:
-        Uses <code>allegoXDatFileReaderR2019b</code> to read time range and signal structures for <code>PriSigs</code>, <code>AuxSigs</code>, <code>DinSigs</code>, and <code>DoutSigs</code>.
-    Signal Assignment:
-        The primary signal (<code>signalStruct.PriSigs.signals)</code> is assigned to <code>EEG.data</code>, setting the EEG data structure with 32 channels by default.
-    Channel Configuration:
-        Loads mappings from a .mat file (<code>mea3d.mat</code>) for correct 3D locations. If the file is missing, an error is produced.
-    Channel Renaming:
-        Applies mapping to rename channels according to stage2_map, with the new labels assigned to <code>EEG.chanlocs</code>.</p>
+<h2 id="xdat-file-processing">XDAT File Processing:</h2>
+<p>XDAT Import Code:
+    Uses <code>allegoXDatFileReaderR2019b</code> to read time range and signal structures for <code>PriSigs</code>, <code>AuxSigs</code>, <code>DinSigs</code>, and <code>DoutSigs</code>.</p>
+<p>Signal Assignment:
+    The primary signal (<code>signalStruct.PriSigs.signals</code>) is assigned to <code>EEG.data</code>, setting the EEG data structure with 32 channels by default.</p>
+<p>Channel Configuration:
+    Loads mappings from a .mat file (<code>mea3d.mat</code>) for correct 3D locations. If the file is missing, an error is produced.</p>
+<p>Channel Renaming:
+    Applies mapping to rename channels according to <code>stage2_map</code>, with the new labels assigned to <code>EEG.chanlocs</code>.</p>
 <p>EDF File Processing:
-    If not <code>.xdat</code>, the method treats the file as <code>.edf</code>, adjusting channel selection and loading chanlocs for correct ordering.</p>
+        If not <code>.xdat</code>, the method treats the file as <code>.edf</code>, adjusting channel selection and loading chanlocs for correct ordering.</p>
 <p>Channel Mapping Verification:
-    Verifies and checks the channel locations using <code>eeg_checkset</code>, ensuring that the channels match the expected configuration.</p>
+        Verifies and checks the channel locations using <code>eeg_checkset</code>, ensuring that the channels match the expected configuration.</p>
 <p>QA and Visualization:
-    Calls <code>util_GetQAData(EEG)</code> for quality assurance on EEG data.
-    Plots EEG data using pop_eegplot.</p>
+    Calls <code>util_GetQAData(EEG)</code> for quality assurance on EEG data and then plots EEG data using <code>pop_eegplot</code>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Importing and Running</p>
 <pre><code>% Create an instance with the file path to an XDAT file
