@@ -385,9 +385,9 @@
 <p><code>EEG</code> : An  <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> structure containing EEG data. This structure should include EEG recordings, channel information, and sampling rate.</p>
 <h3 id="optional-parameters-function-specific">Optional Parameters (Function-Specific)</h3>
 <p>Specify additional parameters through name-value pairs in varargin. Some key parameters include:</p>
-<p><code>f_range</code>: Frequency range of interest, typically defined as [<code>minFreq</code> <code>maxFreq</code>]. Defaults to [1 50].</p>
+<p><code>f_range</code>: Frequency range of interest, typically defined as [<code>minFreq</code> <code>maxFreq</code>]. Defaults to [1, 50].</p>
 <p><code>aperiodic_mode</code>: Method for estimating the aperiodic component (<code>fixed</code> or <code>knee</code>). Defaults to 'fixed'.</p>
-<p><code>peak_width_limits</code>: Limits on the width of detected peaks, as [<code>minWidth</code> <code>maxWidth</code>]. Defaults to [1 12].</p>
+<p><code>peak_width_limits</code>: Limits on the width of detected peaks, as [<code>minWidth</code> <code>maxWidth</code>]. Defaults to [1, 12].</p>
 <p><code>max_n_peaks</code>: Maximum number of peaks to model in the spectrum. Defaults to 6.</p>
 <p><code>plot_results</code>: Whether to plot FOOOF results (<code>true</code> or <code>false</code>). Defaults to <code>false</code>.</p>
 <h2 id="method-guide">Method Guide</h2>
@@ -397,7 +397,7 @@
 </code></pre>
 <h2 id="define-optional-parameters">Define Optional Parameters</h2>
 <p>Specify any optional parameters as name-value pairs. For instance, to set a frequency range from 1 to 40 Hz and plot results, you can set:</p>
-<pre><code>f_range = [1 40];
+<pre><code>f_range = [1, 40];
 plot_results = true;
 </code></pre>
 <h2 id="run-eeg_htpcalcfooof">Run eeg_htpCalcFooof</h2>
@@ -408,8 +408,8 @@ plot_results = true;
 <p>Example Usage
 This example demonstrates using eeg_htpCalcFooof with a specific frequency range, peak width limits, and plotting option:</p>
 <pre><code>% Define parameters
-f_range = [1 40];
-peak_width_limits = [2 10];
+f_range = [1, 40];
+peak_width_limits = [2, 10];
 plot_results = true;
 
 % Run FOOOF analysis
