@@ -9,20 +9,18 @@
       
       
       
-        <link rel="prev" href="overview/">
       
       
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>Visual High Throughput Pipeline (VHTP)</title>
+        <title>eeg htpCalcChirpItcErsp - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
       
       
 
@@ -41,9 +39,9 @@
       
     
     
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="../../style.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#input" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +76,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Visual High Throughput Pipeline (VHTP)" class="md-header__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
+    <a href="../.." title="Visual High Throughput Pipeline (VHTP)" class="md-header__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Functions
+              eeg htpCalcChirpItcErsp
             
           </span>
         </div>
@@ -173,7 +171,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Visual High Throughput Pipeline (VHTP)" class="md-nav__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
+    <a href="../.." title="Visual High Throughput Pipeline (VHTP)" class="md-nav__button md-logo" aria-label="Visual High Throughput Pipeline (VHTP)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -191,7 +189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -208,28 +206,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Functions
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -238,78 +218,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#input" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#preprocess" class="md-nav__link">
-    <span class="md-ellipsis">
-      Preprocess
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cleaned-data-qi-metrics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleaned Data QI Metrics
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Analysis
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reporting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reporting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-tables-figures" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data Tables Figures
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -339,54 +247,105 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#input" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Input
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preprocess" class="md-nav__link">
+  <a href="#function-syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      Preprocess
+      Function Syntax
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleaned-data-qi-metrics" class="md-nav__link">
+  <a href="#inputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Cleaned Data QI Metrics
+      Inputs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#analysis" class="md-nav__link">
+  <a href="#optional-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Analysis
+      Optional Parameters
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reporting" class="md-nav__link">
+  <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
-      Reporting
+      Output
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preprocess-eeg-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preprocess EEG Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-function-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define Function Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the Function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-the-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect the Results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-use-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full use Example
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-tables-figures" class="md-nav__link">
+  <a href="#additional-notes" class="md-nav__link">
     <span class="md-ellipsis">
-      Data Tables Figures
+      Additional Notes
     </span>
   </a>
   
@@ -407,25 +366,78 @@
                   
 
 
-  <h1>Functions</h1>
+  <h1>eeg htpCalcChirpItcErsp</h1>
 
-<p><img alt="Overview_img" src="overview.svg" /></p>
-<h3 id="input">Input</h3>
-<p><a href="inflow_ImportMeaXDAT/inflow_ImportMeaXDAT/">Importing XDAT files into Signal FLow</a></p>
-<p><a href="util_htpRemapXdatMea/util_htpRemapXdatMea/">Remapping EEG data in XDAT files</a></p>
-<h3 id="preprocess">Preprocess</h3>
-<p><a href="eeg_htpEegEpoch2Cont/eeg_htpEegEpoch2Cont/">Converting epoch data to continuous data</a></p>
-<p><a href="eeg_htpEegResampleDataEeglab/eeg_htpEegResampleDataEeglab/">Changing resample rate of eeg files</a></p>
-<h3 id="cleaned-data-qi-metrics">Cleaned Data QI Metrics</h3>
-<p><a href="eeg_htpCalcFooof/eeg_htpCalcFooof/">Preforming FOOOF calulcations</a></p>
-<h3 id="analysis">Analysis</h3>
-<p><a href="eeg_htpCalcRestPower/eeg_htpCalcRestPower/">Calculating resting power</a></p>
-<p><a href="eeg_htpEegAssessPipelineHAPPE/eeg_htpEegAssessPipelineHAPPE/">Preforming EEG comparison of HAPPE pipeline</a></p>
-<p><a href="eeg_htpCalcTimeFrequency/eeg_htpCalcTimeFrequency/">Calculating time frequency data from EEG file</a></p>
-<p><a href="eeg_htpCalcChirpItcErsp/eeg_htpCalcChirpItcErsp/">Calculating Inter-trial Coherence  and Event-Related Spectral perturbation for Chrip files</a></p>
-<h3 id="reporting">Reporting</h3>
-<p><a href="outflow_ExportSet/outflow_ExportSet/">Exporting EEG data into a set file</a></p>
-<h3 id="data-tables-figures">Data Tables Figures</h3>
+<p>Calculating Inter-trial Coherence  and Event-Related Spectral perturbation for Chrip files</p>
+<h2 id="overview">Overview</h2>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcChirpItcErsp.m"><code>eeg_htpCalcChirpItcErsp</code></a> function calculates Inter-Trial Coherence (ITC) and Event-Related Spectral Perturbation (ERSP) from EEG data, particularly in response to auditory chirp stimuli. It leverages EEGLAB's newtimef function to compute ITC and ERSP, enabling the analysis of frequency-domain responses across time for specified EEG channels. This function can handle artifact rejection, baseline correction, and analysis over regions of interest (ROIs) and frequency ranges.</p>
+<h2 id="function-syntax">Function Syntax</h2>
+<pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, varargin)
+</code></pre>
+<h2 id="inputs">Inputs</h2>
+<p><code>EEG</code>: An EEGLAB structure with EEG data, including channels, event markers, and epochs.</p>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<p>You can adjust these optional parameters using MATLAB's <code>varagin</code>, value syntax:</p>
+<p><code>tlimits</code>: [minTime maxTime] (default [-500 2750]) - Time limits for the analysis in milliseconds.</p>
+<p><code>flimits</code>: [minFreq maxFreq] (default [2 110]) - Frequency range in Hz.</p>
+<p><code>baselinew</code>: [baselineStart baselineEnd] - Baseline window for ERSP.</p>
+<p><code>ampThreshold</code>: (default 120) - Amplitude threshold for artifact rejection.</p>
+<p><code>byChannel</code>: (default false) - Set true to compute ITC and ERSP per channel.</p>
+<p><code>sourceOn</code>: (default false) - Toggle between using source-labeled channels or electrode names.</p>
+<h2 id="output">Output</h2>
+<p><code>EEG</code>: The input EEGLAB structure with updated data and metadata fields.
+results: Structure containing the ITC and ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
+<p>Method</p>
+<h3 id="preprocess-eeg-data">Preprocess EEG Data</h3>
+<p>Prepare your EEG data with preprocessing steps like filtering, referencing, and epoching around the stimulus of interest. This function requires trial-based EEG data with time-locked events.</p>
+<pre><code>EEG = pop_loadset('your_data.set');  % Load your EEG dataset
+</code></pre>
+<h3 id="define-function-parameters">Define Function Parameters</h3>
+<p>Specify parameters to configure time limits, frequency limits, baseline correction, and more. The following example sets up analysis parameters for an auditory chirp response:</p>
+<pre><code>params = {
+    'tlimits', [-500 2750], ...          % Time window in milliseconds
+    'flimits', [2 110], ...               % Frequency range in Hz
+    'baselinew', [-500 0], ...            % Baseline correction window
+    'cycles', [1 30], ...                 % Number of cycles for time-frequency decomposition
+    'ampThreshold', 120, ...              % Amplitude threshold for artifact rejection
+    'byChannel', true, ...                % Compute ITC and ERSP by channel
+    'sourceOn', true                      % Use source-labeled channels
+};
+</code></pre>
+<h3 id="run-the-function">Run the Function</h3>
+<p>Run the <code>eeg_htpCalcChirpItcErsp</code> function with the EEG structure and specified parameters.</p>
+<pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, params{:});
+</code></pre>
+<h3 id="inspect-the-results">Inspect the Results</h3>
+<p>The output results structure includes several fields:</p>
+<p>summary_table: Contains key metrics, including mean power and coherence values for different ROIs and frequency bands.</p>
+<p><code>qi_table</code>: A summary table with details on the processed EEG file.</p>
+<p><code>amp_rej_trials</code>: Lists trials rejected due to high amplitude artifacts.</p>
+<p><code>ersp1</code>: ERSP matrix for each frequency and time point.</p>
+<p><code>itc1</code> and <code>rawitc1</code>: Corrected and uncorrected ITC matrices.</p>
+<p>Example of inspecting the summary table:</p>
+<pre><code>disp(results.summary_table);  % Display the summary of ITC and ERSP values
+</code></pre>
+<h2 id="full-use-example">Full use Example</h2>
+<pre><code>% Load EEG data
+EEG = pop_loadset('your_data.set');
+
+% Run ITC and ERSP analysis
+[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, ...
+    'tlimits', [-500 2750], ...
+    'flimits', [2 110], ...
+    'baselinew', [-500 0], ...
+    'ampThreshold', 120, ...
+    'byChannel', true, ...
+    'sourceOn', true);
+
+% Display summary of results
+disp(results.summary_table);
+</code></pre>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>Data Consistency: Ensure the chosen parameters, particularly tlimits and flimits, align with your experiment's stimuli and objectives.</p>
+<p>ROI Selection: Adjust ROIs to target specific brain regions of interest for more tailored ITC and ERSP analysis.</p>
+<p>Artifact Management: Review amp_rej_trials to confirm adequate artifact rejection and maintain data quality.</p>
 
 
 
@@ -472,10 +484,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
