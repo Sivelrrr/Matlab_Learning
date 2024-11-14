@@ -16,7 +16,7 @@
     
     
       
-        <title>Calculating Inter-trial Coherence and Event-Related Spectral perturbation for Chrip files - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Calculating Inter-trial Coherence and Event-Related Spectral perturbation for Chirp files - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#calculating-inter-trial-coherence-and-event-related-spectral-perturbation-for-chrip-files" class="md-skip">
+        <a href="#calculating-inter-trial-coherence-and-event-related-spectral-perturbation-for-chirp-files" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Calculating Inter-trial Coherence and Event-Related Spectral perturbation for Chrip files
+              Calculating Inter-trial Coherence and Event-Related Spectral perturbation for Chirp files
             
           </span>
         </div>
@@ -291,7 +291,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -368,9 +377,9 @@
                   
 
 
-<h1 id="calculating-inter-trial-coherence-and-event-related-spectral-perturbation-for-chrip-files">Calculating Inter-trial Coherence  and Event-Related Spectral perturbation for Chrip files</h1>
+<h1 id="calculating-inter-trial-coherence-and-event-related-spectral-perturbation-for-chirp-files">Calculating Inter-trial Coherence  and Event-Related Spectral perturbation for Chirp files</h1>
 <h2 id="overview">Overview</h2>
-<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcChirpItcErsp.m"><code>eeg_htpCalcChirpItcErsp</code></a> function calculates Inter-Trial Coherence (ITC) and Event-Related Spectral Perturbation (ERSP) from EEG data, particularly in response to auditory chirp stimuli. It leverages <a href="https://eeglab.org/download/"><strong>EEGLAB's</strong></a> newtimef function to compute ITC and ERSP, enabling the analysis of frequency-domain responses across time for specified EEG channels. This function can handle artifact rejection, baseline correction, and analysis over regions of interest (ROIs) and frequency ranges.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcChirpItcErsp.m"><code>eeg_htpCalcChirpItcErsp</code></a> function calculates Inter-Trial Coherence (ITC) and Event-Related Spectral Perturbation (ERSP) from EEG data, particularly in response to auditory chirp stimuli. It leverages <a href="https://eeglab.org/download/"><strong>EEGLAB's</strong></a> <code>newtimef</code> function to compute ITC and ERSP, enabling the analysis of frequency-domain responses across time for specified EEG channels. This function can handle artifact rejection, baseline correction, and analysis over regions of interest (ROIs) and frequency ranges.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, varargin)
 </code></pre>
@@ -387,7 +396,7 @@
 <h2 id="output">Output</h2>
 <p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with updated data and metadata fields.
 results: Structure containing the ITC and ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
-<p>Method</p>
+<h2 id="methods">Methods</h2>
 <h3 id="preprocess-eeg-data">Preprocess EEG Data</h3>
 <p>Prepare your EEG data with preprocessing steps like filtering, referencing, and epoching around the stimulus of interest. This function requires trial-based EEG data with time-locked events.</p>
 <pre><code>EEG = pop_loadset('your_data.set');  % Load your EEG dataset
