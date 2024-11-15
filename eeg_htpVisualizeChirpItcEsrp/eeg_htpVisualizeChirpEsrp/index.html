@@ -16,7 +16,7 @@
     
     
       
-        <title>Calculating Inter-trial Coherence and Event-Related Spectral perturbation for Chirp files - Visual High Throughput Pipeline (VHTP)</title>
+        <title>PLotting Chirp ITC, ESPR, and STP DATA - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#calculating-inter-trial-coherence-and-event-related-spectral-perturbation-for-chirp-files" class="md-skip">
+        <a href="#plotting-chirp-itc-espr-and-stp-data" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Calculating Inter-trial Coherence and Event-Related Spectral perturbation for Chirp files
+              PLotting Chirp ITC, ESPR, and STP DATA
             
           </span>
         </div>
@@ -258,36 +258,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#function-syntax" class="md-nav__link">
-    <span class="md-ellipsis">
-      Function Syntax
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#inputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Inputs
+      Inputs:
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-parameters" class="md-nav__link">
+  <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional Parameters
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output
+      Outputs:
     </span>
   </a>
   
@@ -304,36 +286,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preprocess-eeg-data" class="md-nav__link">
+  <a href="#prepare-eeg-data-ensure-your-eeg-data-is-preprocessed-and-organized-in-a-cell-array-format" class="md-nav__link">
     <span class="md-ellipsis">
-      Preprocess EEG Data
+      Prepare EEG Data Ensure your EEG data is preprocessed and organized in a cell array format.
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#define-function-parameters" class="md-nav__link">
+  <a href="#call-eeg_htpvisualizechirpitcersp-run-the-function-specifying-optional-parameters-as-needed" class="md-nav__link">
     <span class="md-ellipsis">
-      Define Function Parameters
+      Call eeg_htpVisualizeChirpItcErsp Run the function, specifying optional parameters as needed.
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-the-function" class="md-nav__link">
+  <a href="#review-visualizations-the-function-generates-itc-ersp-and-stp-plots-for-each-group-or-individual-files-are-saved-in-the-specified-outputdir" class="md-nav__link">
     <span class="md-ellipsis">
-      Run the Function
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inspect-the-results" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inspect the Results
+      Review Visualizations The function generates ITC, ERSP, and STP plots for each group or individual. Files are saved in the specified outputdir.
     </span>
   </a>
   
@@ -345,18 +318,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-use-example" class="md-nav__link">
+  <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Full use Example
+      Key Features
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-notes" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional Notes
+      Example
     </span>
   </a>
   
@@ -377,85 +350,66 @@
                   
 
 
-<h1 id="calculating-inter-trial-coherence-and-event-related-spectral-perturbation-for-chirp-files">Calculating Inter-trial Coherence  and Event-Related Spectral perturbation for Chirp files</h1>
+<h1 id="plotting-chirp-itc-espr-and-stp-data"><a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpVisualizeChirpItcErsp.m">PLotting Chirp ITC, ESPR, and STP DATA</a></h1>
 <h2 id="overview">Overview</h2>
-<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcChirpItcErsp.m"><code>eeg_htpCalcChirpItcErsp</code></a> function calculates Inter-Trial Coherence 
-(ITC), Event-Related Spectral Perturbation (ERSP), and Sinlge-Trial Power (STP) Data. 
-from EEG data, particularly in response to auditory chirp stimuli. 
-It leverages <a href="https://eeglab.org/download/"><strong>EEGLAB's</strong></a> <code>newtimef</code> 
-function to compute ITC and ERSP, enabling the analysis of frequency-domain 
-responses across time for specified EEG channels. This function can handle artifact
- rejection, baseline correction, and analysis over regions of interest (ROIs) and frequency ranges.</p>
-<h2 id="function-syntax">Function Syntax</h2>
-<pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, varargin)
+<p>The <code>eeg_htpVisualizeChirpItcErsp</code> function generates visualizations for ERP analysis based on intertrial coherence (ITC), event-related spectral perturbation (ERSP), and Single Power (STP) computed by the eeg_htpCalcChirpItcErsp function. It supports individual or grouped EEG data and allows flexible visualization options such as group averaging, contrasts, and regional analysis.</p>
+<p>Function Syntax</p>
+<pre><code>[EEGcell, results] = eeg_htpVisualizeChirpItcErsp(EEGcell, varargin)
 </code></pre>
-<h2 id="inputs">Inputs</h2>
-<p><code>EEG</code>: An <strong>EEGLAB</strong> structure with EEG data, including channels, event markers, and epochs.</p>
-<h2 id="optional-parameters">Optional Parameters</h2>
-<p>You can adjust these optional parameters using MATLAB's <code>varagin</code>, value syntax:</p>
-<p><code>tlimits</code>: [minTime maxTime] (default [-500 2750]) - Time limits for the analysis in milliseconds.</p>
-<p><code>flimits</code>: [minFreq maxFreq] (default [2 110]) - Frequency range in Hz.</p>
-<p><code>baselinew</code>: [baselineStart baselineEnd] - Baseline window for ERSP.</p>
-<p><code>ampThreshold</code>: (default 120) - Amplitude threshold for artifact rejection.</p>
-<p><code>byChannel</code>: (default false) - Set true to compute ITC and ERSP per channel.</p>
-<p><code>sourceOn</code>: (default false) - Toggle between using source-labeled channels or electrode names.</p>
-<h2 id="output">Output</h2>
-<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with updated data and metadata fields.
-results: Structure containing the ITC, STP, ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
+<h2 id="inputs">Inputs:</h2>
+<p>EEGcell: A cell array of <strong>EEGLAB</strong> structures containing preprocessed EEG data.</p>
+<p>Optional Parameters:</p>
+<p><code>outputdir</code>: Directory to save output visualizations (default: system temp directory).</p>
+<p><code>groupids</code>: Vector of integers specifying group membership for EEG datasets (default: all in one group).</p>
+<p><code>groupmean</code>: Boolean indicating whether to compute and plot group averages (default: <code>true</code>).</p>
+<p><code>singleplot</code>: Boolean indicating whether to combine group and individual data in a single plot (default: <code>true</code>).</p>
+<p><code>contrasts</code>: Cell array of group pairs for contrast calculations (e.g., {{1,2}} for Group 1 minus Group 2).</p>
+<p><code>averageByRegion</code>: Boolean to average data by predefined brain regions (default: <code>false</code>).</p>
+<h2 id="outputs">Outputs:</h2>
+<p><code>EEGcell</code>: Updated cell array with added results in the <code>.etc.htp</code> field.</p>
+<p><code>results</code>: A structure summarizing the generated ERP visualizations.</p>
 <h2 id="methods">Methods</h2>
-<h3 id="preprocess-eeg-data">Preprocess EEG Data</h3>
-<p>Prepare your EEG data with preprocessing steps like filtering, referencing, and epoching around the stimulus of interest. This function requires trial-based EEG data with time-locked events.</p>
-<pre><code>EEG = pop_loadset('your_data.set');  % Load your EEG dataset
+<h3 id="prepare-eeg-data-ensure-your-eeg-data-is-preprocessed-and-organized-in-a-cell-array-format">Prepare EEG Data Ensure your EEG data is preprocessed and organized in a cell array format.</h3>
+<pre><code>EEG1 = pop_loadset('subject1.set');
+EEG2 = pop_loadset('subject2.set');
+EEGcell = {EEG1, EEG2};  % Combine EEG datasets into a cell array
 </code></pre>
-<h3 id="define-function-parameters">Define Function Parameters</h3>
-<p>Specify parameters to configure time limits, frequency limits, baseline correction, and more. The following example sets up analysis parameters for an auditory chirp response:</p>
-<pre><code>params = {
-    'tlimits', [-500 2750], ...          % Time window in milliseconds
-    'flimits', [2 110], ...               % Frequency range in Hz
-    'baselinew', [-500 0], ...            % Baseline correction window
-    'cycles', [1 30], ...                 % Number of cycles for time-frequency decomposition
-    'ampThreshold', 120, ...              % Amplitude threshold for artifact rejection
-    'byChannel', true, ...                % Compute ITC and ERSP by channel
-    'sourceOn', true                      % Use source-labeled channels
-};
+<h3 id="call-eeg_htpvisualizechirpitcersp-run-the-function-specifying-optional-parameters-as-needed">Call eeg_htpVisualizeChirpItcErsp Run the function, specifying optional parameters as needed.</h3>
+<pre><code>[EEGcell, results] = eeg_htpVisualizeChirpItcErsp(EEGcell, ...
+    'outputdir', 'path/to/output', ...
+    'groupids', [1, 1], ...
+    'groupmean', true, ...
+    'contrasts', {{1, 2}}, ...
+    'averageByRegion', false);
 </code></pre>
-<h3 id="run-the-function">Run the Function</h3>
-<p>Run the <code>eeg_htpCalcChirpItcErsp</code> function with the EEG structure and specified parameters.</p>
-<pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, params{:});
-</code></pre>
-<h3 id="inspect-the-results">Inspect the Results</h3>
-<p>The output results structure includes several fields:</p>
-<p>summary_table: Contains key metrics, including mean power and coherence values for different ROIs and frequency bands.</p>
-<p><code>qi_table</code>: A summary table with details on the processed EEG file.</p>
-<p><code>amp_rej_trials</code>: Lists trials rejected due to high amplitude artifacts.</p>
-<p><code>ersp1</code>: ERSP matrix for each frequency and time point.</p>
-<p><code>itc1</code> and <code>rawitc1</code>: Corrected and uncorrected ITC matrices.</p>
-<p><code>STP1</code>: STP matrix for each frequency and time point</p>
-<p>Example of inspecting the summary table:</p>
-<pre><code>disp(results.summary_table);  % Display the summary of ITC and ERSP values
-</code></pre>
-<h2 id="full-use-example">Full use Example</h2>
+<h3 id="review-visualizations-the-function-generates-itc-ersp-and-stp-plots-for-each-group-or-individual-files-are-saved-in-the-specified-outputdir">Review Visualizations The function generates ITC, ERSP, and STP plots for each group or individual. Files are saved in the specified <code>outputdir</code>.</h3>
+<h2 id="key-features">Key Features</h2>
+<p>Group-Averaged Plots: When <code>groupmean</code> is enabled, the function computes group averages for ITC, ERSP, and STP. Contrasts between groups can also be plotted if specified in <code>contrasts</code>.</p>
+<p>Regional Analysis: If <code>averageByRegion</code> is set to true, the function reduces data dimensionality by averaging channels into predefined brain regions.</p>
+<p>Contrast Visualization: Differences between groups are calculated and displayed as additional plots.</p>
+<p>Custom Channel Filtering: Specific channel analysis can be performed by modifying the channel parameter.</p>
+<h2 id="example">Example</h2>
 <pre><code>% Load EEG data
-EEG = pop_loadset('your_data.set');
+EEG1 = pop_loadset('subject1.set');
+EEG2 = pop_loadset('subject2.set');
+EEGcell = {EEG1, EEG2};
 
-% Run ITC and ERSP analysis
-[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, ...
-    'tlimits', [-500 2750], ...
-    'flimits', [2 110], ...
-    'baselinew', [-500 0], ...
-    'ampThreshold', 120, ...
-    'byChannel', true, ...
-    'sourceOn', true);
+% Generate visualizations
+[EEGcell, results] = eeg_htpVisualizeChirpItcErsp(EEGcell, ...
+    'outputdir', 'path/to/output', ...
+    'groupids', [1, 2], ...
+    'groupmean', true, ...
+    'contrasts', {{1, 2}}, ...
+    'averageByRegion', false);
 
-% Display summary of results
-disp(results.summary_table);
+% Review results
+disp(results);
 </code></pre>
-<p>When the ITC, ERSP, and the STP are all graphed they will look similar to the following example:</p>
-<p><img alt="image" src="../ChirpITC.png" /></p>
-<h2 id="additional-notes">Additional Notes</h2>
-<p>Data Consistency: Ensure the chosen parameters, particularly <code>tlimits</code> and <code>flimits</code>, align with your experiment's stimuli and objectives.</p>
-<p>ROI Selection: Adjust ROIs to target specific brain regions of interest for more tailored ITC and ERSP analysis.</p>
-<p>Artifact Management: Review <code>amp_rej_trials</code> to confirm adequate artifact rejection and maintain data quality.</p>
+<p>Additional Notes
+Output Directory: Ensure the specified directory exists to avoid errors.</p>
+<p>Group IDs: The groupids vector must match the number of datasets in EEGcell.</p>
+<p>Contrast Calculations: Useful for comparing experimental conditions or patient groups.</p>
+<p>Data Integrity: Verify preprocessing steps before visualization to ensure accurate results.</p>
 
 
 
