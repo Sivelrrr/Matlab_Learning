@@ -387,6 +387,13 @@
 <h2 id="outputs">Outputs:</h2>
 <p><code>EEGcell</code>: Updated cell array with added results in the <code>.etc.htp</code> field.</p>
 <p><code>results</code>: A structure summarizing the generated ERP visualizations.</p>
+<p>The function will also create a plot and safe it to the output directory, here are examples of those plots:</p>
+<p>Here is a plot with default settings, when <code>groupmean</code> is set to <code>false</code> the function will output a plot for each eeg in <code>EEGcell</code>:</p>
+<p><img alt="Regular" src="../Regular.png" /></p>
+<p>Here when <code>groupmean</code> is set to <code>true</code>, the function will only generate a single plot of the groupmean for each eeg in <code>EEGcell</code>:</p>
+<p><img alt="Mean" src="../Grouped.png" /></p>
+<p>Here is when <code>groupmean</code> is set to <code>true</code> and <code>singleplot</code> is set to <code>true</code>:</p>
+<p><img alt="SinglePlot" src="../SinglePlotGrouped.png" /></p>
 <h2 id="methods">Methods</h2>
 <h3 id="prepare-eeg-data-ensure-your-eeg-data-is-preprocessed-and-organized-in-a-cell-array-format">Prepare EEG Data Ensure your EEG data is preprocessed and organized in a cell array format.</h3>
 <pre><code>EEG1 = pop_loadset('subject1.set');
