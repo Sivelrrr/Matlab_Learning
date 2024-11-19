@@ -258,6 +258,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#function-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function Syntax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#inputs" class="md-nav__link">
     <span class="md-ellipsis">
       Inputs:
@@ -361,12 +370,13 @@
 
 <h1 id="plotting-chirp-itc-espr-and-stp-data"><a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpVisualizeChirpItcErsp.m">PLotting Chirp ITC, ESPR, and STP DATA</a></h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>eeg_htpVisualizeChirpItcErsp</code> function generates visualizations for ERP analysis based on intertrial coherence (ITC), event-related spectral perturbation (ERSP), and Single Power (STP) computed by the eeg_htpCalcChirpItcErsp function. It supports individual or grouped EEG data and allows flexible visualization options such as group averaging, contrasts, and regional analysis.</p>
-<p>Function Syntax</p>
+<p>The <code>eeg_htpVisualizeChirpItcErsp</code> function generates visualizations for ERP analysis based on intertrial coherence (ITC), event-related spectral potential (ERSP), and Single-Trial Power (STP) computed by the <code>eeg_htpCalcChirpItcErsp</code> function. It supports individual or grouped EEG data and allows flexible visualization options such as group averaging, contrasts, and regional analysis.</p>
+<p>Chirp refers to an auditory stimulus that contains white noise busrt controlled by a sinusoid linearly increasing from 0 to 100 hz. The EEG files that are inputted into this function will contain this stimulus. ITC is used to measure how consistent one's brain is across multiple trials, a low ITC is equivalent to more variabliity. ERSP is used to help researchers understand how </p>
+<h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEGcell, results] = eeg_htpVisualizeChirpItcErsp(EEGcell, varargin)
 </code></pre>
 <h2 id="inputs">Inputs:</h2>
-<p>EEGcell: A cell array of <strong>EEGLAB</strong> structures containing preprocessed EEG data.</p>
+<p>EEGcell: A cell array of <strong>EEGLAB</strong> structures containing preprocessed EEG data. The strucutres are required to have had chirp data as in ITC, ERSP, and STP data fields in each EEG structure.</p>
 <p>Optional Parameters:</p>
 <p><code>outputdir</code>: Directory to save output visualizations (default: system temp directory).</p>
 <p><code>groupids</code>: Vector of integers specifying group membership for EEG datasets (default: all in one group).</p>
