@@ -387,10 +387,10 @@
 <h2 id="outputs">Outputs:</h2>
 <p><code>EEGcell</code>: Updated cell array with added results in the <code>.etc.htp</code> field.</p>
 <p><code>results</code>: A structure summarizing the generated ERP visualizations.</p>
-<p>The function will also create a plot and safe it to the output directory, here are examples of those plots:</p>
-<p>Here is a plot with default settings, when <code>groupmean</code> is set to <code>false</code> the function will output a plot for each eeg in <code>EEGcell</code>:</p>
+<p>The function will also create a plot and save it to the output directory, here are examples of those plots:</p>
+<p>Here is when <code>groupmean</code> is set to <code>false</code> the function will output a plot for each eeg in <code>EEGcell</code>:</p>
 <p><img alt="Regular" src="../Regular.png" /></p>
-<p>Here when <code>groupmean</code> is set to <code>true</code>, the function will only generate a single plot of the groupmean for each eeg in <code>EEGcell</code>:</p>
+<p>Here is when <code>groupmean</code> is set to <code>true</code>, the function will only generate a single plot of the group mean for each eeg in <code>EEGcell</code>:</p>
 <p><img alt="Mean" src="../Grouped.png" /></p>
 <p>Here is when <code>groupmean</code> is set to <code>true</code> and <code>singleplot</code> is set to <code>true</code>:</p>
 <p><img alt="SinglePlot" src="../SinglePlotGrouped.png" /></p>
@@ -403,7 +403,7 @@ EEGcell = {EEG1, EEG2};  % Combine EEG datasets into a cell array
 <h3 id="call-eeg_htpvisualizechirpitcersp-run-the-function-specifying-optional-parameters-as-needed">Call eeg_htpVisualizeChirpItcErsp Run the function, specifying optional parameters as needed.</h3>
 <pre><code>[EEGcell, results] = eeg_htpVisualizeChirpItcErsp(EEGcell, ...
     'outputdir', 'path/to/output', ...
-    'groupids', [1, 1], ...
+    'groupids', [1, 1, 2, 2], ...
     'groupmean', true, ...
     'contrasts', {{1, 2}}, ...
     'averageByRegion', false);
