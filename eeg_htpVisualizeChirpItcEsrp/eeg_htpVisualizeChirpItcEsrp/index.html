@@ -370,7 +370,7 @@
 
 <h1 id="plotting-chirp-itc-espr-and-stp-data">PLotting Chirp ITC, ESPR, and STP DATA</h1>
 <h2 id="overview">Overview</h2>
-<p>The <a href="(https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpVisualizeChirpItcErsp.m)"><code>eeg_htpVisualizeChirpItcErsp</code></a> function generates visualizations for ERP analysis based on intertrial coherence (ITC), event-related spectral potential (ERSP), and Single-Trial Power (STP) computed by the <code>eeg_htpCalcChirpItcErsp</code> function. It supports individual or grouped EEG data and allows flexible visualization options such as group averaging, contrasts, and regional analysis.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpVisualizeChirpItcErsp.m"><code>eeg_htpVisualizeChirpItcErsp</code></a> function generates visualizations for ERP analysis based on intertrial coherence (ITC), event-related spectral potential (ERSP), and Single-Trial Power (STP) computed by the <code>eeg_htpCalcChirpItcErsp</code> function. It supports individual or grouped EEG data and allows flexible visualization options such as group averaging, contrasts, and regional analysis.</p>
 <p>Chirp refers to an auditory stimulus that contains white noise busrt controlled by a sinusoid linearly increasing from 0 to 100 hz. The EEG files that are inputted into this function will contain this stimulus. ITC is used to measure how consistent one's brain is across multiple trials, a low ITC is equivalent to more variabliity. ERSP is used to help researchers understand how </p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEGcell, results] = eeg_htpVisualizeChirpItcErsp(EEGcell, varargin)
