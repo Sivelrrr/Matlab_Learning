@@ -386,6 +386,7 @@ It leverages <a href="https://eeglab.org/download/"><strong>EEGLAB's</strong></a
 function to compute ITC and ERSP, enabling the analysis of frequency-domain 
 responses across time for specified EEG channels. This function can handle artifact
  rejection, baseline correction, and analysis over regions of interest (ROIs) and frequency ranges.</p>
+<p>Chirp refers to an auditory stimulus that contains white noise busrt controlled by a sinusoid linearly increasing from 0 to 100 hz. The EEG files that are inputted into this function will contain this stimulus. ITC is used to measure how consistent one's brain is across multiple trials, a low ITC is equivalent to more variabliity. ERSP is used to help researchers understand how </p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, varargin)
 </code></pre>
@@ -448,9 +449,9 @@ results: Structure containing the ITC, STP, ERSP calculations, as well as summar
 <p>summary_table: Contains key metrics, including mean power and coherence values for different ROIs and frequency bands.</p>
 <p><code>qi_table</code>: A summary table with details on the processed EEG file.</p>
 <p><code>amp_rej_trials</code>: Lists trials rejected due to high amplitude artifacts.</p>
-<p><code>ersp1</code>: ERSP matrix for each frequency and time point.</p>
-<p><code>itc1</code> and <code>rawitc1</code>: Corrected and uncorrected ITC matrices.</p>
-<p><code>STP1</code>: STP matrix for each frequency and time point</p>
+<p><code>ersp1</code>: ERSP matrix for each frequency and time point. Can be used for an idicator for sensory processing and habituation.</p>
+<p><code>itc1</code> and <code>rawitc1</code>: Corrected and uncorrected ITC matrices. ITC measures how consistently your brain reacts to the same stimulus over and over.</p>
+<p><code>STP1</code>: STP matrix for each frequency and time point. Measures the intensity of neural activity at a specific frequency and time point during a trial</p>
 <p>Example of inspecting the summary table:</p>
 <pre><code>disp(results.summary_table);  % Display the summary of ITC and ERSP values
 </code></pre>
