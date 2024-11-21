@@ -367,6 +367,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bandef-defaults-delta-2-35-theta-35-75" class="md-nav__link">
+    <span class="md-ellipsis">
+      bandef (Defaults: {'delta', 2, 3.5; 'theta', 3.5, 7.5; ...} ):
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -374,6 +383,33 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outputs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Notes
+    </span>
+  </a>
   
 </li>
       
@@ -393,7 +429,14 @@
 
 
 <h1 id="mapping-channel-sourceslocations">Mapping Channel Sources/Locations</h1>
-<p>The function <code>eeg_htpCalcSourc</code>e is a part of the <strong>Brainstorm</strong> toolbox used for EEG source localization. It helps compute the brain's electrical activity at the source level, starting from scalp-level EEG recordings. The process uses the data from a preprocessed EEG file and computes cortical source activations based on a forward model. The function is highly configurable, allowing you to modify its behavior through various optional parameters. This flexibility makes it ideal for customizing analyses according to specific needs, such as choosing output directories, applying specific inverse models, or adjusting processing options.</p>
+<p>The function <code>eeg_htpCalcSourc</code>e is a part of the <strong>Brainstorm</strong> toolbox used for EEG source localization. 
+It helps compute the brain's electrical activity at the source level, 
+starting from scalp-level EEG recordings. The process uses the data from a preprocessed EEG
+ file and computes cortical source activations based on a forward model. 
+ The function is highly configurable, allowing you to modify its behavior
+  through various optional parameters. This flexibility makes it ideal for 
+  customizing analyses according to specific needs, such as choosing output directories, 
+  applying specific inverse models, or adjusting processing options.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, status, results] = eeg_htpCalcSource(EEG, 'key1', value1, 'key2', value2, ...);
 </code></pre>
@@ -410,7 +453,7 @@
 <h4 id="outputdir-default-tempdir-a-temporary-directory"><code>outputdir</code> (Default: <code>tempdir</code> (a temporary directory)):</h4>
 <p>Specifies the directory where temporary and output files are saved. Set this to a permanent location if you need to keep intermediate files.</p>
 <h4 id="nettype-default-egi128"><code>nettype</code> (Default: <code>EGI128</code>)</h4>
-<p>Defines the electrode net type. The default is EGI128. Change this if you're using a different electrode configuration.</p>
+<p>Defines the electrode net type. The default is <code>EGI128</code>. Change this if you're using a different electrode configuration.</p>
 <h4 id="computeheadmodel-default-false"><code>computeheadmodel</code> (Default: false):</h4>
 <p>Specifies whether to recalculate the head model. Set to true if the current head model parameters need to be updated or recalculated.</p>
 <h4 id="headmodelfile-default-false"><code>headmodelfile</code> (Default: <code>false</code>):</h4>
@@ -421,6 +464,30 @@
 <p>Looks for preexisting files in the output directory and uses them if available, instead of recalculating. Ideal for re-running scripts without duplicating computational efforts.</p>
 <h4 id="resetprotocol-default-false"><code>resetprotocol</code> (Default: <code>false</code>):</h4>
 <p>Deletes and resets the Brainstorm protocol. </p>
+<h4 id="bandef-defaults-delta-2-35-theta-35-75"><code>bandef</code> (Defaults: <code>{'delta', 2, 3.5; 'theta', 3.5, 7.5; ...}</code> ):</h4>
+<p>Cell array specifying frequency bands</p>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
+<p><code>results</code> : Structure containing processing metadata, including atlases and head models used.</p>
+<h2 id="methods">Methods</h2>
+<p>Dependency Check: Verifies that <strong>EEGLAB</strong> and <strong>Brainstorm</strong> are installed and configured.</p>
+<p>Protocol Setup: Checks if the Brainstorm protocol exists. Optionally resets the protocol if <code>resetprotocol</code> is set to <code>true</code>.</p>
+<p>Head Model Management: Downloads or uses a provided head model file. Recomputes the head model if <code>computeheadmodel</code> is enabled.</p>
+<p>EEG to Brainstorm Integration: Converts the <code>.SET</code> EEG file to a Brainstorm-compatible format. Maps channel locations and loads the head model.</p>
+<p>Source Computation: Generates source-localized EEG data using the MNE method. Extracts atlas information and scouts time series data.</p>
+<p>Output: Updates the EEG structure with source-localized data. Saves the processed dataset if saveset is enabled.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>Required Software: </p>
+<ul>
+<li>
+<p>EEGLAB: Ensure it is installed and added to the MATLAB path.</p>
+</li>
+<li>
+<p>Brainstorm: Must be running or configured for headless mode.</p>
+</li>
+</ul>
+<p>Head Models: Precomputed head models are available here.</p>
+<p>Data Compatibility: Ensure the number of EEG channels matches the specified nettype.</p>
 
 
 
