@@ -387,7 +387,7 @@ responses across time for specified EEG channels. This function can handle artif
  rejection, baseline correction, and analysis over regions of interest (ROIs) and frequency ranges.</p>
 <p>Chirp refers to an auditory stimulus that contains white noise burst controlled by a sinusoid linearly increasing from 0 to 100 hz. The EEG files that are inputted into this function will contain this stimulus. ITC is used to measure how consistent one's brain is across multiple trials, a low ITC is equivalent to more variability. ERSP is a measure of even-related brain dynamics induced in the eeg spectrum by stimulus or event. STP is the probability in which a study is able to determine the difference between the actual effects and chance occurence of a treatment.</p>
 <p>Here is an image of principal components analysis (PCA) componenent waveform and the affect that a chirp stimulus has on it: </p>
-<p><img alt="chirp" src="chirp.png" />
+<p><img alt="chirp" src="../Chirp.png" />
 (<strong>Note</strong> This image came from <a href="https://molecularautism.biomedcentral.com/articles/10.1186/s13229-017-0140-1">Neural synchronization deficits linked to cortical hyper-excitability and auditory hypersensitivity in fragile X syndrome</a> by Ethridge et al.)</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, results] = eeg_htpCalcChirpItcErsp(EEG, varargin)
