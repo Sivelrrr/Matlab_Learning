@@ -383,7 +383,7 @@
 <p><code>groupmean</code>: Boolean indicating whether to compute and plot group averages (default: <code>true</code>).</p>
 <p><code>singleplot</code>: Boolean indicating whether to combine group and individual data in a single plot (default: <code>true</code>).</p>
 <p><code>contrasts</code>: Cell array of group pairs for contrast calculations (e.g., {{1,2}} for Group 1 minus Group 2).</p>
-<p><code>averageByRegion</code>: Boolean to average data by predefined brain regions (default: <code>false</code>).</p>
+<p><code>averageByRegion</code>: Boolean to average data by predefined brain regions (default: <code>false</code>). When set to <code>true</code> it will produce 14 plots representing data from each region specified in the atlas given in function <code>eeg_htpAverageStructByRegion</code>.</p>
 <h2 id="outputs">Outputs:</h2>
 <p><code>EEGcell</code>: Updated cell array with added results in the <code>.etc.htp</code> field.</p>
 <p><code>results</code>: A structure summarizing the generated ERP visualizations.</p>
@@ -394,6 +394,9 @@
 <p><img alt="Mean" src="../Grouped.png" /></p>
 <p>Here is when <code>groupmean</code> is set to <code>true</code> and <code>singleplot</code> is set to <code>true</code>:</p>
 <p><img alt="SinglePlot" src="../SinglePlotGrouped.png" /></p>
+<p>When setting the <code>averagebyregion</code> to true please <strong>note</strong> that teh eeg structure that input into the function needs to have been passed through <a href="https://sivelrrr.github.io/Matlab_Learning/eeg_htpCalcSource/eeg_htpCalcSource/"><code>eeg_htpCalcSource</code></a> so that it can obtain a the <code>region</code> fields required for this paramater.</p>
+<p>Here is an example of one of the plots produced when <code>averagebyregion</code> is set to <code>true</code>:
+<img alt="region" src="../region.png" /></p>
 <h2 id="methods">Methods</h2>
 <h3 id="prepare-eeg-data-ensure-your-eeg-data-is-preprocessed-and-organized-in-a-cell-array-format">Prepare EEG Data Ensure your EEG data is preprocessed and organized in a cell array format.</h3>
 <pre><code>EEG1 = pop_loadset('subject1.set');
