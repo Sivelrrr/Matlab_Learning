@@ -242,6 +242,149 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inputs:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inputs:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure Outputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Outputs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bcm-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      BCM Construction:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Management:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-case-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Case Example
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -256,6 +399,74 @@
 
 
 <h1 id="graphing-phase-bcm">Graphing Phase Bcm</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>eeg_htpGraphPhaseBcm</code> function is designed for advanced phase-based connectivity analysis of EEG 
+data, utilizing measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH). 
+It is part of the Cincinnati Visual HighThroughput Pipeline (VHTP), optimized for both computational efficiency and compatibility with 
+various MATLAB-based toolboxes. Below, the function's components and workflow 
+are described in detail.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Ensure these toolboxes are added to the MATLAB path:</p>
+<ul>
+<li>
+<p><a href="https://github.com/softmatterlab/BRAPH">Braph Toolbox</a> (Graph measures)</p>
+</li>
+<li>
+<p><a href="https://github.com/brainlife/BCT">Brain Connectivity Toolbox</a> (Centrality metrics)</p>
+</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, varargin);
+</code></pre>
+<h2 id="inputs">Inputs:</h2>
+<p>EEG (struct): EEGLAB data structure. Must be epoched prior to processing.</p>
+<h3 id="optional-parameters">Optional Parameters:</h3>
+<p><code>gpuon</code> (default: <code>true</code>): Use GPU acceleration (logical).
+<code>outputdir</code> (default: <code>tempdir</code>): Directory to save results  (string).
+<code>threshold</code> (default: <code>mediansd</code>): Method for thresholding (string).
+<code>combos</code> (default: all unique pairs): Channel pairs for connectivity calculations (cell).
+<code>bandDefs</code> (default includes <code>delta, theta, alpha, etc</code>.): Frequency band definitions (cell).</p>
+<h2 id="outputs">Outputs</h2>
+<h3 id="structure-outputs">Structure Outputs</h3>
+<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field.
+<code>results</code>: Structure containing computed measures and output file references, such as qi, BCM, and .</p>
+<h3 id="file-outputs">File Outputs</h3>
+<p>Brain Connectivity Matrix (BCM) File:</p>
+<p>Filename: <code>[EEG filename]_bcm.[extension]</code>
+Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies.
+Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.
+Format: Parquet (default) or a text-based format depending on the useParquet parameter.</p>
+<p>Graph Measures File:</p>
+<p>Filename: <code>[EEG filename]_graph.[extension]</code>
+Content: Contains graph-level measures derived from the connectivity matrices, such as thresholded connectivity graphs for each metric and frequency band.
+Location: Same as the BCM file.
+Format: Matches the BCM file format.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="initialization">Initialization:</h3>
+<p>Inputs are parsed and validated using inputParser, ensuring required toolboxes (e.g., Brain Connectivity Toolbox, BRAPH) are available.
+Channel combinations are generated if not manually provided.
+GPU assistance is enabled if specified, allowing efficient processing of large datasets.
+Frequency Definition:</p>
+<p>Frequencies are logarithmically spaced (e.g., 2–80 Hz) across 30 steps, suitable for wavelet-based time-frequency analysis.
+Connectivity Calculation:</p>
+<p>A Morlet wavelet convolution is performed for each frequency, generating phase-angle and power information for all channel pairs.
+Metrics such as ISPC, DWPLI, and SCOH are computed by iterating through all frequency steps.</p>
+<h3 id="bcm-construction">BCM Construction:</h3>
+<p>BCMs are created for each frequency and metric, representing connectivity weights between all channel pairs.
+Thresholding is applied using a user-specified or default method (e.g., "mediansd").
+Graph Measures:</p>
+<p>The thresholded BCMs are converted to MATLAB graph objects, allowing graph-theoretic analysis (e.g., eigenvector centrality).</p>
+<h3 id="output-management">Output Management:</h3>
+<p>Results are saved in tabular formats (e.g., Parquet, CSV) for easy downstream analysis.
+Summaries and quality indicators (QI) are appended to the EEG structure.</p>
+<h2 id="use-case-example">Use Case Example</h2>
+<pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, 'gpuon', true, 'threshold', 'mediansd');
+</code></pre>
+<p>This example runs the function with GPU acceleration and the default <code>mediansd</code> thresholding method, saving the results to the EEG structure and generating BCMs.</p>
+<p>Additional notes
+The function includes detailed logging using a custom utility (note). 
+It validates dependencies and provides meaningful error messages for missing toolboxes or invalid inputs. 
+Additionally, GPU resources are reset after execution to prevent resource conflicts.</p>
 
 
 
