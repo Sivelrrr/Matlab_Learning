@@ -352,6 +352,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#frequency-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency Definition:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectivity-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connectivity Calculation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bcm-construction" class="md-nav__link">
     <span class="md-ellipsis">
       BCM Construction:
@@ -378,6 +396,15 @@
   <a href="#use-case-example" class="md-nav__link">
     <span class="md-ellipsis">
       Use Case Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional notes
     </span>
   </a>
   
@@ -421,34 +448,34 @@ are described in detail.</p>
 <h2 id="inputs">Inputs:</h2>
 <p>EEG (struct): EEGLAB data structure. Must be epoched prior to processing.</p>
 <h3 id="optional-parameters">Optional Parameters:</h3>
-<p><code>gpuon</code> (default: <code>true</code>): Use GPU acceleration (logical).
-<code>outputdir</code> (default: <code>tempdir</code>): Directory to save results  (string).
-<code>threshold</code> (default: <code>mediansd</code>): Method for thresholding (string).
-<code>combos</code> (default: all unique pairs): Channel pairs for connectivity calculations (cell).
-<code>bandDefs</code> (default includes <code>delta, theta, alpha, etc</code>.): Frequency band definitions (cell).</p>
+<p><code>gpuon</code> (default: <code>true</code>): Use GPU acceleration (logical).</p>
+<p><code>outputdir</code> (default: <code>tempdir</code>): Directory to save results  (string).</p>
+<p><code>threshold</code> (default: <code>mediansd</code>): Method for thresholding (string).</p>
+<p><code>combos</code> (default: all unique pairs): Channel pairs for connectivity calculations (cell).</p>
+<p><code>bandDefs</code> (default includes <code>delta, theta, alpha, etc</code>.): Frequency band definitions (cell).</p>
 <h2 id="outputs">Outputs</h2>
 <h3 id="structure-outputs">Structure Outputs</h3>
-<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field.
-<code>results</code>: Structure containing computed measures and output file references, such as qi, BCM, and .</p>
+<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field.</p>
+<p><code>results</code>: Structure containing computed measures and output file references, such as qi, BCM, and .</p>
 <h3 id="file-outputs">File Outputs</h3>
 <p>Brain Connectivity Matrix (BCM) File:</p>
-<p>Filename: <code>[EEG filename]_bcm.[extension]</code>
-Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies.
-Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.
-Format: Parquet (default) or a text-based format depending on the useParquet parameter.</p>
+<p>Filename: <code>[EEG filename]_bcm.[extension]</code></p>
+<p>Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies.</p>
+<p>Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.</p>
+<p>Format: Parquet (default) or a text-based format depending on the useParquet parameter.</p>
 <p>Graph Measures File:</p>
-<p>Filename: <code>[EEG filename]_graph.[extension]</code>
-Content: Contains graph-level measures derived from the connectivity matrices, such as thresholded connectivity graphs for each metric and frequency band.
-Location: Same as the BCM file.
-Format: Matches the BCM file format.</p>
+<p>Filename: <code>[EEG filename]_graph.[extension]</code></p>
+<p>Content: Contains graph-level measures derived from the connectivity matrices, such as thresholded connectivity graphs for each metric and frequency band.</p>
+<p>Location: Same as the BCM file.</p>
+<p>Format: Matches the BCM file format.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="initialization">Initialization:</h3>
 <p>Inputs are parsed and validated using inputParser, ensuring required toolboxes (e.g., Brain Connectivity Toolbox, BRAPH) are available.
 Channel combinations are generated if not manually provided.
-GPU assistance is enabled if specified, allowing efficient processing of large datasets.
-Frequency Definition:</p>
-<p>Frequencies are logarithmically spaced (e.g., 2–80 Hz) across 30 steps, suitable for wavelet-based time-frequency analysis.
-Connectivity Calculation:</p>
+GPU assistance is enabled if specified, allowing efficient processing of large datasets.</p>
+<h3 id="frequency-definition">Frequency Definition:</h3>
+<p>Frequencies are logarithmically spaced (e.g., 2–80 Hz) across 30 steps, suitable for wavelet-based time-frequency analysis.</p>
+<h3 id="connectivity-calculation">Connectivity Calculation:</h3>
 <p>A Morlet wavelet convolution is performed for each frequency, generating phase-angle and power information for all channel pairs.
 Metrics such as ISPC, DWPLI, and SCOH are computed by iterating through all frequency steps.</p>
 <h3 id="bcm-construction">BCM Construction:</h3>
@@ -463,8 +490,8 @@ Summaries and quality indicators (QI) are appended to the EEG structure.</p>
 <pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, 'gpuon', true, 'threshold', 'mediansd');
 </code></pre>
 <p>This example runs the function with GPU acceleration and the default <code>mediansd</code> thresholding method, saving the results to the EEG structure and generating BCMs.</p>
-<p>Additional notes
-The function includes detailed logging using a custom utility (note). 
+<h2 id="additional-notes">Additional notes</h2>
+<p>The function includes detailed logging using a custom utility (note). 
 It validates dependencies and provides meaningful error messages for missing toolboxes or invalid inputs. 
 Additionally, GPU resources are reset after execution to prevent resource conflicts.</p>
 
