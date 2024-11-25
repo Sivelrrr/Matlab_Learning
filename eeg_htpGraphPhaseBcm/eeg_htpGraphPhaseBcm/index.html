@@ -460,12 +460,8 @@
 
 <h1 id="graphing-phase-bcm">Graphing Phase Bcm</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>eeg_htpGraphPhaseBcm</code> function is designed for advanced phase-based connectivity analysis of EEG 
-data, utilizing measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH). 
-It is part of the Cincinnati Visual High Throughput Pipeline (VHTP), optimized for both computational efficiency and compatibility with 
-various MATLAB-based toolboxes. Below, the function's components and workflow 
-are described in detail.</p>
-<p>s</p>
+<p>The <code>eeg_htpGraphPhaseBcm</code> function leverages the mathematical principles of phase synchronization and graph theory to analyze functional connectivity in EEG data. At its core, the function computes connectivity measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH), each of which quantifies the degree of synchronization between EEG signals at different electrodes. </p>
+<p>These metrics rely on the phase of the EEG signals, typically derived from the analytic signal obtained via the Hilbert transform or Fourier-based methods. By examining the consistency of phase differences between signal pairs over time, the function identifies relationships indicative of neural connectivity. The connectivity matrices are then processed using graph theory to represent the brain's network as nodes (EEG electrodes) and edges (connectivity strengths), enabling further computation of topological features. Thresholding methods such as mediansd filter out weaker connections, enhancing the interpretability of significant neural interactions.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Ensure these toolboxes are added to the MATLAB path:</p>
 <ul>
