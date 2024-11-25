@@ -526,11 +526,11 @@ Summaries and quality information (QI) are appended to the EEG structure.</p>
 <p>This use case demonstrates how to apply the <code>eeg_htpGraphPhaseBcm</code> function to compute connectivity measures and generate corresponding outputs, without GPU acceleration and a specific thresholding method. It is particularly useful for high-throughput analysis of EEG data with large datasets or high-resolution sampling. The <code>mediansd</code> method uses the median and standard deviation to determine thresholding for removing weak connectivity values, which helps in focusing on stronger, more significant connections.</p>
 <p>Once it finished the <code>EEG</code> and <code>results</code> will both have the .<code>summary_table</code>, <code>graph_table</code>, and <code>qi_table</code> as fields, to find these fields under <code>EEG</code> they are listed under <code>EEG.vhpt.eeg_htpGraphPhaseBcm</code>, which look like the tables shown below:</p>
 <h3 id="summary-table">Summary Table</h3>
-<p><a href="../summary.png">Summary Table</a></p>
+<p><img alt="Summary Table" src="../summary.png" /></p>
 <h3 id="graph-table">Graph Table</h3>
-<p><a href="../graph.png">Graph Table</a></p>
+<p><img alt="Graph Table" src="../graph.png" /></p>
 <h3 id="qi-table">Qi Table</h3>
-<p><a href="../qi.png">Qi table</a></p>
+<p><img alt="Qi table" src="../qi.png" /></p>
 <h2 id="additional-notes">Additional notes</h2>
 <p>The function includes detailed logging using a custom utility (note). </p>
 <p>It validates dependencies and provides meaningful error messages for missing toolboxes or invalid inputs. </p>
