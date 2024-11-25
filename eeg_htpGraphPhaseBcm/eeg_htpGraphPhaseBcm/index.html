@@ -399,6 +399,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Use Case Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qi-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qi Table
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -429,9 +462,10 @@
 <h2 id="overview">Overview</h2>
 <p>The <code>eeg_htpGraphPhaseBcm</code> function is designed for advanced phase-based connectivity analysis of EEG 
 data, utilizing measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH). 
-It is part of the Cincinnati Visual HighThroughput Pipeline (VHTP), optimized for both computational efficiency and compatibility with 
+It is part of the Cincinnati Visual High Throughput Pipeline (VHTP), optimized for both computational efficiency and compatibility with 
 various MATLAB-based toolboxes. Below, the function's components and workflow 
 are described in detail.</p>
+<p>s</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Ensure these toolboxes are added to the MATLAB path:</p>
 <ul>
@@ -439,7 +473,7 @@ are described in detail.</p>
 <p><a href="https://github.com/softmatterlab/BRAPH">Braph Toolbox</a> (Graph measures)</p>
 </li>
 <li>
-<p><a href="https://github.com/brainlife/BCT">Brain Connectivity Toolbox</a> (Centrality metrics)</p>
+<p><a href="https://github.com/brainlife/BCT">Brain Connectivity Toolbox</a> (Connectivity metrics)</p>
 </li>
 </ul>
 <h2 id="syntax">Syntax</h2>
@@ -455,19 +489,19 @@ are described in detail.</p>
 <p><code>bandDefs</code> (default includes <code>delta, theta, alpha, etc</code>.): Frequency band definitions (cell).</p>
 <h2 id="outputs">Outputs</h2>
 <h3 id="structure-outputs">Structure Outputs</h3>
-<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field.</p>
-<p><code>results</code>: Structure containing computed measures and output file references, such as qi, BCM, and .</p>
+<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field which will contain <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code> just like the results sturcture.</p>
+<p><code>results</code>: Structure containing computed measures and output file references, such as <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code>.</p>
 <h3 id="file-outputs">File Outputs</h3>
 <p>Brain Connectivity Matrix (BCM) File:</p>
 <p>Filename: <code>[EEG filename]_bcm.[extension]</code></p>
-<p>Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies.</p>
+<p>Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies. Each measure is a 2d square matrix with each row and column being and eeg channel and each value being their connectivity strength with each channel pair. </p>
 <p>Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.</p>
-<p>Format: Parquet (default) or a text-based format depending on the useParquet parameter.</p>
+<p>Format: <code>Parquet</code> (default) or a text-based format depending on the <code>useParquet</code> parameter.</p>
 <p>Graph Measures File:</p>
 <p>Filename: <code>[EEG filename]_graph.[extension]</code></p>
-<p>Content: Contains graph-level measures derived from the connectivity matrices, such as thresholded connectivity graphs for each metric and frequency band.</p>
-<p>Location: Same as the BCM file.</p>
-<p>Format: Matches the BCM file format.</p>
+<p>Content: Contains a table of connectivity and frequency band data, which a graph is created from. The graphs are stored as a list with each frequency per step in <code>frex</code>. Each of these entries will contain an square matrix (channel x channel) with each element representing connectivity strength for a given frequency, the coressponding frequency value, and connectivty measure. </p>
+<p>Location: Same as the <code>BCM</code> file.</p>
+<p>Format: Matches the <code>BCM</code> file format.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="initialization">Initialization:</h3>
 <p>Inputs are parsed and validated using inputParser, ensuring required toolboxes (e.g., Brain Connectivity Toolbox, BRAPH) are available.
@@ -485,15 +519,23 @@ Graph Measures:</p>
 <p>The thresholded BCMs are converted to MATLAB graph objects, allowing graph-theoretic analysis (e.g., eigenvector centrality).</p>
 <h3 id="output-management">Output Management:</h3>
 <p>Results are saved in tabular formats (e.g., Parquet, CSV) for easy downstream analysis.
-Summaries and quality indicators (QI) are appended to the EEG structure.</p>
+Summaries and quality information (QI) are appended to the EEG structure.</p>
 <h2 id="use-case-example">Use Case Example</h2>
-<pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, 'gpuon', true, 'threshold', 'mediansd');
+<pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, 'gpuon', false, 'threshold', 'mediansd');
 </code></pre>
-<p>This example runs the function with GPU acceleration and the default <code>mediansd</code> thresholding method, saving the results to the EEG structure and generating BCMs.</p>
+<p>This use case demonstrates how to apply the <code>eeg_htpGraphPhaseBcm</code> function to compute connectivity measures and generate corresponding outputs, without GPU acceleration and a specific thresholding method. It is particularly useful for high-throughput analysis of EEG data with large datasets or high-resolution sampling. The <code>mediansd</code> method uses the median and standard deviation to determine thresholding for removing weak connectivity values, which helps in focusing on stronger, more significant connections.</p>
+<p>Once it finished the <code>EEG</code> and <code>results</code> will both have the .<code>summary_table</code>, <code>graph_table</code>, and <code>qi_table</code> as fields, to find these fields under <code>EEG</code> they are listed under <code>EEG.vhpt.eeg_htpGraphPhaseBcm</code>, which look like the tables shown below:</p>
+<h3 id="summary-table">Summary Table</h3>
+<p><a href="../summary.png">Summary Table</a></p>
+<h3 id="graph-table">Graph Table</h3>
+<p><a href="../graph.png">Graph Table</a></p>
+<h3 id="qi-table">Qi Table</h3>
+<p><a href="../qi.png">Qi table</a></p>
 <h2 id="additional-notes">Additional notes</h2>
-<p>The function includes detailed logging using a custom utility (note). 
-It validates dependencies and provides meaningful error messages for missing toolboxes or invalid inputs. 
-Additionally, GPU resources are reset after execution to prevent resource conflicts.</p>
+<p>The function includes detailed logging using a custom utility (note). </p>
+<p>It validates dependencies and provides meaningful error messages for missing toolboxes or invalid inputs. </p>
+<p>The duration for which the code runs depends on the number of channels, so expect longer run times for files with a large amount of channels</p>
+<p>Additionally, GPU resources are reset after execution to prevent resource conflicts.</p>
 
 
 
