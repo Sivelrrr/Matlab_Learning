@@ -394,33 +394,21 @@
 <p><code>EEG</code>: An <strong>EEGLAB</strong> structure with EEG data, including channels, event markers, and epochs.</p>
 <h2 id="optional-parameters">Optional Parameters</h2>
 <p>You can adjust these optional parameters using MATLAB's <code>varagin</code>, value syntax:</p>
-<p><code>tlimits</code>: (default: [-500 2750])
-Specifies the time range (in milliseconds) for the analysis. The first value is the start time, and the second value is the end time relative to the event marker.</p>
-<p><code>flimits</code>: (default: [2 110])
-Defines the frequency range (in Hz) to be analyzed. The first value is the minimum frequency, and the second is the maximum frequency.</p>
-<p><code>cycles</code>: (default: [1 30])
-Specifies the number of wavelet cycles for the time-frequency analysis. The first value indicates the minimum cycle length, and the second value defines the maximum length.</p>
-<p><code>timesout</code>: (default: 250)
-The number of time points to output across the specified time range. It determines the temporal resolution of the results.</p>
-<p><code>winsize</code> (default: 100)
-Sets the size of the sliding window (in data points) used for the short-time Fourier transform. Affects the temporal resolution.</p>
-<p><code>nfreqs</code> (default: 109)
-The number of frequency bins to output within the specified frequency range. Determines the frequency resolution.</p>
-<p><code>outputdir</code> (default: <code>tempdir</code>)
-Path to the directory where result files (e.g., images or data files) will be saved. Defaults to the system's temporary directory.</p>
-<p><code>sourceOn</code> (default: <code>false</code>)
-If true, uses source-level data (e.g., regions of interest from source reconstruction) instead of electrode-level data for analysis.</p>
-<p><code>emptyEEG</code> (default: <code>true</code>)
-If true, clears the EEG data field to save memory after processing. Use this option if memory is a concern.</p>
-<p><code>ampThreshold</code> (default: 120)
-Amplitude threshold (in microvolts) for artifact rejection. Trials with any channel exceeding this threshold are excluded from the analysis.</p>
-<p><code>byChannel</code> (default: false)
-If true, computes ITC and ERSP for each channel separately. If <code>false</code>, computes the average across a defined set of channels.</p>
-<p><code>baselinew</code> (default: [-500 0])
-Specifies the baseline period (in milliseconds) for baseline correction of ERSP values. If left empty (NaN), no baseline correction is applied.</p>
+<p><code>tlimits</code> (default: [-500 2750]): Specifies the time range (in milliseconds) for the analysis. The first value is the start time, and the second value is the end time relative to the event marker.</p>
+<p><code>flimits</code> (default: [2 110]): Defines the frequency range (in Hz) to be analyzed. The first value is the minimum frequency, and the second is the maximum frequency.</p>
+<p><code>cycles</code> (default: [1 30]): Specifies the number of wavelet cycles for the time-frequency analysis. The first value indicates the minimum cycle length, and the second value defines the maximum length.</p>
+<p><code>timesout</code> (default: 250): The number of time points to output across the specified time range. It determines the temporal resolution of the results.</p>
+<p><code>winsize</code> (default: 100): Sets the size of the sliding window (in data points) used for the short-time Fourier transform. Affects the temporal resolution.</p>
+<p><code>nfreqs</code> (default: 109): The number of frequency bins to output within the specified frequency range. Determines the frequency resolution.</p>
+<p><code>outputdir</code> (default: <code>tempdir</code>): Path to the directory where result files (e.g., images or data files) will be saved. Defaults to the system's temporary directory.</p>
+<p><code>sourceOn</code> (default: <code>false</code>): If true, uses source-level data (e.g., regions of interest from source reconstruction) instead of electrode-level data for analysis.</p>
+<p><code>emptyEEG</code> (default: <code>true</code>): If true, clears the EEG data field to save memory after processing. Use this option if memory is a concern.</p>
+<p><code>ampThreshold</code> (default: 120): Amplitude threshold (in microvolts) for artifact rejection. Trials with any channel exceeding this threshold are excluded from the analysis.</p>
+<p><code>byChannel</code> (default: false): If true, computes ITC and ERSP for each channel separately. If <code>false</code>, computes the average across a defined set of channels.</p>
+<p><code>baselinew</code> (default: [-500 0]): Specifies the baseline period (in milliseconds) for baseline correction of ERSP values. If left empty (NaN), no baseline correction is applied.</p>
 <h2 id="output">Output</h2>
-<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with updated data and metadata fields.
-results: Structure containing the ITC, STP, ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
+<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with updated data and metadata fields.</p>
+<p><code>results</code> : Structure containing the ITC, STP, ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
 <p>It can also output a plot of the uncorrected ITC when <code>plotroi</code> is set to true. However, this requires the user to go into the function details and change it directly rather than using <code>varagin</code> parameters. Here is an example of such plot:</p>
 <p><img alt="roi" src="../plotroi.png" /></p>
 <h2 id="methods">Methods</h2>

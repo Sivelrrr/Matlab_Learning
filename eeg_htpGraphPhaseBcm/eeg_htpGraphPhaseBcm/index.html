@@ -536,7 +536,7 @@
 <p>Format: Matches the <code>BCM</code> file format.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="initialization">Initialization</h3>
-<p>The function begins by parsing and validating the user-provided inputs using MATLAB's inputParser class. This ensures proper parameter formatting and prevents runtime errors. During this stage:</p>
+<p>The function begins by parsing and validating the user-provided inputs using MATLAB's <code>inputParser</code> class. Then the following will occur during this stage:</p>
 <ul>
 <li>
 <p>Toolbox Verification: The function checks for the presence of necessary toolboxes, such as the Brain Connectivity Toolbox (BCT) for graph-theoretic analysis and BRAPH for connectivity visualization.</p>
@@ -586,7 +586,7 @@
 <p>Nodes: EEG channels.</p>
 </li>
 <li>
-<p>Edges: Weighted connections based on connectivity strength. The user-specified thresholding method (e.g., "mediansd") is applied to filter weaker connections, retaining only significant interactions. The thresholding ensures the matrices are sparse and interpretable while preserving meaningful connectivity.</p>
+<p>Edges: Weighted connections based on connectivity strength. The user-specified thresholding method (e.g., <code>mediansd</code>) is applied to filter weaker connections, retaining only significant interactions. The thresholding ensures the matrices are sparse and interpretable while preserving meaningful connectivity.</p>
 </li>
 </ul>
 <h3 id="graph-measures">Graph Measures</h3>
