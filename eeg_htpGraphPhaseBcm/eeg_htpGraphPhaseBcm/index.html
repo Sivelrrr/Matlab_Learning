@@ -16,7 +16,7 @@
     
     
       
-        <title>Graphing Phase Bcm - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Graphing and Analysis of EEG Channel Connecitivity - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#graphing-phase-bcm" class="md-skip">
+        <a href="#graphing-and-analysis-of-eeg-channel-connecitivity" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Graphing Phase Bcm
+              Graphing and Analysis of EEG Channel Connecitivity
             
           </span>
         </div>
@@ -325,6 +325,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="File Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brain-connectivity-matrix-bcm-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brain Connectivity Matrix (BCM) File:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-measures-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Measures File:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -345,7 +369,7 @@
           <li class="md-nav__item">
   <a href="#initialization" class="md-nav__link">
     <span class="md-ellipsis">
-      Initialization:
+      Initialization
     </span>
   </a>
   
@@ -354,7 +378,7 @@
           <li class="md-nav__item">
   <a href="#frequency-definition" class="md-nav__link">
     <span class="md-ellipsis">
-      Frequency Definition:
+      Frequency Definition
     </span>
   </a>
   
@@ -363,7 +387,7 @@
           <li class="md-nav__item">
   <a href="#connectivity-calculation" class="md-nav__link">
     <span class="md-ellipsis">
-      Connectivity Calculation:
+      Connectivity Calculation
     </span>
   </a>
   
@@ -372,7 +396,16 @@
           <li class="md-nav__item">
   <a href="#bcm-construction" class="md-nav__link">
     <span class="md-ellipsis">
-      BCM Construction:
+      BCM Construction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-measures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Measures
     </span>
   </a>
   
@@ -381,7 +414,7 @@
           <li class="md-nav__item">
   <a href="#output-management" class="md-nav__link">
     <span class="md-ellipsis">
-      Output Management:
+      Output Management
     </span>
   </a>
   
@@ -458,7 +491,7 @@
                   
 
 
-<h1 id="graphing-phase-bcm">Graphing Phase Bcm</h1>
+<h1 id="graphing-and-analysis-of-eeg-channel-connecitivity">Graphing and Analysis of EEG Channel Connecitivity</h1>
 <h2 id="overview">Overview</h2>
 <p>The <code>eeg_htpGraphPhaseBcm</code> function leverages the mathematical principles of phase synchronization and graph theory to analyze functional connectivity in EEG data. At its core, the function computes connectivity measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH), each of which quantifies the degree of synchronization between EEG signals at different electrodes. </p>
 <p>These metrics rely on the phase of the EEG signals, typically derived from the analytic signal obtained via the Hilbert transform or Fourier-based methods. By examining the consistency of phase differences between signal pairs over time, the function identifies relationships indicative of neural connectivity. The connectivity matrices are then processed using graph theory to represent the brain's network as nodes (EEG electrodes) and edges (connectivity strengths), enabling further computation of topological features. Thresholding methods such as mediansd filter out weaker connections, enhancing the interpretability of significant neural interactions.</p>
@@ -491,34 +524,97 @@
 <p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field which will contain <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code> just like the results sturcture.</p>
 <p><code>results</code>: Structure containing computed measures and output file references, such as <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code>.</p>
 <h3 id="file-outputs">File Outputs</h3>
-<p>Brain Connectivity Matrix (BCM) File:</p>
+<h4 id="brain-connectivity-matrix-bcm-file">Brain Connectivity Matrix (BCM) File:</h4>
 <p>Filename: <code>[EEG filename]_bcm.[extension]</code></p>
 <p>Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies. Each measure is a 2d square matrix with each row and column being and eeg channel and each value being their connectivity strength with each channel pair. </p>
 <p>Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.</p>
 <p>Format: <code>Parquet</code> (default) or a text-based format depending on the <code>useParquet</code> parameter.</p>
-<p>Graph Measures File:</p>
+<h4 id="graph-measures-file">Graph Measures File:</h4>
 <p>Filename: <code>[EEG filename]_graph.[extension]</code></p>
 <p>Content: Contains a table of connectivity and frequency band data, which a graph is created from. The graphs are stored as a list with each frequency per step in <code>frex</code>. Each of these entries will contain an square matrix (channel x channel) with each element representing connectivity strength for a given frequency, the coressponding frequency value, and connectivty measure. </p>
 <p>Location: Same as the <code>BCM</code> file.</p>
 <p>Format: Matches the <code>BCM</code> file format.</p>
 <h2 id="methods">Methods</h2>
-<h3 id="initialization">Initialization:</h3>
-<p>Inputs are parsed and validated using inputParser, ensuring required toolboxes (e.g., Brain Connectivity Toolbox, BRAPH) are available.
-Channel combinations are generated if not manually provided.
-GPU assistance is enabled if specified, allowing efficient processing of large datasets.</p>
-<h3 id="frequency-definition">Frequency Definition:</h3>
-<p>Frequencies are logarithmically spaced (e.g., 2–80 Hz) across 30 steps, suitable for wavelet-based time-frequency analysis.</p>
-<h3 id="connectivity-calculation">Connectivity Calculation:</h3>
-<p>A Morlet wavelet convolution is performed for each frequency, generating phase-angle and power information for all channel pairs.
-Metrics such as ISPC, DWPLI, and SCOH are computed by iterating through all frequency steps.</p>
-<h3 id="bcm-construction">BCM Construction:</h3>
-<p>BCMs are created for each frequency and metric, representing connectivity weights between all channel pairs.
-Thresholding is applied using a user-specified or default method (e.g., "mediansd").
-Graph Measures:</p>
-<p>The thresholded BCMs are converted to MATLAB graph objects, allowing graph-theoretic analysis (e.g., eigenvector centrality).</p>
-<h3 id="output-management">Output Management:</h3>
-<p>Results are saved in tabular formats (e.g., Parquet, CSV) for easy downstream analysis.
-Summaries and quality information (QI) are appended to the EEG structure.</p>
+<h3 id="initialization">Initialization</h3>
+<p>The function begins by parsing and validating the user-provided inputs using MATLAB's inputParser class. This ensures proper parameter formatting and prevents runtime errors. During this stage:</p>
+<ul>
+<li>
+<p>Toolbox Verification: The function checks for the presence of necessary toolboxes, such as the Brain Connectivity Toolbox (BCT) for graph-theoretic analysis and BRAPH for connectivity visualization.</p>
+</li>
+<li>
+<p>Channel Pair Generation: If the user does not provide explicit channel combinations, the function generates all possible pairwise combinations of EEG channels for connectivity computations. This ensures that the analysis covers the entire EEG network.</p>
+</li>
+<li>
+<p>GPU Utilization: If GPU acceleration is enabled ('gpuon', true), the function configures parallel processing resources to handle large datasets more efficiently. This is particularly useful for dense EEG recordings or high-resolution frequency bands.</p>
+</li>
+</ul>
+<h3 id="frequency-definition">Frequency Definition</h3>
+<p>The frequency range for the analysis is defined logarithmically, typically spanning from 2 Hz to 80 Hz with 30 steps. This logarithmic spacing balances resolution across the spectrum, ensuring:</p>
+<ul>
+<li>
+<p>High sensitivity in lower-frequency bands (e.g., delta, theta).</p>
+</li>
+<li>
+<p>Adequate coverage of higher-frequency bands (e.g., beta, gamma). This frequency definition is ideal for wavelet-based time-frequency analysis, as it aligns with the non-uniform energy distribution of EEG signals.</p>
+</li>
+</ul>
+<h3 id="connectivity-calculation">Connectivity Calculation</h3>
+<p>Using Morlet wavelet convolution, the function decomposes EEG signals into their time-frequency representations. For each channel pair and frequency:</p>
+<ul>
+<li>
+<p>Phase Angle and Power Extraction: The analytic signal derived from wavelet transforms is used to calculate the instantaneous phase and power.</p>
+</li>
+<li>
+<p>Connectivity Metrics: Three distinct measures of phase-based connectivity are computed:</p>
+<ul>
+<li>
+<p>Inter-Site Phase Clustering (ISPC): Quantifies the consistency of phase differences across trials, providing insights into neural synchrony.</p>
+</li>
+<li>
+<p>Debiased Weighted Phase Lag Index (DWPLI): Eliminates volume conduction effects, focusing on true neural interactions.</p>
+</li>
+<li>
+<p>Spectral Coherence (SCOH): Combines amplitude and phase information for a broader connectivity measure. Each metric is computed for all channel pairs at each frequency, generating dense connectivity matrices.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="bcm-construction">BCM Construction</h3>
+<p>The function constructs Binary Connectivity Matrices (BCMs) for each frequency band and connectivity metric. These matrices represent:</p>
+<ul>
+<li>
+<p>Nodes: EEG channels.</p>
+</li>
+<li>
+<p>Edges: Weighted connections based on connectivity strength. The user-specified thresholding method (e.g., "mediansd") is applied to filter weaker connections, retaining only significant interactions. The thresholding ensures the matrices are sparse and interpretable while preserving meaningful connectivity.</p>
+</li>
+</ul>
+<h3 id="graph-measures">Graph Measures</h3>
+<p>Thresholded BCMs are transformed into MATLAB graph objects, enabling graph-theoretic analysis. Common measures include:</p>
+<ul>
+<li>
+<p>Eigenvector Centrality: Identifies influential nodes in the network.</p>
+</li>
+<li>
+<p>Clustering Coefficient and Modularity: Provide insights into the brain's functional organization.</p>
+</li>
+<li>
+<p>These measures enhance the understanding of network topology and functional connectivity.</p>
+</li>
+</ul>
+<h3 id="output-management">Output Management</h3>
+<p>The results are organized and saved for downstream analysis:</p>
+<ul>
+<li>
+<p>Tabular Formats: Outputs are saved in efficient formats such as Parquet or CSV, ensuring compatibility with external statistical tools.</p>
+</li>
+<li>
+<p>EEG Structure Updates: Summaries, quality information (QI), and connectivity measures are appended to the input EEG structure for seamless integration with existing pipelines.</p>
+</li>
+<li>
+<p>Intermediate Results: The function generates separate files for BCM and graph data, allowing users to explore raw and processed connectivity data independently.</p>
+</li>
+</ul>
 <h2 id="use-case-example">Use Case Example</h2>
 <pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, 'gpuon', false, 'threshold', 'mediansd');
 </code></pre>
