@@ -466,17 +466,20 @@
 <p>Ensure these toolboxes are added to the MATLAB path:</p>
 <ul>
 <li>
-<p><a href="https://github.com/softmatterlab/BRAPH">Braph Toolbox</a> (Graph measures)</p>
+<p><a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a></p>
 </li>
 <li>
-<p><a href="https://github.com/brainlife/BCT">Brain Connectivity Toolbox</a> (Connectivity metrics)</p>
+<p><a href="https://github.com/softmatterlab/BRAPH"><strong>Braph Toolbox</strong></a> (Graph measures)</p>
+</li>
+<li>
+<p><a href="https://github.com/brainlife/BCT"><strong>Brain Connectivity Toolbox</strong></a> (Connectivity metrics)</p>
 </li>
 </ul>
 <h2 id="syntax">Syntax</h2>
 <pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, varargin);
 </code></pre>
 <h2 id="inputs">Inputs:</h2>
-<p>EEG (struct): EEGLAB data structure. Must be epoched prior to processing.</p>
+<p><code>EEG</code> (struct): EEGLAB data structure. Must be epoched prior to processing.</p>
 <h3 id="optional-parameters">Optional Parameters:</h3>
 <p><code>gpuon</code> (default: <code>true</code>): Use GPU acceleration (logical).</p>
 <p><code>outputdir</code> (default: <code>tempdir</code>): Directory to save results  (string).</p>
