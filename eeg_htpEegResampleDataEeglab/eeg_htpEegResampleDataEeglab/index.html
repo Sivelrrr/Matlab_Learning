@@ -381,9 +381,10 @@
 
 
 <h1 id="changing-resample-rate-of-eeg-files">Changing resample rate of eeg files</h1>
-<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegResampleDataEeglab.m"><code>eeg_htpEegResampleDataEeglab</code></a> function resamples EEG data to a newly specified sampling rate using the <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> toolbox. This guide will walk you through how to use this function effectively.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegResampleDataEeglab.m"><code>eeg_htpEegResampleDataEeglab</code></a> is designed to resample EEG data to a specified new sampling rate, which is a crucial preprocessing step in EEG signal analysis. Resampling refers to adjusting the number of data points in the EEG signal to match a different sampling frequency, typically to standardize data for further processing or to reduce computational demands. The function works with EEGLAB structures, which store EEG data, and allows users to specify a new sampling rate, with a default set to 500 Hz. It also includes optional parameters for saving the resampled data to a designated directory.</p>
+<p>The mathematical process behind resampling involves modifying the frequency at which the EEG data points are sampled. This is typically achieved through interpolation techniques that adjust the spacing of the original data points according to the desired sampling rate. If the original sampling rate exceeds a certain threshold (e.g., 2000 Hz), the function initially reduces the sampling rate to 1000 Hz before resampling it to the specified target rate. This two-step process helps ensure that the resampling is computationally efficient while maintaining the integrity of the signal. After resampling, the function updates the EEG structure with information about the original and new sampling rates, and logs relevant details, such as the timestamp of the operation.</p>
 <h2 id="function-description">Function Description</h2>
-<p>The <code>eeg_htpEegResampleDataEeglab</code> function takes an <strong>EEGLAB</strong> EEG structure and resamples its data to a new specified sampling rate. It optionally saves the output and logs relevant information.</p>
+<p>The <code>eeg_htpEegResampleDataEeglab</code> function takes an <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure and resamples its data to a new specified sampling rate. It optionally saves the output and logs relevant information.</p>
 <h3 id="syntax">Syntax</h3>
 <pre><code>[EEG, results] = eeg_htpEegResampleDataEeglab(EEG, 'srate', 500, 'saveoutput', false, 'outputdir', '')
 </code></pre>
@@ -403,10 +404,17 @@
 <pre><code>EEG = pop_loadset('filename', 'your_eeg_data.set', 'filepath', 'path_to_your_data/');
 </code></pre>
 <h3 id="resample-your-eeg-data">Resample Your EEG Data</h3>
-<p>Use the <code>eeg_htpEegResampleDataEeglab</code> function to resample your EEG data. You can specify the new sampling rate, whether to save the output, and the output directory.</p>
-<p>Example: Resampling to 500 Hz and saving the output to a specified directory</p>
 <pre><code>[EEG, results] = eeg_htpEegResampleDataEeglab(EEG, 'srate', 500, 'saveoutput', true, 'outputdir', 'example_directory/');
 </code></pre>
+<p>In this example:</p>
+<ul>
+<li><code>EEG</code> is the original EEG structure containing your data.</li>
+<li><code>srate</code>, 500 specifies that the data should be resampled to 500 Hz.</li>
+<li><code>saveoutput</code>, <code>true</code> indicates that the resampled data should be saved.</li>
+<li><code>outputdir</code>, <code>example_directory/</code> designates the folder where the resampled data will be saved.</li>
+</ul>
+<p>The function also returns an updated EEG structure with the resampled data, as well as a results structure containing metadata about the resampling process, including timestamps, the original and new sampling rates, and other relevant information. This makes it easy to trace and verify the steps taken during preprocessing. The function is also designed to handle large datasets efficiently, ensuring that resampling can be done quickly while maintaining data quality.</p>
+<p>By resampling your EEG data to a consistent sampling rate, you ensure that the data is standardized for further analysis, whether for time-domain analysis, spectral analysis, or other methods.</p>
 <h3 id="check-the-results">Check the Results</h3>
 <p>After resampling, you can check the updated EEG structure and results.</p>
 <p>Example: Displaying the new sampling rate</p>

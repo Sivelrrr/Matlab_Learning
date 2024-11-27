@@ -16,7 +16,7 @@
     
     
       
-        <title>Graphing and Analysis of EEG Channel Connecitivity - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Graph Analysis and Brain Connectivity of EEG Channels - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#graphing-and-analysis-of-eeg-channel-connecitivity" class="md-skip">
+        <a href="#graph-analysis-and-brain-connectivity-of-eeg-channels" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Graphing and Analysis of EEG Channel Connecitivity
+              Graph Analysis and Brain Connectivity of EEG Channels
             
           </span>
         </div>
@@ -491,9 +491,9 @@
                   
 
 
-<h1 id="graphing-and-analysis-of-eeg-channel-connecitivity">Graphing and Analysis of EEG Channel Connecitivity</h1>
+<h1 id="graph-analysis-and-brain-connectivity-of-eeg-channels">Graph Analysis and Brain Connectivity of EEG Channels</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>eeg_htpGraphPhaseBcm</code> function leverages the mathematical principles of phase synchronization and graph theory to analyze functional connectivity in EEG data. At its core, the function computes connectivity measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH), each of which quantifies the degree of synchronization between EEG signals at different electrodes. </p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpGraphPhaseBcm.m"><code>eeg_htpGraphPhaseBcm</code></a> function leverages the mathematical principles of phase synchronization and graph theory to analyze functional connectivity in EEG data. At its core, the function computes connectivity measures such as Debiased Weighted Phase Lag Index (DWPLI), Inter-Site Phase Clustering (ISPC), and Spectral Coherence (SCOH), each of which quantifies the degree of synchronization between EEG signals at different electrodes. </p>
 <p>These metrics rely on the phase of the EEG signals, typically derived from the analytic signal obtained via the Hilbert transform or Fourier-based methods. By examining the consistency of phase differences between signal pairs over time, the function identifies relationships indicative of neural connectivity. The connectivity matrices are then processed using graph theory to represent the brain's network as nodes (EEG electrodes) and edges (connectivity strengths), enabling further computation of topological features. Thresholding methods such as mediansd filter out weaker connections, enhancing the interpretability of significant neural interactions.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Ensure these toolboxes are added to the MATLAB path:</p>
