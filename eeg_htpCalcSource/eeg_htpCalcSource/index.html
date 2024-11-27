@@ -396,6 +396,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Case
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
@@ -429,15 +438,10 @@
 
 
 <h1 id="mapping-channel-sourceslocations">Mapping Channel Sources/Locations</h1>
-<p>The function <code>eeg_htpCalcSourc</code>e is a part of the <a href="https://neuroimage.usc.edu/brainstorm/"><strong>Brainstorm</strong></a> toolbox used for EEG source localization. It helps compute the brain's electrical activity at the source level, 
-starting from scalp-level EEG recordings. The process uses the data from a preprocessed EEG
- file and computes cortical source activations based on a forward model. 
- The function is highly configurable, allowing you to modify its behavior
-  through various optional parameters. This flexibility makes it ideal for 
-  customizing analyses according to specific needs, such as choosing output directories, 
-  applying specific inverse models, or adjusting processing options.</p>
+<p>The function <code>eeg_htpCalcSourc</code>e is a part of the <a href="https://neuroimage.usc.edu/brainstorm/"><strong>Brainstorm</strong></a> toolbox, designed for EEG source localization, and employs mathematical modeling to infer cortical activity from scalp-level EEG recordings. At its core, the function uses a forward model, which calculates the expected scalp potentials for a given set of neural sources, and an inverse model to estimate the brain's electrical activity at the source level from observed EEG data. The function uses regularization techniques, such as the Minimum Norm Estimate (MNE), to constrain the solution and improve accuracy.</p>
+<p>The flexibility of this function allows users to tailor their analysis by modifying parameters such as output directories, inverse methods, and processing steps, making it highly adaptable for diverse research needs. By integrating preprocessed EEG data with head models, which incorporate information about the geometry and conductivity of the head, the function refines the spatial mapping of neural activations. This combination of physics-based modeling and computational inversion is critical for translating raw EEG signals into meaningful insights about brain function.</p>
 <h2 id="function-syntax">Function Syntax</h2>
-<pre><code>[EEG, status, results] = eeg_htpCalcSource(EEG, 'key1', value1, 'key2', value2, ...);
+<pre><code>[EEG, status, results] = eeg_htpCalcSource(EEG, varagin);
 </code></pre>
 <h2 id="input">Input</h2>
 <p><code>EEG</code>: Main input of the function and a structure with fields such as <code>.data</code> (EEG signal), <code>.srate</code> (sampling rate), <code>.chanlocs</code> (channel info), and <code>.pnts</code> (number of points).</p>
@@ -466,23 +470,30 @@ starting from scalp-level EEG recordings. The process uses the data from a prepr
 <h4 id="bandef-defaults-delta-2-35-theta-35-75"><code>bandef</code> (Defaults: <code>{'delta', 2, 3.5; 'theta', 3.5, 7.5; ...}</code> ):</h4>
 <p>Cell array specifying frequency bands</p>
 <h2 id="outputs">Outputs</h2>
-<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations, which will be stored in the .vhtp.eeg_htpCalcSource..regions. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
+<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations, which will be stored in the <code>.vhtp.eeg_htpCalcSource..regions</code>. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
 <p><code>results</code> : Structure containing processing metadata, including atlases and head models used.</p>
+<h2 id="use-case">Use Case</h2>
+<pre><code>[EEG2, results] = eeg_htpCalcSource(EEG, 'outputdir', 'path/to/output/', ...
+    'nettype', 'EGI128', ...
+    'saveset', true, ...
+    'confirmplot', true);
+</code></pre>
+<p>In this example, the function processes an EEG dataset with several specified parameters. The <code>outputdir</code> parameter determines the folder where results, including any generated plots, will be saved. The <code>nettype</code> parameter specifies the electrode configuration used in the recording, such as <code>EGI128</code> for a 128-channel EGI system, ensuring proper alignment with the head model. The <code>saveset</code> option, when set to <code>true</code>, enables the function to save the updated EEG dataset to a new file for further analysis. Additionally, the <code>confirmplot</code> parametergenerates visual confirmation plots of the source localization results, when set to <code>true</code>, providing an opportunity to inspect the accuracy of the calculations. The function returns <code>EEG2</code>, the processed EEG dataset containing source localization data, and results, a structure with detailed information about the computed sources, enabling streamlined integration of source analysis into EEG workflows.</p>
 <h2 id="methods">Methods</h2>
-<p>Dependency Check: Verifies that <strong>EEGLAB</strong> and <strong>Brainstorm</strong> are installed and configured.</p>
-<p>Protocol Setup: Checks if the Brainstorm protocol exists. Optionally resets the protocol if <code>resetprotocol</code> is set to <code>true</code>.</p>
-<p>Head Model Management: Downloads or uses a provided head model file. Recomputes the head model if <code>computeheadmodel</code> is enabled.</p>
-<p>EEG to Brainstorm Integration: Converts the <code>.SET</code> EEG file to a Brainstorm-compatible format. Maps channel locations and loads the head model.</p>
-<p>Source Computation: Generates source-localized EEG data using the MNE method. Extracts atlas information and scouts time series data.</p>
-<p>Output: Updates the EEG structure with source-localized data. Saves the processed dataset if saveset is enabled.</p>
+<p>Dependency Check: Ensures that both <strong>EEGLAB</strong> and <strong>Brainstorm</strong> are properly installed and configured before initiating source localization, as these tools are essential for processing and visualization.</p>
+<p>Protocol Setup: Validates the existence of the <strong>Brainstorm</strong> protocol required for analysis. If the <code>resetprotocol</code> option is enabled, the function clears and reinitializes the protocol, ensuring a fresh start for subsequent computations.</p>
+<p>Head Model Management: Handles the acquisition and management of head models used for source localization. If a custom head model file is provided, it is utilized directly; otherwise, the function downloads a suitable model. When the <code>computeheadmodel</code> parameter is set to <code>true</code>, the head model is recomputed to ensure it aligns with the dataset.</p>
+<p>EEG to Brainstorm Integration: Transforms the EEG dataset in <code>.SET</code> format into a Brainstorm-compatible structure. This process includes mapping channel locations to the head model and loading all necessary configuration files into Brainstorm, ensuring compatibility and accuracy in downstream processing.</p>
+<p>Source Computation: Performs source localization using the Minimum Norm Estimation (MNE) method. The computed sources are enriched with atlas-based information, allowing detailed anatomical mapping. Additionally, the function extracts scouts' time series data, representing specific brain regions of interest, for further analysis.</p>
+<p>Output: Incorporates the computed source-localized data back into the EEG structure for compatibility with other <strong>EEGLAB</strong>-based analyses. If saveset is enabled, the updated dataset is saved, preserving all source-related computations and ensuring the results are ready for immediate or future use.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Required Software: </p>
 <ul>
 <li>
-<p>EEGLAB: Ensure it is installed and added to the MATLAB path.</p>
+<p><strong>EEGLAB</strong>: Ensure it is installed and added to the MATLAB path.</p>
 </li>
 <li>
-<p>Brainstorm: Must be running or configured for headless mode.</p>
+<p><strong>Brainstorm</strong>: Must be running or configured for headless mode.</p>
 </li>
 </ul>
 <p>Head Models: Precomputed head models are available here.</p>

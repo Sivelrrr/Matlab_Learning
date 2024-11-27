@@ -411,8 +411,26 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Notes
+    </span>
+  </a>
   
 </li>
       
@@ -490,8 +508,7 @@
 <p>Histogram: The x-axis represents the correlation coefficient values (dimensionless), and the y-axis represents the count or frequency of these values.</p>
 <p>Spectrogram and Difference Line Plot: Compares the power spectral density (PSD) of <code>EEG1</code> and <code>EEG2</code> with a line plot highlighting percentage differences. The y-axis (left side) represents the Power Spectral Density (PSD) in logarithmic units, typically dB/Hz (decibels per Hertz). The y-axis (right side) represents the percentage difference in power between EEG2 and EEG1, expressed in percentage (%).</p>
 <p>Difference Histogram: Plots The x-axis represents the percentage difference between EEG2 and EEG1 power (%), and the y-axis represents the count or frequency of these percentage differences.</p>
-<h1 id="_1"><img alt="Graphs" src="../Pipeline.png" /></h1>
-<p><img src="Pipeline.jpg" alt="Graphs" width="50"/></p>
+<p><img alt="Graphs" src="../Pipeline.png" /></p>
 <h3 id="example-usage">Example Usage</h3>
 <pre><code>% Load EEG datasets
 EEG1 = pop_loadset('filename', 'EEG1.set', 'filepath', 'path/to/data');
@@ -506,6 +523,9 @@ summary_table = eeg_htpEegAssessPipelineHAPPE(EEG1, EEG2, ...
     'saveoutput', true, ...
     'outputfile', 'EEG_quality_comparison.csv');
 </code></pre>
+<p>This use case demonstrates a complete workflow for assessing the quality of two EEG datasets using the <code>eeg_htpEegAssessPipelineHAPPE</code> function. The process begins by loading the datasets (<code>EEG1</code> and <code>EEG2</code>) in the <strong>EEGLAB</strong> <code>.set</code> format using the <code>pop_loadset</code> function. These datasets are assumed to have undergone initial preprocessing and are now ready for quality analysis. The function allows the user to compare these datasets by generating quality metrics and visualizations, ensuring that both datasets are suitable for subsequent analysis or experimental comparisons.</p>
+<p>Key parameters are specified to customize the analysis. The datasets are resampled to 250 Hz (<code>resampleRate</code>, 250) to standardize the sampling rate across datasets and optimize processing time. The user assigns group labels, such as <code>Control</code> and <code>Experimental</code>, for clear identification in the output. The results are saved to an output directory (<code>outputdir</code>, <code>example_directory</code>), with both a summary table and visualizations generated (<code>tableonly</code>, <code>false</code>). A CSV file named <code>EEG_quality_comparison.csv</code> is created to document quality metrics, while visual summaries such as topographic maps, histograms, and power spectrum comparisons are saved as PNG files.</p>
+<p>This pipeline is particularly useful for research contexts involving group comparisons, such as control versus experimental studies, by identifying discrepancies in signal quality or frequency characteristics. The output provides both a quantitative overview in the CSV file and visual insights for interpreting data quality, facilitating informed decisions about further data processing or experimental conclusions.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Ensure EEG datasets <code>EEG1</code> and <code>EEG2</code> have similar structure (ie. same sampling rate and sample size) and channels before running.</p>
 <p>Use <code>resampleRate</code> to control the down-sampling for faster processing if EEG data has a high sampling rate.</p>
