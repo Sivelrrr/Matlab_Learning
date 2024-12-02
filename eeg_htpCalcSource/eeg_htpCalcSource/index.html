@@ -480,12 +480,26 @@
 </code></pre>
 <p>In this example, the function processes an EEG dataset with several specified parameters. The <code>outputdir</code> parameter determines the folder where results, including any generated plots, will be saved. The <code>nettype</code> parameter specifies the electrode configuration used in the recording, such as <code>EGI128</code> for a 128-channel EGI system, ensuring proper alignment with the head model. The <code>saveset</code> option, when set to <code>true</code>, enables the function to save the updated EEG dataset to a new file for further analysis. Additionally, the <code>confirmplot</code> parametergenerates visual confirmation plots of the source localization results, when set to <code>true</code>, providing an opportunity to inspect the accuracy of the calculations. The function returns <code>EEG2</code>, the processed EEG dataset containing source localization data, and results, a structure with detailed information about the computed sources, enabling streamlined integration of source analysis into EEG workflows.</p>
 <h2 id="methods">Methods</h2>
+<ul>
+<li>
 <p>Dependency Check: Ensures that both <strong>EEGLAB</strong> and <strong>Brainstorm</strong> are properly installed and configured before initiating source localization, as these tools are essential for processing and visualization.</p>
+</li>
+<li>
 <p>Protocol Setup: Validates the existence of the <strong>Brainstorm</strong> protocol required for analysis. If the <code>resetprotocol</code> option is enabled, the function clears and reinitializes the protocol, ensuring a fresh start for subsequent computations.</p>
+</li>
+<li>
 <p>Head Model Management: Handles the acquisition and management of head models used for source localization. If a custom head model file is provided, it is utilized directly; otherwise, the function downloads a suitable model. When the <code>computeheadmodel</code> parameter is set to <code>true</code>, the head model is recomputed to ensure it aligns with the dataset.</p>
+</li>
+<li>
 <p>EEG to Brainstorm Integration: Transforms the EEG dataset in <code>.SET</code> format into a Brainstorm-compatible structure. This process includes mapping channel locations to the head model and loading all necessary configuration files into Brainstorm, ensuring compatibility and accuracy in downstream processing.</p>
+</li>
+<li>
 <p>Source Computation: Performs source localization using the Minimum Norm Estimation (MNE) method. The computed sources are enriched with atlas-based information, allowing detailed anatomical mapping. Additionally, the function extracts scouts' time series data, representing specific brain regions of interest, for further analysis.</p>
+</li>
+<li>
 <p>Output: Incorporates the computed source-localized data back into the EEG structure for compatibility with other <strong>EEGLAB</strong>-based analyses. If saveset is enabled, the updated dataset is saved, preserving all source-related computations and ensuring the results are ready for immediate or future use.</p>
+</li>
+</ul>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Required Software: </p>
 <ul>
