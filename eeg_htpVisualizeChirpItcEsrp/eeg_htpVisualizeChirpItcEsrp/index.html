@@ -276,9 +276,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
+  <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Outputs:
+      Key Features
     </span>
   </a>
   
@@ -327,9 +327,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
+      Outputs:
     </span>
   </a>
   
@@ -384,19 +384,11 @@
 <p><code>singleplot</code>: Boolean indicating whether to combine group and individual data in a single plot (default: <code>true</code>).</p>
 <p><code>contrasts</code>: Cell array of group pairs for contrast calculations (e.g., {{1,2}} for Group 1 minus Group 2).</p>
 <p><code>averageByRegion</code>: Boolean to average data by predefined brain regions (default: <code>false</code>). When set to <code>true</code> it will produce 14 plots representing data from each region specified in the atlas given in function <code>eeg_htpAverageStructByRegion</code>.</p>
-<h2 id="outputs">Outputs:</h2>
-<p><code>EEGcell</code>: Updated cell array with added results in the <code>.etc.htp</code> field.</p>
-<p><code>results</code>: A structure summarizing the generated ERP visualizations.</p>
-<p>The function will also create a plot and save it to the output directory, here are examples of those plots:</p>
-<p>Here is when <code>groupmean</code> is set to <code>false</code> the function will output a plot for each eeg in <code>EEGcell</code>:</p>
-<p><img alt="Regular" src="../Regular.png" /></p>
-<p>Here is when <code>groupmean</code> is set to <code>true</code>, the function will only generate a single plot of the group mean for each eeg in <code>EEGcell</code>:</p>
-<p><img alt="Mean" src="../Grouped.png" /></p>
-<p>Here is when <code>groupmean</code> is set to <code>true</code> and <code>singleplot</code> is set to <code>true</code>:</p>
-<p><img alt="SinglePlot" src="../SinglePlotGrouped.png" /></p>
-<p>When setting the <code>averagebyregion</code> to true please <strong>note</strong> that teh eeg structure that input into the function needs to have been passed through <a href="https://sivelrrr.github.io/Matlab_Learning/eeg_htpCalcSource/eeg_htpCalcSource/"><code>eeg_htpCalcSource</code></a> so that it can obtain a the <code>region</code> fields required for this paramater.</p>
-<p>Here is an example of one of the plots produced when <code>averagebyregion</code> is set to <code>true</code>:
-<img alt="region" src="../region.png" /></p>
+<h2 id="key-features">Key Features</h2>
+<p>Group-Averaged Plots: When <code>groupmean</code> is enabled, the function computes group averages for ITC, ERSP, and STP. Contrasts between groups can also be plotted if specified in <code>contrasts</code>.</p>
+<p>Regional Analysis: If <code>averageByRegion</code> is set to true, the function reduces data dimensionality by averaging channels into predefined brain regions.</p>
+<p>Contrast Visualization: Differences between groups are calculated and displayed as additional plots.</p>
+<p>Custom Channel Filtering: Specific channel analysis can be performed by modifying the channel parameter.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="prepare-eeg-data-ensure-your-eeg-data-is-preprocessed-and-organized-in-a-cell-array-format">Prepare EEG Data Ensure your EEG data is preprocessed and organized in a cell array format.</h3>
 <pre><code>EEG1 = pop_loadset('subject1.set');
@@ -413,11 +405,19 @@ EEGcell = {EEG1, EEG2};  % Combine EEG datasets into a cell array
 </code></pre>
 <h3 id="review-visualizations">Review Visualizations</h3>
 <p>The function generates ITC, ERSP, and STP plots for each group or individual. Files are saved in the specified <code>outputdir</code>.</p>
-<h2 id="key-features">Key Features</h2>
-<p>Group-Averaged Plots: When <code>groupmean</code> is enabled, the function computes group averages for ITC, ERSP, and STP. Contrasts between groups can also be plotted if specified in <code>contrasts</code>.</p>
-<p>Regional Analysis: If <code>averageByRegion</code> is set to true, the function reduces data dimensionality by averaging channels into predefined brain regions.</p>
-<p>Contrast Visualization: Differences between groups are calculated and displayed as additional plots.</p>
-<p>Custom Channel Filtering: Specific channel analysis can be performed by modifying the channel parameter.</p>
+<h2 id="outputs">Outputs:</h2>
+<p><code>EEGcell</code>: Updated cell array with added results in the <code>.etc.htp</code> field.</p>
+<p><code>results</code>: A structure summarizing the generated ERP visualizations.</p>
+<p>The function will also create a plot and save it to the output directory, here are examples of those plots:</p>
+<p>Here is when <code>groupmean</code> is set to <code>false</code> the function will output a plot for each eeg in <code>EEGcell</code>:</p>
+<p><img alt="Regular" src="../Regular.png" /></p>
+<p>Here is when <code>groupmean</code> is set to <code>true</code>, the function will only generate a single plot of the group mean for each eeg in <code>EEGcell</code>:</p>
+<p><img alt="Mean" src="../Grouped.png" /></p>
+<p>Here is when <code>groupmean</code> is set to <code>true</code> and <code>singleplot</code> is set to <code>true</code>:</p>
+<p><img alt="SinglePlot" src="../SinglePlotGrouped.png" /></p>
+<p>When setting the <code>averagebyregion</code> to true please <strong>note</strong> that teh eeg structure that input into the function needs to have been passed through <a href="https://sivelrrr.github.io/Matlab_Learning/eeg_htpCalcSource/eeg_htpCalcSource/"><code>eeg_htpCalcSource</code></a> so that it can obtain a the <code>region</code> fields required for this paramater.</p>
+<p>Here is an example of one of the plots produced when <code>averagebyregion</code> is set to <code>true</code>:
+<img alt="region" src="../region.png" /></p>
 <h2 id="example">Example</h2>
 <pre><code>% Load EEG data
 EEG1 = pop_loadset('subject1.set');
@@ -437,7 +437,7 @@ disp(results);
 </code></pre>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Output Directory: Ensure the specified directory exists to avoid errors.</p>
-<p>Group IDs: The groupids vector must match the number of datasets in EEGcell.</p>
+<p>Group IDs: The <code>groupids</code> vector must match the number of datasets in <code>EEGcell</code>.</p>
 <p>Contrast Calculations: Useful for comparing experimental conditions or patient groups.</p>
 <p>Data Integrity: Verify preprocessing steps before visualization to ensure accurate results.</p>
 

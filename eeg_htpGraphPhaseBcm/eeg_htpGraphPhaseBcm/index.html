@@ -300,63 +300,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Outputs
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Outputs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#structure-outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Structure Outputs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      File Outputs
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="File Outputs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#brain-connectivity-matrix-bcm-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Brain Connectivity Matrix (BCM) File:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#graph-measures-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Graph Measures File:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
@@ -417,6 +360,63 @@
       Output Management
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure Outputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Outputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brain-connectivity-matrix-bcm-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brain Connectivity Matrix (BCM) File:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-measures-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Measures File:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -519,21 +519,6 @@
 <p><code>threshold</code> (default: <code>mediansd</code>): Method for thresholding (string).</p>
 <p><code>combos</code> (default: all unique pairs): Channel pairs for connectivity calculations (cell).</p>
 <p><code>bandDefs</code> (default includes <code>delta, theta, alpha, etc</code>.): Frequency band definitions (cell).</p>
-<h2 id="outputs">Outputs</h2>
-<h3 id="structure-outputs">Structure Outputs</h3>
-<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field which will contain <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code> just like the results sturcture.</p>
-<p><code>results</code>: Structure containing computed measures and output file references, such as <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code>.</p>
-<h3 id="file-outputs">File Outputs</h3>
-<h4 id="brain-connectivity-matrix-bcm-file">Brain Connectivity Matrix (BCM) File:</h4>
-<p>Filename: <code>[EEG filename]_bcm.[extension]</code></p>
-<p>Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies. Each measure is a 2d square matrix with each row and column being and eeg channel and each value being their connectivity strength with each channel pair. </p>
-<p>Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.</p>
-<p>Format: <code>Parquet</code> (default) or a text-based format depending on the <code>useParquet</code> parameter.</p>
-<h4 id="graph-measures-file">Graph Measures File:</h4>
-<p>Filename: <code>[EEG filename]_graph.[extension]</code></p>
-<p>Content: Contains a table of connectivity and frequency band data, which a graph is created from. The graphs are stored as a list with each frequency per step in <code>frex</code>. Each of these entries will contain an square matrix (channel x channel) with each element representing connectivity strength for a given frequency, the coressponding frequency value, and connectivty measure. </p>
-<p>Location: Same as the <code>BCM</code> file.</p>
-<p>Format: Matches the <code>BCM</code> file format.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="initialization">Initialization</h3>
 <p>The function begins by parsing and validating the user-provided inputs using MATLAB's <code>inputParser</code> class. Then the following will occur during this stage:</p>
@@ -615,6 +600,21 @@
 <p>Intermediate Results: The function generates separate files for BCM and graph data, allowing users to explore raw and processed connectivity data independently.</p>
 </li>
 </ul>
+<h2 id="outputs">Outputs</h2>
+<h3 id="structure-outputs">Structure Outputs</h3>
+<p><code>EEG</code>: Modified EEGLAB structure with connectivity results added in the <code>.vhtp</code> field which will contain <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code> just like the results sturcture.</p>
+<p><code>results</code>: Structure containing computed measures and output file references, such as <code>qi_table</code>, <code>summary_table</code>, and <code>graph_table</code>.</p>
+<h3 id="file-outputs">File Outputs</h3>
+<h4 id="brain-connectivity-matrix-bcm-file">Brain Connectivity Matrix (BCM) File:</h4>
+<p>Filename: <code>[EEG filename]_bcm.[extension]</code></p>
+<p>Content: The brain connectivity matrix (BCM) in a tabular format, containing connectivity measures such as ISPC, WPLI, and SCOH for pairs of channels across frequencies. Each measure is a 2d square matrix with each row and column being and eeg channel and each value being their connectivity strength with each channel pair. </p>
+<p>Location: The directory specified by the outputdir parameter, defaulting to the system temporary directory if not provided.</p>
+<p>Format: <code>Parquet</code> (default) or a text-based format depending on the <code>useParquet</code> parameter.</p>
+<h4 id="graph-measures-file">Graph Measures File:</h4>
+<p>Filename: <code>[EEG filename]_graph.[extension]</code></p>
+<p>Content: Contains a table of connectivity and frequency band data, which a graph is created from. The graphs are stored as a list with each frequency per step in <code>frex</code>. Each of these entries will contain an square matrix (channel x channel) with each element representing connectivity strength for a given frequency, the coressponding frequency value, and connectivty measure. </p>
+<p>Location: Same as the <code>BCM</code> file.</p>
+<p>Format: Matches the <code>BCM</code> file format.</p>
 <h2 id="use-case-example">Use Case Example</h2>
 <pre><code>[EEG, results] = eeg_htpGraphPhaseBcm(EEG, 'gpuon', false, 'threshold', 'mediansd');
 </code></pre>

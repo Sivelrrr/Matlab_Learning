@@ -285,15 +285,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
@@ -341,6 +332,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
   
 </li>
       
@@ -406,11 +406,6 @@
 <p><code>ampThreshold</code> (default: 120): Amplitude threshold (in microvolts) for artifact rejection. Trials with any channel exceeding this threshold are excluded from the analysis.</p>
 <p><code>byChannel</code> (default: false): If true, computes ITC and ERSP for each channel separately. If <code>false</code>, computes the average across a defined set of channels.</p>
 <p><code>baselinew</code> (default: [-500 0]): Specifies the baseline period (in milliseconds) for baseline correction of ERSP values. If left empty (NaN), no baseline correction is applied.</p>
-<h2 id="output">Output</h2>
-<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with updated data and metadata fields.</p>
-<p><code>results</code> : Structure containing the ITC, STP, ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
-<p>It can also output a plot of the uncorrected ITC when <code>plotroi</code> is set to true. However, this requires the user to go into the function details and change it directly rather than using <code>varagin</code> parameters. Here is an example of such plot:</p>
-<p><img alt="roi" src="../plotroi.png" /></p>
 <h2 id="methods">Methods</h2>
 <h3 id="preprocess-eeg-data">Preprocess EEG Data</h3>
 <p>Prepare your EEG data with preprocessing steps like filtering, referencing, and epoching around the stimulus of interest. This function requires trial-based EEG data with time-locked events.</p>
@@ -443,6 +438,11 @@
 <p>Example of inspecting the summary table:</p>
 <pre><code>disp(results.summary_table);  % Display the summary of ITC and ERSP values
 </code></pre>
+<h2 id="output">Output</h2>
+<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with updated data and metadata fields.</p>
+<p><code>results</code> : Structure containing the ITC, STP, ERSP calculations, as well as summary tables and quality indicators for each channel or ROI analyzed.</p>
+<p>It can also output a plot of the uncorrected ITC when <code>plotroi</code> is set to true. However, this requires the user to go into the function details and change it directly rather than using <code>varagin</code> parameters. Here is an example of such plot:</p>
+<p><img alt="roi" src="../plotroi.png" /></p>
 <h2 id="full-use-example">Full use Example</h2>
 <pre><code>% Load EEG data
 EEG = pop_loadset('your_data.set');
