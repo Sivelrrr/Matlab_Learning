@@ -309,9 +309,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
+  <a href="#example-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Usage
+      Example Workflow
     </span>
   </a>
   
@@ -321,6 +321,15 @@
   <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
       Outputs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
     </span>
   </a>
   
@@ -374,17 +383,35 @@
 <p><code>sourceOn</code> (default: <code>false</code>): When <code>true</code>, the function selects electrodes specifically for source analysis targeting auditory cortex regions.</p>
 <p><code>byChannel</code> (default: <code>false</code>): When set to <code>true</code>, the function computes time-frequency data for each individual channel. When <code>false</code>, it averages signals from selected sensors.</p>
 <p><code>baselinew</code> (default: [-500 0]): A time range in milliseconds for ERSP baseline correction. This baseline is applied to normalize ERSP data relative to a pre-stimulus period.</p>
-<h2 id="example-usage">Example Usage</h2>
-<p>Here is a practical example for running this function with baseline correction and source-based electrode selection:</p>
-<pre><code>[EEG, results] = eeg_htpCalcTimeFrequency(EEG, ...
-                                          'sourceOn', true, ...
-                                          'byChannel', true, ...
-                                          'baselinew', [-500 0]);
+<h2 id="example-workflow">Example Workflow</h2>
+<ol>
+<li>
+<p>Load EEG data and ensure it is epoched for the stimulus of interest.</p>
+</li>
+<li>
+<p>Define analysis parameters:</p>
+<ul>
+<li>
+<p>Set <code>tlimits</code> and <code>flimits</code> for the specific time and frequency ranges relevant to your study.</p>
+</li>
+<li>
+<p>Define cycles and timesout based on desired frequency and temporal resolution.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Run artifact rejection using <code>ampThreshold</code> to exclude noisy epochs.</p>
+</li>
+<li>
+<p>Run the function with necessary parameters, as shown in the example above.</p>
+</li>
+</ol>
+<p>5.Analyze and save results:</p>
+<pre><code>- Examine the `results` structure for summary tables and ITC/ERSP data.
 </code></pre>
-<p>In this setup:</p>
-<p><code>sourceOn</code> = if <code>true</code> uses specific electrodes within the auditory cortex.</p>
-<p><code>byChannel</code> = if <code>true</code> processes each selected channel individually.</p>
-<p><code>baselinew</code> = [-500 0] applies baseline correction for ERSP based on the -500 to 0 ms pre-stimulus window.</p>
+<ol>
+<li>Save output tables to the specified directory for report generation.</li>
+</ol>
 <h2 id="outputs">Outputs</h2>
 <p><code>EEG</code>: Modified <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure with additional fields for time-frequency data in <code>EEG.vhtp</code>.</p>
 <p><code>results</code>: A structure containing:</p>
@@ -399,36 +426,17 @@
 <p>Rejection statistics for artifact-prone epochs.</p>
 </li>
 </ul>
-<p>Example Workflow</p>
-<ol>
-<li>
-<p>Load EEG data and ensure it is epoched for the stimulus of interest.</p>
-</li>
-<li>
-<p>Define analysis parameters:</p>
-</li>
-<li>
-<p>Set <code>tlimits</code> and <code>flimits</code> for the specific time and frequency ranges relevant to your study.</p>
-</li>
-<li>
-<p>Define cycles and timesout based on desired frequency and temporal resolution.</p>
-</li>
-<li>
-<p>Run artifact rejection using <code>ampThreshold</code> to exclude noisy epochs.</p>
-</li>
-<li>
-<p>Run the function with necessary parameters, as shown in the example above.</p>
-</li>
-</ol>
-<p>5.Analyze and save results:</p>
-<ul>
-<li>
-<p>Examine the <code>results</code> structure for summary tables and ITC/ERSP data.</p>
-</li>
-<li>
-<p>Save output tables to the specified directory for report generation.</p>
-</li>
-</ul>
+<h2 id="example-usage">Example Usage</h2>
+<p>Here is a practical example for running this function with baseline correction and source-based electrode selection:</p>
+<pre><code>[EEG, results] = eeg_htpCalcTimeFrequency(EEG, ...
+                                          'sourceOn', true, ...
+                                          'byChannel', true, ...
+                                          'baselinew', [-500 0]);
+</code></pre>
+<p>In this setup:</p>
+<p><code>sourceOn</code> = if <code>true</code> uses specific electrodes within the auditory cortex.</p>
+<p><code>byChannel</code> = if <code>true</code> processes each selected channel individually.</p>
+<p><code>baselinew</code> = [-500 0] applies baseline correction for ERSP based on the -500 to 0 ms pre-stimulus window.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Artifact rejection is performed by checking if any trial exceeds the amplitude threshold defined by <code>ampThreshold</code>.</p>
 <p>ROI specification allows targeted frequency and time ranges for specific ERP components, particularly useful for auditory or visual stimuli.</p>

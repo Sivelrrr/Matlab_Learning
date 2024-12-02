@@ -403,9 +403,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#optional-visualization" class="md-nav__link">
+  <a href="#optional-visualization-outpus" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional Visualization
+      Optional Visualization Outpus
     </span>
   </a>
   
@@ -486,15 +486,15 @@
 <h4 id="channel-correlation-coefficient">Channel Correlation Coefficient:</h4>
 <p>Description: This measures the linear relationship between the corresponding channels of <code>EEG1</code> and <code>EEG2</code>.</p>
 <p>Calculation: The correlation coefficient is calculated for each channel across the two datasets using the <code>corr</code> function.</p>
-<p>Output: A vector of correlation coefficients, one for each channel. High values close to 1 indicate high similarity between the channels.</p>
+<p>DataO: A vector of correlation coefficients, one for each channel. High values close to 1 indicate high similarity between the channels.</p>
 <h4 id="frequency-band-correlation">Frequency Band Correlation:</h4>
 <p>Description: This assesses the similarity of EEG signals in specific frequency bands across channels.</p>
 <p>Calculation: The magnitude-squared coherence (<code>mscohere</code>) function is used to compute the coherence between signals for each frequency band.</p>
-<p>Output: A matrix where each row corresponds to a channel and each column to a frequency bin. Higher coherence values indicate stronger similarity in the frequency domain.</p>
+<p>Data: A matrix where each row corresponds to a channel and each column to a frequency bin. Higher coherence values indicate stronger similarity in the frequency domain.</p>
 <h4 id="signal-to-noise-ratios-snr">Signal-to-Noise Ratios (SNR):</h4>
 <p>Description: This measures the ratio of signal power to noise power in the EEG data.</p>
 <p>Calculation: The SNR is calculated using a forumla that divides the square root of two variable <code>NUM</code> and <code>DEN</code>. Then converts its units into decibels using a lograithmic funcition. <code>NUM</code> is the sum of squares of the EEG signal, and <code>DEN</code> is the sum of squared differences between EEG1 and EEG2.</p>
-<p>Output: A single SNR value indicating the overall signal quality relative to noise.</p>
+<p>Data: A single SNR value indicating the overall signal quality relative to noise.</p>
 <h2 id="outputs">Outputs</h2>
 <h3 id="primary-outputs">Primary Outputs</h3>
 <p>The function generates and exports:</p>
@@ -502,12 +502,12 @@
 <p><code>qi_table</code> (optional): A quality index table for tracking assessment details across multiple EEG datasets.</p>
 <p>CSV File: If <code>saveoutput</code> is <code>true</code>, the function saves the <code>summary_table</code> in CSV format. A custom filename can be specified with <code>outputfile</code>.</p>
 <p>Image File: Saves visualizations as a PNG image if <code>tableonly</code> is <code>false</code>.</p>
-<h3 id="optional-visualization">Optional Visualization</h3>
+<h3 id="optional-visualization-outpus">Optional Visualization Outpus</h3>
 <p>(<strong>Note</strong> - Only will occur if <code>tableonly</code> is <code>false</code>)</p>
 <p>Topographic Plots:  These plots show the correlation coefficients for different EEG channels. The units are dimensionless because correlation coefficients range from -1 to 1.</p>
 <p>Histogram: The x-axis represents the correlation coefficient values (dimensionless), and the y-axis represents the count or frequency of these values.</p>
 <p>Spectrogram and Difference Line Plot: Compares the power spectral density (PSD) of <code>EEG1</code> and <code>EEG2</code> with a line plot highlighting percentage differences. The y-axis (left side) represents the Power Spectral Density (PSD) in logarithmic units, typically dB/Hz (decibels per Hertz). The y-axis (right side) represents the percentage difference in power between EEG2 and EEG1, expressed in percentage (%).</p>
-<p>Difference Histogram: Plots The x-axis represents the percentage difference between EEG2 and EEG1 power (%), and the y-axis represents the count or frequency of these percentage differences.</p>
+<p>Difference Histogram: Plots The x-axis represents the percentage difference between <code>EEG1</code> and <code>EEG2</code> power (%), and the y-axis represents the count or frequency of these percentage differences.</p>
 <p><img alt="Graphs" src="../Pipeline.png" /></p>
 <h3 id="example-usage">Example Usage</h3>
 <pre><code>% Load EEG datasets
