@@ -258,15 +258,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#function-description" class="md-nav__link">
-    <span class="md-ellipsis">
-      Function Description
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#function" class="md-nav__link">
     <span class="md-ellipsis">
       Function
@@ -285,15 +276,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Outputs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#detailed-steps" class="md-nav__link">
     <span class="md-ellipsis">
       Detailed Steps
@@ -303,13 +285,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-method" class="md-nav__link">
+  <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Method
+      Outputs
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Example Method">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Method">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -370,9 +361,7 @@
 
 <h1 id="converting-epoch-data-to-continuous-data">Converting epoch data to continuous data</h1>
 <h2 id="overview">Overview</h2>
-<p>This page provides documentation on how to use <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegEpoch2Cont.m"><code>eeg_htpEegEpoch2Cont</code></a> function designed to convert epoched EEG data into continuous data. This function is categorized under "Preprocessing" and helps streamline the transition from segmented to continuous data formats, which is essential for various EEG analyses.</p>
-<h2 id="function-description">Function Description</h2>
-<p>The function takes epoched EEG data (data segmented into trials) and converts it into a continuous data format. This process involves reshaping the data matrix and updating relevant metadata fields such as the number of data points and the time vector.</p>
+<p>This page provides documentation on how to use <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegEpoch2Cont.m"><code>eeg_htpEegEpoch2Cont</code></a> function designed to convert epoched EEG data into continuous data. The function takes epoched EEG data (data segmented into trials) and converts it into a continuous data format. This process involves reshaping the data matrix and updating relevant metadata fields such as the number of data points and the time vector.</p>
 <h2 id="function">Function</h2>
 <pre><code>function EEG = epoched_to_continuous(EEG)
 </code></pre>
@@ -386,15 +375,15 @@
 <p><code>srate</code>: The sampling rate of the EEG data.</p>
 </li>
 </ul>
-<h2 id="outputs">Outputs</h2>
-<p><code>EEG</code>: The modified EEG structure with continuous data. The relevant fields are updated to reflect the new data format.</p>
 <h2 id="detailed-steps">Detailed Steps</h2>
 <p>Dimension Check: It checks if the EEG data has more than two dimensions, indicating that it is epoched.</p>
 <p>Data Reshaping: If the data is epoched, it reshapes the 3D data matrix into a 2D matrix, effectively concatenating trials into a continuous stream.</p>
 <p>Metadata Update: The function updates the number of points (<code>EEG.pnts</code>) and the time vector (<code>EEG.times</code>) based on the new continuous data format.</p>
 <p>Data Conversion: It converts the data to <code>double</code> precision to ensure numerical stability.</p>
 <p>Set Check: It performs a check on the <code>EEG</code> structure using <code>eeg_checkset</code> (a common function in EEG processing toolboxes like <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a>) to ensure the structure's consistency.</p>
-<h2 id="example-method">Example Method</h2>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code>: The modified EEG structure with continuous data. The relevant fields are updated to reflect the new data format.</p>
+<h2 id="use-method">Use Method</h2>
 <h3 id="1-load-your-eeg-data">1. Load Your EEG Data</h3>
 <p>Before using the function, load your EEG data into an <strong>EEGLAB</strong> structure.</p>
 <pre><code>EEG = pop_loadset('filename', 'your_eeg_data.set', 'filepath', 'example_path/');

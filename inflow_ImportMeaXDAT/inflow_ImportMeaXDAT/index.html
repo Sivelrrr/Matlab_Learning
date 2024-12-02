@@ -294,15 +294,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Outputs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#processing-steps" class="md-nav__link">
     <span class="md-ellipsis">
       Processing Steps
@@ -315,6 +306,15 @@
   <a href="#xdat-file-processing" class="md-nav__link">
     <span class="md-ellipsis">
       XDAT File Processing:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outputs
     </span>
   </a>
   
@@ -379,8 +379,6 @@
 Inputs</p>
 <p><code>obj</code> : An instance of the inflow_ImportMeaXDAT class.
 varargin: Additional arguments, with args.char_filepath specifying the path of the EEG file.</p>
-<h2 id="outputs">Outputs</h2>
-<p><code>EEG</code>: The processed <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure containing the signal data, channel locations, and other metadata.</p>
 <h2 id="processing-steps">Processing Steps</h2>
 <p>Filepath and Network Type:
     Extracts the file path and sets <code>args.char_netType</code> to <code>MEAXDAT</code>.</p>
@@ -401,6 +399,8 @@ varargin: Additional arguments, with args.char_filepath specifying the path of t
         Verifies and checks the channel locations using <code>eeg_checkset</code>, ensuring that the channels match the expected configuration.</p>
 <p>QA and Visualization:
     Calls <code>util_GetQAData(EEG)</code> for quality assurance on EEG data and then plots EEG data using <code>pop_eegplot</code>.</p>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code>: The processed <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure containing the signal data, channel locations, and other metadata.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Importing and Running</p>
 <pre><code>% Create an instance with the file path to an XDAT file

@@ -312,6 +312,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#verify-remapping-results" class="md-nav__link">
     <span class="md-ellipsis">
       Verify Remapping Results
@@ -324,15 +333,6 @@
   <a href="#full-example" class="md-nav__link">
     <span class="md-ellipsis">
       Full Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output
     </span>
   </a>
   
@@ -385,6 +385,8 @@
 <p>Channel 1 in the original data is mapped to position 29 in the reordered data.</p>
 <p>Channel 2 in the original data is mapped to position 27 in the reordered data.</p>
 <p>These mappings continue for all channels up to 30. The <code>reorderedArray</code> is filled according to this mapping, and the original <code>EEG.data</code> is replaced with the reordered data.</p>
+<h2 id="output">Output</h2>
+<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with its <code>.data</code> field remapped according to the specified <code>mappingDict</code> dictionary.</p>
 <h2 id="verify-remapping-results">Verify Remapping Results</h2>
 <p>You can verify the remapping by inspecting <code>EEG.data</code> to ensure channels are in the expected positions according to the mapping scheme.</p>
 <pre><code>disp(EEG.data);  % Display the remapped EEG data
@@ -400,8 +402,6 @@ EEG = util_htpRemapXdatMea(EEG);
 % Verify remapped channels
 disp(EEG.data);  % Check the reordered data
 </code></pre>
-<h2 id="output">Output</h2>
-<p><code>EEG</code>: The input <strong>EEGLAB</strong> structure with its <code>.data</code> field remapped according to the specified <code>mappingDict</code> dictionary.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Mapping Dictionary: Adjustments to the mapping dictionary may be necessary if the channel configuration changes or if different data is used.</p>
 <p>Data Consistency: Be cautious when applying this remapping to ensure it corresponds accurately with the physical setup used during data collection.</p>
