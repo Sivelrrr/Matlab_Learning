@@ -387,6 +387,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
       Outputs
@@ -399,15 +408,6 @@
   <a href="#use-case" class="md-nav__link">
     <span class="md-ellipsis">
       Use Case
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Methods
     </span>
   </a>
   
@@ -469,16 +469,6 @@
 <p>Deletes and resets the Brainstorm protocol. </p>
 <h4 id="bandef-defaults-delta-2-35-theta-35-75"><code>bandef</code> (Defaults: <code>{'delta', 2, 3.5; 'theta', 3.5, 7.5; ...}</code> ):</h4>
 <p>Cell array specifying frequency bands</p>
-<h2 id="outputs">Outputs</h2>
-<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations, which will be stored in the <code>.vhtp.eeg_htpCalcSource..regions</code>. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
-<p><code>results</code> : Structure containing processing metadata, including atlases and head models used.</p>
-<h2 id="use-case">Use Case</h2>
-<pre><code>[EEG2, results] = eeg_htpCalcSource(EEG, 'outputdir', 'path/to/output/', ...
-    'nettype', 'EGI128', ...
-    'saveset', true, ...
-    'confirmplot', true);
-</code></pre>
-<p>In this example, the function processes an EEG dataset with several specified parameters. The <code>outputdir</code> parameter determines the folder where results, including any generated plots, will be saved. The <code>nettype</code> parameter specifies the electrode configuration used in the recording, such as <code>EGI128</code> for a 128-channel EGI system, ensuring proper alignment with the head model. The <code>saveset</code> option, when set to <code>true</code>, enables the function to save the updated EEG dataset to a new file for further analysis. Additionally, the <code>confirmplot</code> parametergenerates visual confirmation plots of the source localization results, when set to <code>true</code>, providing an opportunity to inspect the accuracy of the calculations. The function returns <code>EEG2</code>, the processed EEG dataset containing source localization data, and results, a structure with detailed information about the computed sources, enabling streamlined integration of source analysis into EEG workflows.</p>
 <h2 id="methods">Methods</h2>
 <ul>
 <li>
@@ -500,6 +490,16 @@
 <p>Output: Incorporates the computed source-localized data back into the EEG structure for compatibility with other <strong>EEGLAB</strong>-based analyses. If saveset is enabled, the updated dataset is saved, preserving all source-related computations and ensuring the results are ready for immediate or future use.</p>
 </li>
 </ul>
+<h2 id="outputs">Outputs</h2>
+<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations, which will be stored in the <code>.vhtp.eeg_htpCalcSource..regions</code>. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
+<p><code>results</code> : Structure containing processing metadata, including atlases and head models used.</p>
+<h2 id="use-case">Use Case</h2>
+<pre><code>[EEG2, results] = eeg_htpCalcSource(EEG, 'outputdir', 'path/to/output/', ...
+    'nettype', 'EGI128', ...
+    'saveset', true, ...
+    'confirmplot', true);
+</code></pre>
+<p>In this example, the function processes an EEG dataset with several specified parameters. The <code>outputdir</code> parameter determines the folder where results, including any generated plots, will be saved. The <code>nettype</code> parameter specifies the electrode configuration used in the recording, such as <code>EGI128</code> for a 128-channel EGI system, ensuring proper alignment with the head model. The <code>saveset</code> option, when set to <code>true</code>, enables the function to save the updated EEG dataset to a new file for further analysis. Additionally, the <code>confirmplot</code> parametergenerates visual confirmation plots of the source localization results, when set to <code>true</code>, providing an opportunity to inspect the accuracy of the calculations. The function returns <code>EEG2</code>, the processed EEG dataset containing source localization data, and results, a structure with detailed information about the computed sources, enabling streamlined integration of source analysis into EEG workflows.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Required Software: </p>
 <ul>

@@ -303,15 +303,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inspecting-the-results" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inspecting the Results
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#additional-notes" class="md-nav__link">
     <span class="md-ellipsis">
       Additional Notes
@@ -363,11 +354,11 @@
                                       'gpuOn', true, ...
                                       'bandDefs', {'delta', 1, 4; 'alpha', 8, 13; 'beta', 13, 30});
 </code></pre>
-<p>In this example, the eeg_htpCalcRestPower function is applied to a loaded EEG dataset to compute the spectral power for a specific segment of the recording. The analysis focuses on an 80-second window of EEG data, beginning 10 seconds into the recording, as specified by the duration and offset parameters. By defining these parameters, the user ensures that the spectral analysis targets a specific portion of interest within the dataset.</p>
-<p>The function calculates absolute, relative, and dB power across predefined frequency bands (e.g., delta, theta, alpha, beta, etc.), which can be customized through the bandDefs parameter. In this case, the default band definitions are used unless explicitly modified. Additionally, GPU acceleration is enabled via the gpuOn parameter to improve computation efficiency, making the function well-suited for large datasets or high-resolution EEG recordings.</p>
-<p>The results of the analysis include band-specific power metrics for each EEG channel and a detailed spectrogram with power values across the full frequency range. These outputs are stored in the EEG structure's .vhtp field and can be saved in either CSV or Parquet format if an outputdir is specified. The resulting tables facilitate downstream statistical analysis or visualization, supporting a wide range of neuroscience research applications.</p>
+<p>In this example, the <code>eeg_htpCalcRestPower</code> function is applied to a loaded EEG dataset to compute the spectral power for a specific segment of the recording. The analysis focuses on an 80-second window of EEG data, beginning 10 seconds into the recording, as specified by the duration and offset parameters. By defining these parameters, the user ensures that the spectral analysis targets a specific portion of interest within the dataset.</p>
+<p>The function calculates absolute, relative, and dB power across predefined frequency bands (e.g., delta, theta, alpha, beta, etc.), which can be customized through the <code>bandDefs</code> parameter. In this case, the default band definitions are used unless explicitly modified. Additionally, GPU acceleration is enabled via the <code>gpuOn</code> parameter to improve computation efficiency, making the function well-suited for large datasets or high-resolution EEG recordings.</p>
+<p>The results of the analysis include band-specific power metrics for each EEG channel and a detailed spectrogram with power values across the full frequency range. These outputs are stored in the <code>EEG</code> structure's <code>.vhtp</code> field and can be saved in either <code>CSV</code> or <code>Parquet</code> format if an outputdir is specified. The resulting tables facilitate downstream statistical analysis or visualization, supporting a wide range of neuroscience research applications.</p>
 <h2 id="customizing-analysis">Customizing Analysis</h2>
-<p>In this case you want to utilize GPU acceleration and change the duration to 30 seconds. You can pass the parameters like this:</p>
+<p>In the case you want to utilize GPU acceleration and change the duration to 30 seconds. You can pass the parameters like this:</p>
 <pre><code>[EEG, results] = eeg_htpCalcRestPower(EEG, 'gpuon', true, 'duration', 30);
 </code></pre>
 <p>In this example:
@@ -380,29 +371,16 @@ The analysis is performed on 30 seconds of data (key-value pair: <code>duration<
 <p>It will also save the following data into separate files and the results structure (based on your settings):</p>
 <ul>
 <li>
-<p>Spectral power results for each channel and frequency band.</p>
+<p>Spectral power results for each channel and frequency band. Saved as the <code>summary_table</code> in the <code>results</code> structure.</p>
 </li>
 <li>
-<p>Spectrogram data as a CSV (or Parquet if enabled) showing the power spectral density across channels.</p>
+<p>Spectrogram data as a CSV (or Parquet if enabled) showing the power spectral density across channels. Saved as the <code>spectro</code> field in the <code>results</code> structure</p>
 </li>
 <li>
-<p>The Quality Index (QI) file summarizes information about the EEG dataset and analysis.</p>
+<p>The Quality Index (QI) file summarizes information about the EEG dataset and analysis. Saved as the <code>qi_table</code> structure in the <code>results</code></p>
 </li>
 </ul>
 <p>These files will be saved in the output directory specified by <code>outputdir</code>.</p>
-<h2 id="inspecting-the-results">Inspecting the Results</h2>
-<p>The results structure contains the following fields:</p>
-<ul>
-<li>
-<p><code>summary_table</code>: A table of power values (absolute, relative, and dB) for each frequency band.</p>
-</li>
-<li>
-<p><code>spectro</code>: The computed spectrogram for each channel. It also includes relative, absolute, and decibel measurements.</p>
-</li>
-<li>
-<p><code>qi_table</code>: Metadata about the analysis (e.g., sampling rate, number of channels).</p>
-</li>
-</ul>
 <p>Example of how to view the summary table:</p>
 <pre><code>disp(results.summary_table);
 </code></pre>
