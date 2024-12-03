@@ -336,9 +336,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-notes" class="md-nav__link">
+  <a href="#additional-notes" class="md-nav__link">
     <span class="md-ellipsis">
-      Final Notes
+      Additional Notes
     </span>
   </a>
   
@@ -361,7 +361,7 @@
 
 <h1 id="converting-epoch-data-to-continuous-data">Converting epoch data to continuous data</h1>
 <h2 id="overview">Overview</h2>
-<p>This page provides documentation on how to use <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegEpoch2Cont.m"><code>eeg_htpEegEpoch2Cont</code></a> function designed to convert epoched EEG data into continuous data. The function takes epoched EEG data (data segmented into trials) and converts it into a continuous data format. This process involves reshaping the data matrix and updating relevant metadata fields such as the number of data points and the time vector.</p>
+<p>This page provides documentation on how to use the <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpEegEpoch2Cont.m"><code>eeg_htpEegEpoch2Cont</code></a> function designed to convert epoched EEG data into continuous data. The function takes epoched EEG data, which is segmented into discrete trials for tasks or stimuli, and merges it into a single continuous time series. This process allows for analyses that require uninterrupted data, such as spectral analysis or Independent Component Analysis (ICA). The underlying mathematical operation involves concatenating the time-series data from individual trials into a single stream while preserving the temporal order. Alongside this, metadata such as the total number of time points and the corresponding time vector are recalculated based on the sampling rate, ensuring that the transformed data accurately reflects its temporal characteristics. The time vector, in particular, is reconstructed as a uniformly spaced sequence in milliseconds, derived from the sampling rate and the new total duration. This transformation provides a seamless temporal representation of the data, crucial for analyses that treat the EEG signal as a continuous process rather than as discrete epochs. By transitioning to a continuous format, the function facilitates preprocessing workflows that operate on the full time course of the data, enabling more comprehensive signal interpretation and artifact correction.</p>
 <h2 id="function">Function</h2>
 <pre><code>function EEG = epoched_to_continuous(EEG)
 </code></pre>
@@ -398,7 +398,7 @@
 <p>Example: Displaying the size of the continuous data</p>
 <pre><code>disp(size(EEG.data));  % Should display the new size of the continuous data
 </code></pre>
-<h2 id="final-notes">Final Notes</h2>
+<h2 id="additional-notes">Additional Notes</h2>
 <p>Ensure that the <code>eeg_checkset</code> function is available in your MATLAB path. This function is typically part of the <strong>EEGLAB</strong> toolbox. The function assumes that the input EEG data is correctly formatted and that the <code>data</code> field contains a 3D matrix if epoched. If the data is already continuous then a warning will we displayed and no changes will occur.</p>
 
 
