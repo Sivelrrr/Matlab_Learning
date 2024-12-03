@@ -364,7 +364,8 @@
 
 <h1 id="remapping-eeg-data-in-xdat-files">Remapping EEG data in XDAT files</h1>
 <h2 id="overview">Overview</h2>
-<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/util_htpRemapXdatMea.m"><code>util_htpRemapXdatMea</code></a> function is designed to reorder or remap EEG channel data within an <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> EEG structure according to a specified mapping. This function is particularly useful if the recorded data channels do not correspond to the correct physical electrode locations and need to be reassigned based on a predefined mapping scheme.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/util_htpRemapXdatMea.m"><code>util_htpRemapXdatMea</code></a> function ensures that EEG channel data within an <a href="https://eeglab.org/download/"><strong>EEGLAB</strong></a> structure is correctly realigned to match a predefined electrode layout. This is essential when the recorded channel order does not correspond to the intended physical electrode positions, which can occur with systems like XDAT or MEAs.</p>
+<p>Using a predefined mapping dictionary, the function reorders the data to align channels with their correct positions, enabling accurate electrode labeling and consistent spatial referencing. This standardization is critical for ensuring compatibility with downstream analyses and maintaining data integrity across sessions or subjects.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>EEG = util_htpRemapXdatMea(EEG)
 </code></pre>

@@ -426,15 +426,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#processing-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Processing Steps
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#xdat-file-processing" class="md-nav__link">
     <span class="md-ellipsis">
       XDAT File Processing:
@@ -557,11 +548,6 @@ varargin: Additional arguments, with <code>args.char_filepath</code> specifying 
 <p>Example:</p>
 <pre><code>EEG = obj.run('stage1Map', '/path/to/custom_Stage1.csv', 'stage2Map', '/path/to/custom_Stage2.csv');
 </code></pre>
-<h2 id="processing-steps">Processing Steps</h2>
-<p>Filepath and Network Type:
-    Extracts the file path and sets <code>args.char_netType</code> to <code>MEAXDAT</code>.</p>
-<p>File Type Check:
-    The run method checks the file extension. If the file is <code>.xdat</code>, it continues with MEA-specific processing; otherwise, it prepares for <code>.edf</code> files.</p>
 <h2 id="xdat-file-processing">XDAT File Processing:</h2>
 <p>XDAT Import Code:
     Uses <code>allegoXDatFileReaderR2019b</code> to read time range and signal structures for <code>PriSigs</code>, <code>AuxSigs</code>, <code>DinSigs</code>, and <code>DoutSigs</code>.</p>
