@@ -330,9 +330,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-example" class="md-nav__link">
+  <a href="#use-case" class="md-nav__link">
     <span class="md-ellipsis">
-      Full Example
+      Use Case
     </span>
   </a>
   
@@ -393,7 +393,7 @@
 <pre><code>disp(EEG.data);  % Display the remapped EEG data
 
 </code></pre>
-<h2 id="full-example">Full Example</h2>
+<h2 id="use-case">Use Case</h2>
 <pre><code>% Load EEG data
 EEG = pop_loadset('your_data.set');
 
@@ -403,6 +403,8 @@ EEG = util_htpRemapXdatMea(EEG);
 % Verify remapped channels
 disp(EEG.data);  % Check the reordered data
 </code></pre>
+<p>This example demonstrates how to use the <code>util_htpRemapXdatMea</code> function to reorder EEG channels within an <strong>EEGLAB</strong> EEG structure based on a predefined mapping scheme. The workflow starts by loading an existing EEG dataset (<code>.set</code> file), applying the remapping function to correct the channel order, and then verifying the changes.</p>
+<p>In this case, the EEG structure is first loaded using <code>pop_loadset</code>. The remapping function, <code>util_htpRemapXdatMea</code>, is then called to adjust the channel arrangement to align with the correct electrode configuration. Finally, the reordered data is displayed to confirm the channel remapping was successful.</p>
 <h2 id="additional-notes">Additional Notes</h2>
 <p>Mapping Dictionary: Adjustments to the mapping dictionary may be necessary if the channel configuration changes or if different data is used.</p>
 <p>Data Consistency: Be cautious when applying this remapping to ensure it corresponds accurately with the physical setup used during data collection.</p>
