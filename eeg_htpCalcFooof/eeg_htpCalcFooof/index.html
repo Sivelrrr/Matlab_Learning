@@ -376,7 +376,23 @@
 
 <h1 id="preforming-fooof-calulcations">Preforming FOOOF Calulcations</h1>
 <h2 id="overview">Overview</h2>
-<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcFooof.m"><code>eeg_htpCalcFooof</code></a> function performs power spectral analysis using the FOOOF (Fitting Oscillations &amp; One-Over-F) approach. It decomposes EEG power spectra into periodic (oscillatory) and aperiodic (background) components, providing insights into underlying neural oscillations. This can be especially useful for analyzing the spectral content of EEG data in terms of background noise versus specific oscillatory peaks.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcFooof.m"><code>eeg_htpCalcFooof</code></a> function 
+is a MATLAB tool designed for analyzing EEG data through the FOOOF (Fitting Oscillations &amp; One-Over-F) 
+model.This function decomposes the power spectral density of EEG signals into two main components: 
+periodic (oscillatory) and aperiodic (background). By separating these components, researchers 
+can gain valuable insights into the neural oscillations present in the data, distinguishing between
+meaningful oscillatory activity and the underlying noise. The function allows users to customize 
+various parameters, such as frequency ranges and whether to use ICA components, facilitating
+tailored analyses for different research needs.</p>
+<p>At its core, the FOOOF approach involves fitting a model to the power spectrum that includes an aperiodic 
+component modeled by a power-law function and periodic components represented by Gaussian peaks. 
+This mathematical framework enables a precise characterization of oscillatory dynamics, making it 
+particularly useful in neurophysiological studies where understanding brain activity patterns is essential. 
+The function also incorporates advanced features such as parallel processing for efficiency, 
+normalization options for improved peak detection, and visualization capabilities to aid in 
+interpreting results. Overall, <code>eeg_htpCalcFooof</code> serves as a powerful tool for researchers 
+aiming to explore the complexities of EEG data through sophisticated 
+spectral analysis.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, results] = eeg_htpCalcFooof(EEG, varargin)
 </code></pre>
@@ -416,6 +432,21 @@ plot_results = true;
 [EEG, results] = eeg_htpCalcFooof(EEG, 'f_range', f_range, ...
     'peak_width_limits', peak_width_limits, 'plot_results', plot_results);
 </code></pre>
+<p>This example demonstrates how to use the <code>eeg_htpCalcFooof</code> function to perform FOOOF 
+(Fitting Oscillations &amp; One Over F) analysis on EEG data with customized parameters:</p>
+<ol>
+<li>
+<p>Frequency Range: The analysis is limited to 1-40 Hz (f_range = [1, 40]), focusing on the most relevant frequency bands for typical EEG analysis.</p>
+</li>
+<li>
+<p>Peak Width Limits: Set to [2, 10], this parameter constrains the width of detected oscillatory peaks, helping to distinguish between narrow, physiologically meaningful peaks and broader spectral features.</p>
+</li>
+<li>
+<p>Plotting: The <code>plot_results</code> option is enabled, which will generate visualizations of the FOOOF model fit for each channel or component.</p>
+</li>
+</ol>
+<p>The function processes the EEG data, fitting the FOOOF model to decompose the power spectrum into aperiodic and periodic components. It returns the modified EEG structure with added FOOOF results and a separate results structure containing detailed spectral analysis information.
+This approach allows researchers to examine neural oscillations more precisely by separating them from the background aperiodic activity, potentially revealing insights into cognitive processes or brain states.</p>
 <h2 id="outputs">Outputs</h2>
 <p><code>EEG</code> : Modified <strong>EEGLAB</strong> structure with <code>.etc.fooof</code> field containing FOOOF results.</p>
 <p><code>results</code> : Structure containing FOOOF analysis results, including aperiodic parameters, peak parameters, and goodness-of-fit metrics.</p>
