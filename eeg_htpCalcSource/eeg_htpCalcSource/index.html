@@ -16,7 +16,7 @@
     
     
       
-        <title>Mapping Channel Sources/Locations - Visual High Throughput Pipeline (VHTP)</title>
+        <title>EEG Source Localization - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mapping-channel-sourceslocations" class="md-skip">
+        <a href="#eeg-source-localization" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mapping Channel Sources/Locations
+              EEG Source Localization
             
           </span>
         </div>
@@ -437,8 +437,8 @@
                   
 
 
-<h1 id="mapping-channel-sourceslocations">Mapping Channel Sources/Locations</h1>
-<p>The function <code>eeg_htpCalcSourc</code>e is a part of the <a href="https://neuroimage.usc.edu/brainstorm/"><strong>Brainstorm</strong></a> toolbox, designed for EEG source localization, and employs mathematical modeling to infer cortical activity from scalp-level EEG recordings. At its core, the function uses a forward model, which calculates the expected scalp potentials for a given set of neural sources, and an inverse model to estimate the brain's electrical activity at the source level from observed EEG data. The function uses regularization techniques, such as the Minimum Norm Estimate (MNE), to constrain the solution and improve accuracy.</p>
+<h1 id="eeg-source-localization">EEG Source Localization</h1>
+<p>The function <code>eeg_htpCalcSource</code> is a part of the <a href="https://neuroimage.usc.edu/brainstorm/"><strong>Brainstorm</strong></a> toolbox, designed for EEG source localization, and employs mathematical modeling to infer cortical activity from scalp-level EEG recordings. At its core, the function uses a forward model, which calculates the expected scalp potentials for a given set of neural sources, and an inverse model to estimate the brain's electrical activity at the source level from observed EEG data. The function uses regularization techniques, such as the Minimum Norm Estimate (MNE), to constrain the solution and improve accuracy.</p>
 <p>The flexibility of this function allows users to tailor their analysis by modifying parameters such as output directories, inverse methods, and processing steps, making it highly adaptable for diverse research needs. By integrating preprocessed EEG data with head models, which incorporate information about the geometry and conductivity of the head, the function refines the spatial mapping of neural activations. This combination of physics-based modeling and computational inversion is critical for translating raw EEG signals into meaningful insights about brain function.</p>
 <h2 id="function-syntax">Function Syntax</h2>
 <pre><code>[EEG, status, results] = eeg_htpCalcSource(EEG, varagin);

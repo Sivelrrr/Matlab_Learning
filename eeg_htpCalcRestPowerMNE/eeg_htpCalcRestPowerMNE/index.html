@@ -16,7 +16,7 @@
     
     
       
-        <title>Calculating Resting Spectral Power (Python MNE) - Visual High Throughput Pipeline (VHTP)</title>
+        <title>Calculating Resting Spectral Power (Python) - Visual High Throughput Pipeline (VHTP)</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#calculating-resting-spectral-power-python-mne" class="md-skip">
+        <a href="#calculating-resting-spectral-power-python" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Calculating Resting Spectral Power (Python MNE)
+              Calculating Resting Spectral Power (Python)
             
           </span>
         </div>
@@ -407,7 +407,7 @@
                   
 
 
-<h1 id="calculating-resting-spectral-power-python-mne">Calculating Resting Spectral Power (Python MNE)</h1>
+<h1 id="calculating-resting-spectral-power-python">Calculating Resting Spectral Power (Python)</h1>
 <h2 id="overview">Overview</h2>
 <p>The <code>eeg_htpCalcRestPower</code> function is a powerful tool for analyzing the spectral power of continuous EEG data. It employs Welch’s method, a widely-used signal processing technique, to estimate the power spectral density (PSD) of neural signals. This method involves dividing the signal into overlapping segments, applying a window function to minimize spectral leakage, and averaging the results to produce a smooth and reliable PSD estimate. The function supports analysis of specific frequency bands—such as delta, theta, alpha, beta, and gamma—that are linked to various cognitive and physiological states. It calculates three key power metrics: absolute power (the raw power within a frequency band), relative power (the proportion of power in a band relative to the total power across all bands), and decibel power (a logarithmic representation of power for easier interpretation). </p>
 <p>Customizable parameters allow users to define their own frequency bands, adjust window sizes for frequency resolution, and handle multi-channel EEG data efficiently. The results, saved as CSV files or optionally in Parquet format, are particularly useful in applications such as cognitive state monitoring, clinical diagnostics, and brain-computer interface research, where frequency-specific neural activity provides critical insights. This function combines mathematical rigor with practical versatility, making it an essential tool for EEG spectral analysis.</p>
