@@ -361,7 +361,8 @@
 
 <h1 id="calculating-time-frequency-data-from-eeg-files">Calculating Time Frequency Data From EEG Files</h1>
 <h2 id="overview">Overview</h2>
-<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcTimeFrequency.m"><code>eeg_htpCalcTimeFrequency</code></a> function calculates time-frequency analyses, particularly inter-trial coherence (ITC) and event-related spectral perturbation (ERSP), to assess frequency-specific power and phase-locking in EEG data. It's built for auditory stimuli experiments but can be adapted to other paradigms.</p>
+<p>The <a href="https://github.com/cincibrainlab/vhtp/blob/main/eeg_htpCalcTimeFrequency.m"><code>eeg_htpCalcTimeFrequency</code></a> function performs time-frequency analyses on EEG data, calculating event-related spectral perturbation (ERSP) and inter-trial coherence (ITC). ERSP quantifies changes in power within specific frequency bands over time relative to a baseline, highlighting how neural oscillatory power increases or decreases in response to stimuli. ITC measures phase-locking consistency across trials at each frequency and time point, providing insights into the synchronization of neural activity. Both metrics rely on wavelet transformations to decompose EEG signals into their frequency components, offering high temporal and spectral resolution.</p>
+<p>Wavelet cycles and frequency ranges are carefully tuned to balance resolution and precision. For example, fewer wavelet cycles emphasize temporal resolution, while more cycles improve frequency specificity. The function uses parameters such as baseline normalization and multi-trial averaging to compute ERSP and ITC, making it highly adaptable for diverse experimental paradigms beyond its original focus on auditory stimuli.</p>
 <p>Syntax</p>
 <pre><code>[EEG, results] = eeg_htpCalcTimeFrequency(EEG, 'parameterName', parameterValue, ...)
 </code></pre>
