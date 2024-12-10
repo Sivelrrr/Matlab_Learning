@@ -491,7 +491,7 @@
 </li>
 </ul>
 <h2 id="outputs">Outputs</h2>
-<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations, which will be stored in the <code>.vhtp.eeg_htpCalcSource..regions</code>. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
+<p><code>EEG</code> : The processed EEG dataset with source-localized data and updated channel locations, which will be stored in the <code>.vhtp.eeg_htpCalcSource.regions</code>. (<strong>Note</strong> that this EEG should be from a source EEG file not a structure that has already been passed through other functions).</p>
 <p><code>results</code> : Structure containing processing metadata, including atlases and head models used.</p>
 <h2 id="use-case">Use Case</h2>
 <pre><code>[EEG2, results] = eeg_htpCalcSource(EEG, 'outputdir', 'path/to/output/', ...
@@ -510,7 +510,6 @@
 <p><strong>Brainstorm</strong>: Must be running or configured for headless mode.</p>
 </li>
 </ul>
-<p>Head Models: Precomputed head models are available here.</p>
 <p>Data Compatibility: Ensure the number of EEG channels matches the specified nettype.</p>
 
 
